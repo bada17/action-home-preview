@@ -1,0 +1,2034 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>활동 › 밑빠진 독상 · 함께하는 시민행동 홈 개편 시안</title>
+<meta name="description" content="함께하는 시민행동 홈페이지 개편 시안입니다. 실제 홈페이지가 아닙니다.">
+
+<meta name="robots" content="noindex,nofollow">
+<style>
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:#fff}
+  
+  .draft-bar{
+    background:#062330;color:#cfe8f4;
+    font:600 13px/1.5 'Pretendard Variable',Pretendard,'Noto Sans KR',-apple-system,sans-serif;
+    padding:9px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px
+  }
+  .draft-bar b{color:#fff;font-weight:700;margin-right:4px}
+  .draft-bar .tag{
+    background:#9a5c06;color:#fff;border-radius:999px;padding:2px 9px;
+    font-size:11px;font-weight:700;letter-spacing:.02em
+  }
+  .draft-bar a{color:#7fb7ce;text-decoration:none;white-space:nowrap}
+  .draft-bar a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
+  .draft-bar a.on{color:#fff;text-decoration:underline;text-underline-offset:3px}
+  .draft-bar .sep{opacity:.3}
+  @media(max-width:700px){
+    .draft-bar{font-size:12px;gap:5px 11px;padding:8px 12px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="draft-bar" aria-label="시안 안내">
+  <span class="tag">시안</span>
+  <b>함께하는 시민행동 홈 개편안</b>
+  <span class="sep">|</span>
+  <a href="/action-home-preview/">홈</a>
+  <a href="/action-home-preview/issue/">이슈</a>
+  <a href="/action-home-preview/49">지자체 감시</a>
+  <a href="/action-home-preview/act-power">권력감시</a>
+  <a href="/action-home-preview/act-budget">예산감시</a>
+  <a href="/action-home-preview/dok-history" class="on" aria-current="page">밑빠진 독상</a>
+  <a href="/action-home-preview/pb/">참여예산 상담소</a>
+</nav>
+
+<style>
+
+@font-face {
+  font-family: 'GmarketSans';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GmarketSans';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: 500;
+  font-display: swap;
+}
+
+#dok {
+  --brand: #00afec;
+  --brand-deep: #0087b8;
+  --brand-tint: #e5f7fe;
+  --ink: #0d1c26;
+  --ink-soft: #47606f;
+  --alert: #ff4a3d;
+  --alert-tint: #ffedeb;
+  --bg: #ffffff;
+  --line: #d8e6ed;
+  --cream: #fbf4e9;      
+  --cream-line: #d9c3a2; 
+  --cream-ink: #6b5a4a;  
+
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+#dok *, #dok *::before, #dok *::after { box-sizing: border-box; margin: 0; padding: 0; }
+#dok a { color: inherit; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  #dok *, #dok *::before, #dok *::after { animation: none !important; transition: none !important; }
+}
+
+#dok.dok-reveal-on [data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .6s cubic-bezier(.22,.61,.36,1),
+              transform .6s cubic-bezier(.22,.61,.36,1);
+  transition-delay: var(--dok-reveal-delay, 0ms);
+}
+#dok.dok-reveal-on [data-reveal="left"]  { transform: translateX(-24px); }
+#dok.dok-reveal-on [data-reveal="right"] { transform: translateX(24px); }
+#dok.dok-reveal-on [data-reveal].is-in { opacity: 1; transform: none; }
+
+@media (max-width: 719px) {
+  #dok.dok-reveal-on [data-reveal="left"],
+  #dok.dok-reveal-on [data-reveal="right"] { transform: translateY(18px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #dok.dok-reveal-on [data-reveal] { opacity: 1; transform: none; }
+}
+
+#dok .dok-map-wrap {
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 40px;
+  align-items: start; margin-top: 36px;
+}
+#dok .dok-map-figure { position: relative; }
+#dok .dok-map-svg { width: 100%; height: auto; display: block; }
+#dok .dok-map-area {
+  fill: #eaf1f5; stroke: #fff; stroke-width: 2;
+  cursor: pointer; transition: fill .15s;
+}
+#dok .dok-map-area:hover { fill: var(--brand); }
+#dok .dok-map-area.is-on { fill: var(--brand-deep); }
+
+#dok .dok-map-label {
+  font-size: var(--dok-map-label, 21px); font-weight: 700; fill: var(--ink);
+  text-anchor: middle; pointer-events: none; paint-order: stroke;
+  stroke: #fff; stroke-width: 4px; stroke-linejoin: round;
+}
+#dok .dok-map-label.is-light { fill: #fff; stroke: none; }
+
+#dok .dok-map-dot {
+  font-size: var(--dok-map-dot, 16px); font-weight: 800; fill: var(--alert);
+  text-anchor: middle; pointer-events: none;
+  
+  paint-order: stroke; stroke: #fff; stroke-width: 5px; stroke-linejoin: round;
+}
+
+#dok .dok-map-modes { display: flex; gap: 8px; margin-bottom: 18px; }
+#dok .dok-map-mode {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-size: 13.5px; font-weight: 700; padding: 0 18px; border-radius: 999px;
+  border: 1.5px solid var(--line); background: #fff; color: var(--ink-soft); cursor: pointer;
+}
+#dok .dok-map-mode[aria-pressed="true"] {
+  background: var(--ink); border-color: var(--ink); color: #fff;
+}
+
+#dok .dok-map-side {
+  border: 1px solid var(--line); border-radius: 16px; padding: 28px 26px;
+  position: sticky; top: 84px;
+}
+#dok .dok-map-side h3 { font-size: 22px; margin-bottom: 4px; }
+#dok .dok-map-side .dok-map-sub { font-size: 14px; color: var(--ink-soft); margin-bottom: 20px; }
+#dok .dok-map-stats { display: flex; gap: 10px; margin-bottom: 22px; }
+#dok .dok-map-stat {
+  flex: 1; background: var(--brand-tint); border-radius: 10px;
+  padding: 14px 12px; text-align: center;
+}
+#dok .dok-map-stat b { display: block; font-size: 26px; line-height: 1.2; color: var(--brand-deep); }
+#dok .dok-map-stat span { font-size: 12.5px; color: var(--ink-soft); font-weight: 600; }
+#dok .dok-map-list {
+  list-style: none;
+  
+  max-height: 46vh; overflow-y: auto;
+  margin-right: -8px; padding-right: 8px;
+}
+#dok .dok-map-list::-webkit-scrollbar { width: 6px; }
+#dok .dok-map-list::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+#dok .dok-map-list li { padding: 13px 0; border-top: 1px solid var(--line); }
+#dok .dok-map-list li:first-child { border-top: 0; }
+#dok .dok-map-round { font-size: 12.5px; font-weight: 700; color: var(--alert); }
+#dok .dok-map-proj { font-size: 15px; font-weight: 700; word-break: keep-all; margin-top: 2px; }
+#dok .dok-map-who { font-size: 13px; color: var(--ink-soft); margin-top: 2px; }
+#dok .dok-map-none { font-size: 14.5px; color: var(--ink-soft); padding: 18px 0; word-break: keep-all; }
+#dok .dok-map-report-cta {
+  display: inline-flex; align-items: center; min-height: 44px;
+  margin-top: 16px; padding: 0 20px; border-radius: 999px;
+  font-family: 'GmarketSans', sans-serif; font-size: 14px; font-weight: 700;
+  color: #fff; background: var(--brand-deep); border: 0;
+  text-decoration: none; cursor: pointer; transition: background .15s;
+}
+#dok .dok-map-report-cta:hover { background: var(--ink); }
+#dok .dok-map-offmap {
+  margin-top: 26px; padding: 18px 20px; border: 1px dashed var(--line);
+  border-radius: 12px; font-size: 14px; color: var(--ink-soft); word-break: keep-all;
+}
+#dok .dok-map-offmap b { color: var(--ink); }
+#dok .dok-map-offmap button {
+  margin-top: 6px; min-height: 44px; font-size: 14px; font-weight: 700; cursor: pointer;
+  background: none; border: 0; color: var(--brand-deep); text-decoration: underline; padding: 0;
+}
+@media (max-width: 860px) {
+  #dok .dok-map-wrap { grid-template-columns: 1fr; gap: 24px; }
+  #dok .dok-map-side { position: static; padding: 22px 20px; }
+  
+  #dok .dok-map-label { font-size: var(--dok-map-label, 30px); }
+  #dok .dok-map-dot { font-size: var(--dok-map-dot, 24px); }
+  #dok .dok-map-mode { min-height: 44px; padding: 0 18px; }
+  #dok .dok-map-offmap button { min-height: 44px; }
+  #dok .dok-map-stat b { font-size: 30px; }
+  #dok .dok-map-list { max-height: 60vh; }
+}
+@media (max-width: 700px) {
+  #dok.dok-has-bar { padding-bottom: 84px; }
+}
+
+#dok .dok-map-chips {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px;
+}
+#dok .dok-map-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  min-height: 44px; padding: 0 16px; border-radius: 999px;
+  border: 1.5px solid var(--line); background: #fff;
+  font-size: 14.5px; font-weight: 700; color: var(--ink-soft);
+  cursor: pointer; transition: all .15s;
+}
+#dok .dok-map-chip:hover { border-color: var(--brand); color: var(--brand-deep); }
+#dok .dok-map-chip[aria-pressed="true"] {
+  background: var(--brand-deep); border-color: var(--brand-deep); color: #fff;
+}
+#dok .dok-map-chip .dok-chip-n:empty { display: none; }
+#dok .dok-map-chip .dok-chip-n {
+  font-size: 12.5px; font-weight: 700; color: var(--alert);
+  background: var(--alert-tint); border-radius: 999px; padding: 1px 7px;
+}
+#dok .dok-map-chip[aria-pressed="true"] .dok-chip-n { background: rgba(255,255,255,.2); color: #fff; }
+#dok .dok-map-chip.is-empty { opacity: .55; }
+
+#dok.dok-has-bar { padding-bottom: 96px; }
+
+#dok .dok-stats {
+  background: var(--cream);
+  padding: 0 24px 64px;
+}
+#dok .dok-stats-inner {
+  max-width: 860px; margin: 0 auto;
+  padding-top: 34px; border-top: 1px solid var(--cream-line);
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+#dok .dok-stat-item { text-align: center; }
+#dok .dok-stat-num {
+  font-family: 'GmarketSans', sans-serif;
+  font-variant-numeric: tabular-nums;   
+  font-size: 42px; font-weight: 700; line-height: 1.1;
+  color: var(--ink); letter-spacing: -0.01em;
+}
+#dok .dok-stat-item.is-lead .dok-stat-num { color: #e0392c; }
+#dok .dok-stat-num .dok-stat-unit { font-size: 22px; margin-left: 2px; }
+#dok .dok-stat-label {
+  font-size: 14px; font-weight: 700; color: var(--ink); margin-top: 10px;
+  word-break: keep-all;
+}
+#dok .dok-stat-sub {
+  font-size: 12.5px; color: var(--cream-ink); margin-top: 4px; word-break: keep-all;
+}
+
+@media (max-width: 700px) {
+  #dok .dok-stats { padding-bottom: 44px; }
+  #dok .dok-stats-inner { gap: 12px; padding-top: 26px; }
+  #dok .dok-stat-num { font-size: 27px; }
+  #dok .dok-stat-num .dok-stat-unit { font-size: 15px; }
+  #dok .dok-stat-label { font-size: 12.5px; margin-top: 7px; }
+  #dok .dok-stat-sub { display: none; }
+}
+
+#dok .dok-fold-head {
+  max-width: 1080px; margin: 0 auto; padding: 0 24px;
+}
+#dok .dok-fold-btn {
+  width: 100%; display: flex; align-items: center; gap: 12px;
+  min-height: 64px; padding: 0 4px; cursor: pointer;
+  background: none; border: 0; text-align: left; color: var(--ink-soft);
+  font-family: inherit; font-size: 15px; font-weight: 700;
+}
+#dok .dok-fold-btn:hover { color: var(--brand-deep); }
+#dok .dok-fold-btn .dok-fold-badge {
+  font-size: 11.5px; font-weight: 700; letter-spacing: .02em;
+  background: #eef3f6; color: var(--ink-soft);
+  padding: 4px 10px; border-radius: 999px; flex-shrink: 0;
+}
+#dok .dok-fold-btn .dok-fold-arrow { margin-left: auto; font-size: 13px; }
+#dok .dok-fold-body { display: none; }
+#dok .dok-fold-body.is-open { display: block; }
+@media (max-width: 620px) {
+  #dok .dok-fold-btn { font-size: 14px; gap: 8px; }
+}
+
+#dok .dok-map-panelbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin: -6px -6px 14px;
+}
+#dok .dok-map-back {
+  display: inline-flex; align-items: center; gap: 6px;
+  min-height: 40px; padding: 0 12px; border-radius: 999px;
+  border: 0; background: none; cursor: pointer;
+  font-family: inherit; font-size: 13.5px; font-weight: 700; color: var(--ink-soft);
+}
+#dok .dok-map-back:hover { background: #eef3f6; color: var(--brand-deep); }
+#dok .dok-map-panel-close {
+  width: 40px; height: 40px; flex-shrink: 0;
+  border: 0; border-radius: 50%; background: #eef3f6; color: var(--ink-soft);
+  font-size: 15px; cursor: pointer;
+}
+#dok .dok-map-panel-close:hover { background: var(--line); color: var(--ink); }
+
+#dok .dok-or {
+  font-size: 12px; font-weight: 600; color: rgba(255,255,255,.55);
+  margin-left: 6px; word-break: keep-all;
+}
+#dok .dok-photo-label {
+  display: block; font-size: 13.5px; font-weight: 700;
+  margin: 18px 0 8px; color: rgba(255,255,255,.9);
+}
+#dok .dok-photo-box { }
+#dok .dok-photo-pick {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px; padding: 22px 16px; cursor: pointer;
+  border: 1.5px dashed rgba(255,255,255,.28); border-radius: 12px;
+  background: rgba(255,255,255,.04); transition: all .15s;
+  text-align: center;
+}
+#dok .dok-photo-pick:hover { border-color: var(--brand); background: rgba(0,175,236,.08); }
+#dok .dok-photo-icon { font-size: 22px; color: var(--brand); line-height: 1; }
+#dok .dok-photo-pick > span:nth-child(2) { font-size: 14.5px; font-weight: 700; color: #fff; }
+#dok .dok-photo-hint { font-size: 12.5px; color: rgba(255,255,255,.5); word-break: keep-all; }
+#dok .dok-photo-list {
+  display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px;
+}
+#dok .dok-photo-thumb {
+  position: relative; width: 84px; height: 84px; border-radius: 10px;
+  overflow: hidden; background: rgba(255,255,255,.08);
+}
+#dok .dok-photo-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+#dok .dok-photo-del {
+  position: absolute; top: 3px; right: 3px;
+  width: 24px; height: 24px; border: 0; border-radius: 50%;
+  background: rgba(13,28,38,.78); color: #fff; font-size: 12px; cursor: pointer;
+  line-height: 1;
+}
+#dok .dok-photo-warn {
+  font-size: 12.5px; color: rgba(255,255,255,.5);
+  margin-top: 10px; word-break: keep-all; line-height: 1.6;
+}
+
+#dok .dok-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  z-index: 50;
+}
+#dok .dok-topbar .dok-org {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 700; font-size: 15px; text-decoration: none;
+}
+#dok .dok-topbar .dok-org img { height: 26px; display: block; }
+#dok .dok-topbar nav { display: flex; gap: 8px; align-items: center; }
+#dok .dok-topbar .dok-nav-link {
+  font-size: 13.5px; font-weight: 600; color: var(--ink-soft);
+  text-decoration: none; padding: 8px 12px;
+}
+#dok .dok-topbar .dok-nav-link:hover { color: var(--brand-deep); }
+#dok .dok-topbar .dok-top-cta {
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700; font-size: 13px; color: #fff;
+  background: var(--brand); text-decoration: none;
+  padding: 10px 18px; border-radius: 999px;
+  transition: background 0.15s;
+}
+#dok .dok-topbar .dok-top-cta:hover { background: var(--brand-deep); }
+
+#dok .dok-hero {
+  
+  background: var(--cream);
+  color: var(--ink);
+  padding: 72px 24px 56px;
+}
+#dok .dok-hero-inner {
+  max-width: 1080px; margin: 0 auto;
+  max-width: 760px;
+  text-align: center;
+}
+#dok .dok-hero .dok-eyebrow {
+  display: inline-block;
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700; font-size: 13px; letter-spacing: 0.16em;
+  color: #8a6a3a; background: #fff;
+  border: 1.5px solid var(--cream-line);
+  padding: 7px 16px; border-radius: 999px;
+  margin-bottom: 26px;
+}
+#dok .dok-hero h1 {
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1.3;
+  margin-bottom: 22px;
+  word-break: keep-all;
+}
+#dok .dok-hero h1 .dok-red { color: #e0392c; }
+#dok .dok-hero p {
+  font-size: 17px; color: var(--cream-ink);
+  max-width: 520px; word-break: keep-all;
+  margin: 0 auto 34px;
+}
+
+#dok .dok-section { max-width: 1080px; margin: 0 auto; padding: 88px 24px; }
+#dok .dok-section-tag {
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700; font-size: 13px; letter-spacing: 0.2em;
+  color: var(--brand-deep); margin-bottom: 14px;
+}
+#dok .dok-section h2 {
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(26px, 3.4vw, 36px);
+  line-height: 1.35; margin-bottom: 18px;
+  word-break: keep-all;
+}
+#dok .dok-section .dok-lead {
+  font-size: 16.5px; color: var(--ink-soft);
+  max-width: 680px; word-break: keep-all;
+}
+
+#dok .dok-story-wrap { margin-top: 40px; }
+#dok .dok-story-head { font-size: 20px; font-weight: 700; word-break: keep-all; }
+#dok .dok-story-sub {
+  font-size: 14.5px; color: var(--ink-soft); margin-top: 6px; word-break: keep-all;
+}
+#dok .dok-story-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px; margin-top: 22px;
+  align-items: start;
+}
+#dok .dok-story-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 26px 24px;
+  background: #fff;
+}
+#dok .dok-story-meta {
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700; font-size: 12px;
+  color: var(--brand-deep);
+  margin-bottom: 12px; word-break: keep-all;
+}
+#dok .dok-story-card h4 {
+  font-size: 18px; font-weight: 700; margin-bottom: 8px; word-break: keep-all;
+}
+#dok .dok-story-excerpt {
+  font-size: 14.5px; line-height: 1.7; color: var(--ink-soft); word-break: keep-all;
+}
+#dok .dok-story-more {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-size: 14px; font-weight: 700; color: var(--brand-deep);
+  background: none; border: 0; padding: 0; margin-top: 6px;
+  cursor: pointer; text-decoration: none;
+}
+#dok .dok-story-more:hover { text-decoration: underline; }
+#dok .dok-story-body {
+  margin-top: 8px; padding-top: 16px; border-top: 1px solid var(--line);
+  font-size: 15px; line-height: 1.8; color: var(--ink); word-break: keep-all;
+}
+#dok .dok-story-body > * + * { margin-top: 12px; }
+#dok .dok-story-body a { color: var(--brand-deep); }
+
+#dok .dok-all-toggle {
+  margin-top: 40px;
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700; font-size: 15px;
+  color: var(--brand-deep);
+  background: var(--brand-tint);
+  border: none; border-radius: 12px;
+  padding: 16px 28px; cursor: pointer;
+  transition: background 0.15s;
+}
+#dok .dok-all-toggle:hover { background: #d2f0fc; }
+#dok .dok-all-table-wrap {
+  display: none;
+  margin-top: 28px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  overflow-x: auto;
+}
+#dok .dok-all-table-wrap.open { display: block; }
+#dok .dok-all-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 560px; }
+#dok .dok-all-table th {
+  background: var(--ink); color: #fff;
+  font-weight: 700; text-align: left;
+  padding: 12px 16px; font-size: 13px;
+}
+#dok .dok-all-table td { padding: 11px 16px; border-bottom: 1px solid var(--line); word-break: keep-all; }
+#dok .dok-all-table tr:last-child td { border-bottom: none; }
+#dok .dok-all-table tr:nth-child(even) td { background: #f7fbfd; }
+#dok .dok-all-table .dok-no { font-weight: 700; color: var(--brand-deep); white-space: nowrap; }
+#dok .dok-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+#dok .dok-map-list.is-clickable li,
+#dok .dok-all-table.is-clickable tbody tr {
+  cursor: pointer;
+  transition: background 0.13s;
+}
+#dok .dok-map-list.is-clickable li { position: relative; padding-right: 22px; }
+#dok .dok-map-list.is-clickable li::after {
+  content: "→";
+  position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+  color: var(--brand-deep); opacity: 0; transition: opacity 0.13s, right 0.13s;
+}
+#dok .dok-map-list.is-clickable li:hover,
+#dok .dok-map-list.is-clickable li:focus-visible { background: var(--brand-tint); }
+#dok .dok-map-list.is-clickable li:hover::after { opacity: 1; right: 0; }
+#dok .dok-all-table.is-clickable tbody tr:hover td { background: var(--brand-tint); }
+#dok .dok-all-table.is-clickable tbody tr:focus-visible td { background: var(--brand-tint); }
+
+#dok .dok-has-note { color: var(--brand-deep); font-weight: 700; margin-left: 5px; }
+
+#dok .dok-modal {
+  position: fixed; inset: 0; z-index: 200;
+  display: none;
+  align-items: center; justify-content: center;
+  padding: 24px;
+}
+#dok .dok-modal.open { display: flex; }
+#dok .dok-modal-back {
+  position: absolute; inset: 0;
+  background: rgba(6, 35, 48, 0.55);
+  animation: dok-fade 0.18s ease-out;
+}
+#dok .dok-modal-box {
+  position: relative;
+  width: min(680px, 100%);
+  max-height: min(86vh, 820px);
+  display: flex; flex-direction: column;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 30px 80px rgba(6, 35, 48, 0.34);
+  animation: dok-rise 0.2s cubic-bezier(0.2, 0.7, 0.3, 1);
+  overflow: hidden;
+}
+@keyframes dok-fade { from { opacity: 0 } to { opacity: 1 } }
+@keyframes dok-rise {
+  from { opacity: 0; transform: translateY(14px) scale(0.985) }
+  to   { opacity: 1; transform: none }
+}
+
+#dok .dok-modal-hd {
+  flex: none;
+  padding: 26px 28px 20px;
+  border-bottom: 1px solid var(--line);
+  background: var(--cream);
+}
+#dok .dok-modal-no {
+  display: inline-block;
+  background: var(--alert); color: #fff;
+  border-radius: 999px; padding: 3px 12px;
+  font-size: 12.5px; font-weight: 800;
+}
+#dok .dok-modal-when { margin-left: 8px; font-size: 12.5px; font-weight: 700; color: var(--cream-ink); }
+#dok .dok-modal-hd h3 {
+  font-family: 'GmarketSans', sans-serif;
+  font-size: clamp(19px, 2.4vw, 24px); font-weight: 700;
+  line-height: 1.38; letter-spacing: -0.02em;
+  margin-top: 12px; word-break: keep-all;
+}
+#dok .dok-modal-who { margin-top: 7px; font-size: 14px; font-weight: 700; color: var(--cream-ink); }
+
+#dok .dok-modal-body {
+  flex: 1 1 auto; overflow-y: auto;
+  padding: 24px 28px 26px;
+  font-size: 15px; line-height: 1.78; word-break: keep-all;
+}
+#dok .dok-modal-body .lead {
+  font-size: 16px; font-weight: 700; line-height: 1.65;
+  padding-left: 14px; border-left: 3px solid var(--brand);
+  margin-bottom: 20px;
+}
+#dok .dok-modal-body h4 {
+  font-size: 14px; font-weight: 800; color: var(--brand-deep);
+  margin: 22px 0 8px;
+}
+#dok .dok-modal-body h4:first-child { margin-top: 0; }
+#dok .dok-modal-body p + p { margin-top: 12px; }
+#dok .dok-modal-body ul { margin: 10px 0 0; padding: 0; list-style: none; }
+#dok .dok-modal-body li {
+  position: relative; padding-left: 15px; margin-top: 7px;
+  font-size: 14.5px; line-height: 1.7;
+}
+#dok .dok-modal-body li::before {
+  content: ""; position: absolute; left: 0; top: 10px;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--brand);
+}
+
+#dok .dok-modal-fig {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin: 18px 0 4px;
+}
+#dok .dok-modal-fig div {
+  flex: 1 1 130px;
+  border: 1px solid var(--line); border-radius: 12px;
+  padding: 12px 14px;
+}
+#dok .dok-modal-fig b {
+  display: block;
+  font-family: 'GmarketSans', sans-serif;
+  font-size: 20px; font-weight: 700; color: var(--alert); line-height: 1.2;
+}
+#dok .dok-modal-fig span { display: block; margin-top: 4px; font-size: 12px; color: var(--ink-soft); }
+
+#dok .dok-modal-none {
+  text-align: center; padding: 26px 10px;
+  color: var(--ink-soft); font-size: 14.5px; line-height: 1.75;
+}
+#dok .dok-modal-none b { display: block; color: var(--ink); font-size: 15.5px; margin-bottom: 7px; }
+
+#dok .dok-modal-ft {
+  flex: none;
+  display: flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-top: 1px solid var(--line);
+  background: #f7fbfd;
+}
+#dok .dok-modal-ft button {
+  border: 1px solid var(--line); background: #fff; color: var(--ink-soft);
+  border-radius: 999px; padding: 8px 15px;
+  font-family: inherit; font-size: 13px; font-weight: 700;
+  cursor: pointer; transition: 0.14s;
+}
+#dok .dok-modal-ft button:hover:not(:disabled) { border-color: var(--brand); color: var(--brand-deep); }
+#dok .dok-modal-ft button:disabled { opacity: 0.36; cursor: default; }
+#dok .dok-modal-ft .dok-modal-close {
+  margin-left: auto; background: var(--ink); border-color: var(--ink); color: #fff;
+}
+#dok .dok-modal-ft .dok-modal-close:hover { background: #000; border-color: #000; color: #fff; }
+#dok .dok-modal-src { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+#dok .dok-modal-src a {
+  border: 1px solid var(--line); border-radius: 999px;
+  padding: 6px 13px; font-size: 12.5px; font-weight: 600; color: var(--ink-soft);
+  text-decoration: none;
+}
+#dok .dok-modal-src a:hover { border-color: var(--brand); color: var(--brand-deep); }
+
+#dok .dok-modal-x {
+  position: absolute; top: 14px; right: 14px; z-index: 2;
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid var(--cream-line); background: rgba(255,255,255,0.86);
+  color: var(--cream-ink); font-size: 15px; line-height: 1; cursor: pointer;
+}
+#dok .dok-modal-x:hover { background: #fff; color: var(--ink); }
+
+@media (max-width: 560px) {
+  #dok .dok-modal { padding: 0; align-items: flex-end; }
+  
+  #dok .dok-modal-box { max-height: 92vh; border-radius: 16px 16px 0 0; }
+  #dok .dok-modal-hd { padding: 22px 20px 18px; }
+  #dok .dok-modal-body { padding: 20px 20px 22px; }
+  #dok .dok-modal-ft { padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #dok .dok-modal-back, #dok .dok-modal-box { animation: none; }
+}
+
+#dok .dok-bottom-cta {
+  text-align: center;
+  padding: 88px 24px;
+}
+#dok .dok-bottom-cta h2 {
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700; font-size: clamp(24px, 3.4vw, 34px);
+  margin-bottom: 16px; word-break: keep-all;
+}
+#dok .dok-bottom-cta p { color: var(--ink-soft); margin-bottom: 30px; word-break: keep-all; }
+#dok .dok-bottom-cta .dok-btn-donate {
+  display: inline-block;
+  font-family: 'GmarketSans', sans-serif;
+  font-weight: 700; font-size: 16px; color: #fff;
+  background: var(--brand); text-decoration: none;
+  padding: 18px 38px; border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,175,236,0.35);
+  transition: transform 0.15s, background 0.15s;
+}
+#dok .dok-bottom-cta .dok-btn-donate:hover { background: var(--brand-deep); transform: translateY(-2px); }
+
+#dok footer { border-top: 1px solid var(--line); padding: 36px 24px; }
+#dok .dok-footer-inner {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+  font-size: 13px; color: var(--ink-soft);
+}
+#dok .dok-footer-inner a { color: var(--brand-deep); text-decoration: none; }
+#dok .dok-footer-inner a:hover { text-decoration: underline; }
+
+@media (max-width: 820px) {
+      #dok .dok-section { padding: 60px 20px; }
+  #dok .dok-topbar nav .dok-nav-link { display: none; }
+}
+#dok :focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+
+#dok .dokh-crumb{max-width:1120px;margin:0 auto;padding:22px 20px 0;font-size:13.5px;color:#6b8290}
+#dok .dokh-crumb a:hover{text-decoration:underline}
+#dok .dokh-note{max-width:1120px;margin:0 auto;padding:14px 20px}
+#dok .dokh-note p{border:1px dashed #c9d8e0;background:#f7fafb;color:#4a6473;
+  padding:14px 16px;font-size:14px;line-height:1.6;border-radius:8px}
+#dok .dokh-now{max-width:1120px;margin:0 auto;padding:0 20px 72px}
+#dok .dokh-now-in{border:2px solid #0087b8;padding:26px 28px;display:flex;
+  align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+#dok .dokh-now-in h3{font-size:clamp(17px,1.6vw,21px);line-height:1.45;margin:0}
+#dok .dokh-now-in p{margin:6px 0 0;font-size:14px;color:#4a6473}
+#dok .dokh-now-in a{flex:none;background:#0087b8;color:#fff;font-weight:800;
+  padding:13px 22px;font-size:15px}
+#dok .dokh-now-in a:hover{background:#00648a}
+@media(max-width:640px){
+  #dok .dokh-now-in{padding:20px}
+  #dok .dokh-now-in a{width:100%;text-align:center}
+}
+</style>
+
+<style>
+  #ah-nav,#ah-nav *,.ah-float,.ah-float *{box-sizing:border-box}
+  #ah-nav{
+    --brand:#00afec;          
+    --brand-deep:#0087b8;     
+    --brand-tint:#e5f7fe;
+    --ink:#0d1c26;--ink-soft:#47606f;--line:#dde7ec;--paper:#f7fafb;
+    
+    position:sticky;top:0;z-index:80;
+    
+    margin-left:calc(50% - 50vw + var(--ah-sb, 0px) / 2);margin-right:calc(50% - 50vw + var(--ah-sb, 0px) / 2);
+    border-bottom:1px solid var(--line);background:#fff;
+    color:var(--ink);line-height:1.6;
+    font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',-apple-system,sans-serif;
+    word-break:keep-all;-webkit-font-smoothing:antialiased
+  }
+  
+  #ah-nav.is-stuck{box-shadow:0 6px 20px rgba(13,28,38,.09)}
+  #ah-nav a{color:inherit;text-decoration:none}
+  #ah-nav img{display:block;width:100%}
+  #ah-nav ul{list-style:none;margin:0;padding:0}
+  #ah-nav p{margin:0}
+  #ah-nav .wrap{width:min(1280px,calc(100% - 48px));margin:0 auto}
+
+  #ah-nav .hd-in{display:flex;align-items:center;gap:20px;min-height:72px}
+  #ah-nav .logo{display:flex;align-items:center;gap:11px;flex:none}
+  #ah-nav .logo-mark{width:36px;height:36px;border-radius:50%;background:var(--brand);display:grid;place-items:center;color:#fff;font-size:16px;font-weight:900;flex:none}
+  #ah-nav .logo b{display:block;font-size:16.5px;font-weight:800;letter-spacing:-.03em;line-height:1.2}
+  #ah-nav .logo small{display:block;font-size:10.5px;letter-spacing:.08em;color:var(--ink-soft)}
+
+  #ah-nav .gnb{display:flex;align-items:stretch;gap:8px;margin-left:auto}
+  
+  #ah-nav .gnb-item{position:relative;display:flex;align-items:center}
+  #ah-nav .gnb-item>a{
+    display:inline-flex;align-items:center;height:42px;padding:0 20px;border-radius:999px;
+    border:1.5px solid var(--line);font-size:15px;font-weight:700;transition:.15s;white-space:nowrap
+  }
+  #ah-nav .gnb-item>a:hover{border-color:var(--brand);color:var(--brand-deep)}
+  #ah-nav .is-todo{border-style:dashed!important;color:var(--ink-soft)}
+
+  #ah-nav .gnb-item>a.is-here{
+    border-color:var(--brand);background:var(--brand-tint);color:var(--brand-deep)
+  }
+  
+  #ah-nav .gnb-item>a.is-here::after{
+    content:"";position:absolute;left:50%;bottom:-1px;transform:translateX(-50%);
+    width:26px;height:3px;background:var(--brand);border-radius:3px 3px 0 0
+  }
+  
+  #ah-nav .drop a.is-here,#ah-nav .drow .dmain.is-here{
+    background:var(--brand-tint);color:var(--brand-deep)
+  }
+  #ah-nav .drow .dmain.is-here em{color:var(--brand-deep)}
+  #ah-nav .msub a.is-here{background:var(--brand);color:#fff}
+  
+  #ah-nav .ah-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+  #ah-nav .drop{
+    position:absolute;top:100%;left:0;min-width:210px;padding-top:10px;
+    opacity:0;visibility:hidden;transform:translateY(-6px);
+    transition:opacity .15s,transform .15s,visibility .15s
+  }
+  #ah-nav .gnb-item:hover .drop,
+  #ah-nav .gnb-item:focus-within .drop{opacity:1;visibility:visible;transform:none}
+  #ah-nav .drop ul{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;box-shadow:0 14px 34px rgba(13,28,38,.14)}
+  #ah-nav .drop ul a{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;font-size:14.5px;font-weight:600;white-space:nowrap}
+  #ah-nav .drop ul a:hover{background:var(--brand-tint);color:var(--brand-deep)}
+  #ah-nav .todo-mark{border:1px dashed var(--line);border-radius:999px;padding:1px 7px;font-size:11px;font-weight:700;color:var(--ink-soft)}
+
+  #ah-nav .drop.is-act ul{min-width:298px;padding:6px}
+  #ah-nav .drow{display:flex;align-items:stretch;gap:4px}
+  #ah-nav .drow .dmain{
+    flex:1;display:block;padding:9px 12px;border-radius:8px;
+    font-size:14.5px;font-weight:700;line-height:1.35;white-space:nowrap
+  }
+  #ah-nav .drow .dmain em{
+    display:block;margin-top:2px;font-style:normal;
+    font-size:11.5px;font-weight:600;color:var(--ink-soft);letter-spacing:-.01em
+  }
+  #ah-nav .drow .dmain:hover{background:var(--brand-tint);color:var(--brand-deep)}
+  #ah-nav .drow .dmain:hover em{color:var(--brand-deep)}
+  #ah-nav .drow .ddoc{
+    flex:none;align-self:center;border:1px solid var(--line);border-radius:999px;
+    padding:5px 11px;font-size:11.5px;font-weight:700;color:var(--ink-soft);
+    opacity:.55;transition:.15s;white-space:nowrap
+  }
+  #ah-nav .drow:hover .ddoc{opacity:1}
+  #ah-nav .drow .ddoc:hover{border-color:var(--brand);background:var(--brand);color:#fff}
+  #ah-nav .msub a.is-doc{background:none;border:1px dashed var(--line);color:var(--brand-deep)}
+
+  #ah-nav .gnb-item.is-mega{position:static}
+  #ah-nav .drop.mega{left:0;right:0;min-width:0;padding-top:0;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 16px 34px rgba(13,28,38,.1)}
+  #ah-nav .is-mega:hover>a,#ah-nav .is-mega:focus-within>a{border-color:var(--brand);color:var(--brand-deep)}
+  #ah-nav .mega-in{width:min(1280px,calc(100% - 48px));margin:0 auto;padding:26px 0 32px}
+  #ah-nav .mega-hd{font-size:15px;font-weight:700;color:var(--ink-soft);margin-bottom:18px}
+  #ah-nav .mega-hd b{color:var(--brand-deep)}
+  
+  #ah-nav .mega-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr)) minmax(190px,.7fr);gap:18px}
+  #ah-nav .icard{display:block;white-space:normal}
+  #ah-nav .icard-media{
+    display:grid;place-items:center;position:relative;aspect-ratio:4/3;overflow:hidden;
+    border-radius:8px;background:var(--paper)
+  }
+  #ah-nav .icard-media img{position:absolute;inset:0;height:100%;object-fit:cover}
+  #ah-nav .icard-note{
+    display:grid;place-items:center;gap:2px;width:100%;height:100%;
+    border:2px dashed var(--line);border-radius:8px;
+    font-size:12.5px;font-weight:700;color:var(--ink-soft);text-align:center
+  }
+  #ah-nav .icard-note small{font-weight:500;font-size:11px}
+  #ah-nav .icard strong{display:block;margin-top:12px;font-size:15.5px;font-weight:700;line-height:1.45}
+  #ah-nav .icard:hover strong{color:var(--brand-deep)}
+  #ah-nav .icard:hover .icard-media{outline:2px solid var(--brand);outline-offset:2px}
+  #ah-nav .icard-due{display:block;margin-top:5px;font-size:12.5px;font-weight:700;color:var(--brand-deep)}
+  #ah-nav .mega-side{display:grid;gap:10px;align-content:start}
+  #ah-nav .mega-side a{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    border:1.5px solid var(--line);border-radius:6px;padding:14px 18px;
+    font-size:14.5px;font-weight:700;line-height:1.35
+  }
+  #ah-nav .mega-side a:hover{border-color:var(--brand);color:var(--brand-deep)}
+  #ah-nav .mega-side .is-fill{background:var(--brand);border-color:var(--brand);color:#fff}
+  #ah-nav .mega-side .is-fill:hover{background:var(--brand-deep);color:#fff}
+
+  #ah-nav .hd-tools{display:flex;align-items:center;gap:6px;flex:none;margin-left:8px}
+  #ah-nav .ico{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:17px;color:var(--ink-soft);background:none;cursor:pointer}
+  #ah-nav .ico:hover{border-color:var(--brand);color:var(--brand-deep)}
+  #ah-nav .menu-btn{display:none}
+
+  #ah-nav .gnb .is-cta{
+    position:relative;overflow:hidden;isolation:isolate;
+    background:var(--brand);border-color:var(--brand);color:#fff;
+    box-shadow:0 2px 10px rgba(0,175,236,.34)
+  }
+  #ah-nav .gnb .is-cta:hover{background:var(--brand-deep);border-color:var(--brand-deep);color:#fff}
+  
+  #ah-nav .gnb .is-cta::before{
+    content:"";position:absolute;top:-60%;bottom:-60%;left:-40%;width:34%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.62),transparent);
+    transform:skewX(-18deg);pointer-events:none;
+    animation:ah-sheen 4s cubic-bezier(.4,0,.2,1) infinite
+  }
+  @keyframes ah-sheen{
+    0%   {left:-40%}
+    
+    32%  {left:120%}
+    100% {left:120%}
+  }
+  
+  #ah-nav .gnb .is-cta::after{
+    content:"";position:absolute;inset:0;border-radius:999px;z-index:-1;
+    box-shadow:0 0 0 0 rgba(0,175,236,.55);
+    animation:ah-halo 2.8s ease-out infinite
+  }
+  @keyframes ah-halo{
+    0%   {box-shadow:0 0 0 0 rgba(0,175,236,.5)}
+    70%  {box-shadow:0 0 0 12px rgba(0,175,236,0)}
+    100% {box-shadow:0 0 0 0 rgba(0,175,236,0)}
+  }
+  
+  #ah-nav .gnb .is-cta{transition:.18s transform,.18s background,.18s box-shadow}
+  #ah-nav .gnb .is-cta:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,135,184,.45)}
+  #ah-nav .gnb .is-cta .ah-heart{
+    display:inline-block;margin-right:7px;font-size:13px;
+    animation:ah-beat 2.8s ease-in-out infinite
+  }
+  @keyframes ah-beat{
+    0%,72%,100%{transform:scale(1)}
+    78%       {transform:scale(1.32)}
+    86%       {transform:scale(1)}
+    92%       {transform:scale(1.18)}
+  }
+  #ah-nav .gnb .is-cta:hover .ah-heart{animation-duration:1.1s}
+
+  #ah-nav .mnav{display:none;border-top:1px solid var(--line);background:#fff;max-height:70vh;overflow-y:auto}
+  #ah-nav .mnav.open{display:block}
+  #ah-nav .mnav>div>ul{padding:10px 0 18px}
+  #ah-nav .mnav>div>ul>li+li{border-top:1px solid var(--line)}
+  #ah-nav .mnav>div>ul>li>a{display:flex;align-items:center;justify-content:space-between;padding:15px 4px 8px;font-size:16px;font-weight:700}
+  #ah-nav .mnav a:hover{color:var(--brand-deep)}
+  #ah-nav .mnav a.is-cta{color:var(--brand-deep);padding-bottom:15px}
+  #ah-nav .msub{display:flex;flex-wrap:wrap;gap:6px;padding:0 4px 14px}
+  #ah-nav .msub a{background:var(--paper);border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:600;color:var(--ink-soft)}
+  #ah-nav .msub a:hover{background:var(--brand);color:#fff}
+
+  .ah-float{
+    position:fixed;right:clamp(16px,2.4vw,34px);bottom:clamp(16px,2.4vw,34px);z-index:70;
+    display:flex;align-items:center;gap:18px;background:#fff;color:#0d1c26;
+    border-radius:999px;padding:16px 20px 16px 26px;text-decoration:none;
+    box-shadow:0 12px 34px rgba(13,28,38,.22);
+    font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',-apple-system,sans-serif;
+    font-size:15px;font-weight:700;line-height:1.4;word-break:keep-all;
+    opacity:0;visibility:hidden;transform:translateY(18px);
+    transition:opacity .25s,transform .25s,visibility .25s
+  }
+  .ah-float.on{opacity:1;visibility:visible;transform:none}
+  .ah-float:hover{color:#0d1c26;box-shadow:0 16px 40px rgba(13,28,38,.3)}
+  .ah-float span{display:block}
+  .ah-float .arrow{
+    flex:none;width:36px;height:36px;border-radius:50%;background:#00afec;color:#fff;
+    display:grid;place-items:center;font-size:15px;transition:transform .15s;
+    box-shadow:0 0 0 0 rgba(0,175,236,.55);animation:ah-halo 2.8s ease-out infinite
+  }
+  .ah-float:hover .arrow{transform:translateX(3px)}
+
+  @media(max-width:1400px){
+    #ah-nav .gnb{gap:6px}
+    #ah-nav .gnb-item>a{height:40px;padding:0 15px;font-size:14px}
+  }
+  @media(max-width:1220px){
+    #ah-nav .gnb-item>a{padding:0 12px;font-size:13.5px}
+    #ah-nav .hd-in{gap:14px}
+  }
+  
+  @media(max-width:1060px){
+    #ah-nav .hd-in{flex-wrap:wrap;min-height:0;padding:10px 0 8px;row-gap:9px}
+    #ah-nav .gnb{
+      order:3;flex-basis:100%;margin:0;align-items:center;justify-content:flex-start;
+      overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+      scrollbar-width:none;padding-bottom:2px
+    }
+    #ah-nav .gnb::-webkit-scrollbar{display:none}
+    #ah-nav .gnb-item{flex:none}
+    #ah-nav .gnb-item>a{height:37px;padding:0 15px;font-size:14px}
+    #ah-nav .gnb-item:last-child{padding-right:14px}
+    #ah-nav .drop{display:none}
+    #ah-nav .menu-btn{display:grid}
+    #ah-nav .hd-tools{margin-left:auto}
+    
+    #ah-nav .gnb-item>a.is-here::after{display:none}
+    #ah-nav .gnb-item>a.is-here{box-shadow:inset 3px 0 0 var(--brand)}
+  }
+  @media(max-width:820px){
+    #ah-nav .wrap{width:min(100% - 36px,1280px)}
+    #ah-nav .hd-in{gap:10px}
+    #ah-nav .logo-mark{width:32px;height:32px;font-size:15px}
+    #ah-nav .logo b{font-size:15px}
+    #ah-nav .ico{width:38px;height:38px}
+    
+    .ah-float{
+      left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));
+      justify-content:space-between;padding:12px 14px 12px 20px;font-size:14px
+    }
+    .ah-float .arrow{width:32px;height:32px;font-size:14px}
+  }
+  @media(max-width:430px){
+    #ah-nav .wrap{width:min(100% - 28px,1280px)}
+    #ah-nav .logo small{display:none}
+    .ah-float span:first-child br{display:none}
+    .ah-float{font-size:13.5px}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    #ah-nav *,.ah-float,.ah-float *{transition:none!important;animation:none!important}
+    #ah-nav .gnb .is-cta::before{display:none}
+  }
+</style>
+
+<header id="ah-nav" data-here="act-dok">
+  <div class="wrap hd-in">
+    <a class="logo" href="/action-home-preview/69?preview_mode=1">
+      <span class="logo-mark" aria-hidden="true">행</span>
+      <span><b>함께하는 시민행동</b><small>ACTION TOGETHER</small></span>
+    </a>
+
+    <nav class="gnb" aria-label="주요 메뉴">
+      <div class="gnb-item">
+        <a href="/action-home-preview/aboutus" data-nav="about">소개</a>
+        <div class="drop"><ul>
+          <li><a href="/action-home-preview/aboutus">우리 단체는</a></li>
+          <li><a href="/action-home-preview/45">지나온 길</a></li>
+          <li><a href="/action-home-preview/31">운영 자료</a></li>
+          <li><a href="/action-home-preview/32">지속가능보고서</a></li>
+          <li><a href="/action-home-preview/53">단체 로고</a></li>
+        </ul></div>
+      </div>
+
+      <div class="gnb-item">
+        <a href="/action-home-preview/52" data-nav="act">활동</a>
+        <div class="drop is-act"><ul>
+          <li class="drow">
+            <a class="dmain" href="/action-home-preview/49" data-nav="act-local">지자체 감시<em>지방정부 · 지방의회</em></a>
+            <a class="ddoc" href="/action-home-preview/23" aria-label="지자체 감시 자료실">자료실</a>
+          </li>
+          <li class="drow">
+            <a class="dmain" href="/action-home-preview/act-power" data-nav="act-power">권력감시<em>중앙정부 · 국회</em></a>
+            <a class="ddoc" href="/action-home-preview/23" aria-label="권력감시 자료실">자료실</a>
+          </li>
+          <li class="drow">
+            <a class="dmain" href="/action-home-preview/act-budget" data-nav="act-budget">예산감시<em>나라살림 · 지방재정</em></a>
+            <a class="ddoc" href="/action-home-preview/23" aria-label="예산감시 자료실">자료실</a>
+          </li>
+          <li class="drow">
+            <a class="dmain" href="/action-home-preview/51" data-nav="act-civic">시민참여<em>참여예산 제도 개선 · 시민 교육</em></a>
+            <a class="ddoc" href="/action-home-preview/23" aria-label="시민참여 자료실">자료실</a>
+          </li>
+          <li class="drow">
+            <a class="dmain" href="/action-home-preview/dok-history" data-nav="act-dok">밑빠진 독상<em>역대 기록 · 지도</em></a>
+            <a class="ddoc" href="/action-home-preview/23" aria-label="밑빠진 독상 자료실">자료실</a>
+          </li>
+        </ul></div>
+      </div>
+
+      <div class="gnb-item is-mega">
+        <a href="/action-home-preview/issue/" data-nav="issue">이슈</a>
+        <div class="drop mega"><div class="mega-in">
+          <p class="mega-hd">지금 시민의 선택이 필요한, <b>이슈</b></p>
+          <div class="mega-grid">
+
+            <a class="icard" href="/action-home-preview/27/?idx=173013295&amp;bmode=view">
+              <span class="icard-media">
+                <img src="https://cdn.imweb.me/thumbnail/20260811/59d0381d6c5b7.png" alt="추가세수 시민의견 수렴 캠페인">
+              </span>
+              <strong>더 걷힐 세금, 어디에 쓸래?</strong>
+              <span class="icard-due">8월 31일 마감</span>
+            </a>
+
+            <a class="icard" href="https://dokseong-action.bada523082.chatgpt.site/">
+              <span class="icard-media">
+                <img src="https://cdn.imweb.me/thumbnail/20260825/c4b8e2d1b259d.png" alt="2026 하반기 밑빠진 독상">
+              </span>
+              <strong>2026 하반기 밑빠진독상</strong>
+              <span class="icard-due">9월 15일 제보 마감</span>
+            </a>
+
+            <a class="icard" href="https://vote.action.or.kr/">
+              <span class="icard-media">
+                <img src="https://vote.action.or.kr/og-budget-vote-v1.png?v=2" alt="10만원 예산 편성 투표">
+              </span>
+              <strong>10만원 예산편성</strong>
+              <span class="icard-due">기간 확인 필요</span>
+            </a>
+
+            <a class="icard" href="/action-home-preview/pb/" data-nav="pb">
+              <span class="icard-media">
+                <span class="icard-note">이미지 자리<small>가로 4:3</small></span>
+              </span>
+              <strong>참여예산 상담소</strong>
+              <span class="icard-due">상시 운영</span>
+            </a>
+
+            <a class="icard" href="#">
+              <span class="icard-media">
+                <span class="icard-note">이미지 자리<small>가로 4:3</small></span>
+              </span>
+              <strong>1회 참여예산 고민대회</strong>
+              <span class="icard-due">기간 미정</span>
+            </a>
+
+            <div class="mega-side">
+              <a href="https://donate.action.or.kr/">정기후원 회원가입 <span aria-hidden="true">⟶</span></a>
+              <a href="/action-home-preview/25">뉴스레터 받기 <span aria-hidden="true">⟶</span></a>
+              <a class="is-fill" href="/action-home-preview/52">시민행동다운<br>예산감시 <span aria-hidden="true">⟶</span></a>
+            </div>
+
+          </div>
+        </div></div>
+      </div>
+
+      <div class="gnb-item">
+        <a href="/action-home-preview/26" data-nav="news">소식</a>
+        <div class="drop"><ul>
+          <li><a href="/action-home-preview/26">공지</a></li>
+          <li><a href="/action-home-preview/23">발행물</a></li>
+          <li><a href="/action-home-preview/24">뉴스룸</a></li>
+          <li><a href="#">투명성<span class="todo-mark">미정</span></a></li>
+        </ul></div>
+      </div>
+
+      <div class="gnb-item">
+        <a class="is-todo" href="#">자리 미정</a>
+        <div class="drop"><ul>
+          <li><a href="/action-home-preview/50">지자체 ESG 평가<span class="todo-mark">내년</span></a></li>
+          <li><a href="/action-home-preview/54">연대 활동</a></li>
+          <li><a href="/action-home-preview/27">일반 활동</a></li>
+          <li><a href="/action-home-preview/46">지역 예산 감시 사례</a></li>
+          <li><a href="/action-home-preview/40">회원 공간</a></li>
+          <li><a href="/action-home-preview/25">뉴스레터</a></li>
+        </ul></div>
+      </div>
+
+      <div class="gnb-item">
+        <a class="is-cta" href="https://donate.action.or.kr/"><span class="ah-heart" aria-hidden="true">♥</span>후원하기</a>
+        
+        <div class="drop"><ul>
+          <li><a href="/action-home-preview/join">후원 신청</a></li>
+          <li><a href="/action-home-preview/36">후원 행사</a></li>
+          <li><a href="/action-home-preview/67">25년의 시민행동</a></li>
+        </ul></div>
+      </div>
+    </nav>
+
+    <div class="hd-tools">
+      <a class="ico" href="/action-home-preview/search" aria-label="검색">⌕</a>
+      <button class="ico menu-btn" type="button" id="ah-menu-btn" aria-label="전체 메뉴" aria-expanded="false" aria-controls="ah-mnav">☰</button>
+    </div>
+  </div>
+
+  <nav class="mnav" id="ah-mnav" aria-label="전체 메뉴"><div class="wrap"><ul>
+    <li>
+      <a href="/action-home-preview/aboutus">소개</a>
+      <ul class="msub">
+        <li><a href="/action-home-preview/aboutus">우리 단체는</a></li>
+        <li><a href="/action-home-preview/45">지나온 길</a></li>
+        <li><a href="/action-home-preview/31">운영 자료</a></li>
+        <li><a href="/action-home-preview/32">지속가능보고서</a></li>
+        <li><a href="/action-home-preview/53">단체 로고</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="/action-home-preview/52">활동</a>
+      <ul class="msub">
+        <li><a href="/action-home-preview/49" data-nav="act-local">지자체 감시</a></li>
+        <li><a href="/action-home-preview/act-power" data-nav="act-power">권력감시</a></li>
+        <li><a href="/action-home-preview/act-budget" data-nav="act-budget">예산감시</a></li>
+        <li><a href="/action-home-preview/51" data-nav="act-civic">시민참여</a></li>
+        <li><a href="/action-home-preview/dok-history" data-nav="act-dok">밑빠진 독상</a></li>
+        <li><a class="is-doc" href="/action-home-preview/23">활동 자료실 →</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="/action-home-preview/issue/">이슈</a>
+      <ul class="msub">
+        <li><a href="/action-home-preview/27/?idx=173013295&amp;bmode=view">더 걷힐 세금, 어디에 쓸래?</a></li>
+        <li><a href="https://dokseong-action.bada523082.chatgpt.site/">2026 하반기 밑빠진독상</a></li>
+        <li><a href="https://vote.action.or.kr/">10만원 예산편성</a></li>
+        <li><a href="/action-home-preview/pb/" data-nav="pb">참여예산 상담소</a></li>
+        <li><a href="#">1회 참여예산 고민대회</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="/action-home-preview/26">소식</a>
+      <ul class="msub">
+        <li><a href="/action-home-preview/26">공지</a></li>
+        <li><a href="/action-home-preview/23">발행물</a></li>
+        <li><a href="/action-home-preview/24">뉴스룸</a></li>
+        <li><a href="#">투명성(미정)</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">자리 미정</a>
+      <ul class="msub">
+        <li><a href="/action-home-preview/50">지자체 ESG 평가(내년)</a></li>
+        <li><a href="/action-home-preview/54">연대 활동</a></li>
+        <li><a href="/action-home-preview/27">일반 활동</a></li>
+        <li><a href="/action-home-preview/46">지역 예산 감시 사례</a></li>
+        <li><a href="/action-home-preview/40">회원 공간</a></li>
+        <li><a href="/action-home-preview/25">뉴스레터</a></li>
+      </ul>
+    </li>
+    <li><a class="is-cta" href="https://donate.action.or.kr/">후원하기 →</a></li>
+  </ul></div></nav>
+</header>
+
+<a class="ah-float" id="ah-float" href="https://donate.action.or.kr/">
+  <span>예산은 저절로 지켜지지 않습니다<br><b>월 1만원으로 감시에 함께하기</b></span>
+  <span class="arrow" aria-hidden="true">→</span>
+</a>
+
+<script>
+/* 공통 헤더 — 하는 일 넷.
+     1. 지금 보고 있는 메뉴에 표시 붙이기 (data-here)
+     2. 좁은 화면 햄버거 열고 닫기
+     3. 스크롤을 내리면 헤더에 그림자 (붙어 있는 게 보이도록)
+     4. 한 화면쯤 내리면 오른쪽 아래 후원 버튼 띄우기
+
+   설계 원칙(DESIGN.md): **켜는 것만 스크립트가 합니다.**
+   그래서 이 스크립트가 통째로 막혀도 메뉴는 다 보이고 링크도 다 눌립니다.
+   안 되는 것은 '현재 위치 표시'와 '햄버거'뿐입니다. */
+(function () {
+  'use strict';
+  var hd = document.getElementById('ah-nav');
+  if (!hd) return;
+
+  /* ── 0. 세로 스크롤바 폭 재기 ──
+     전체 폭으로 펼칠 때 쓰는 100vw 에는 스크롤바가 들어 있습니다. 그대로 쓰면
+     모든 화면이 스크롤바 폭(보통 15px)만큼 옆으로 밀려 가로 스크롤바가 생깁니다.
+     재서 --ah-sb 로 넘겨 주면 헤더와 각 화면이 그만큼 되돌립니다.
+     창 크기가 바뀌면 다시 잽니다. */
+  function measureBar() {
+    var sb = window.innerWidth - document.documentElement.clientWidth;
+    document.documentElement.style.setProperty('--ah-sb', (sb > 0 ? sb : 0) + 'px');
+  }
+  measureBar();
+  window.addEventListener('resize', measureBar);
+
+  /* ── 1. 지금 보고 있는 곳 표시 ──
+     헤더의 data-here 값(예: "act-budget")과 같은 data-nav 를 가진 링크를 켭니다.
+     활동 하위(act-*)면 위쪽 '활동' 알약도 같이 켜서, 큰 갈래가 어디인지 보이게 합니다. */
+  var here = hd.getAttribute('data-here') || '';
+  if (here && here !== 'home') {
+    var marks = [here];
+    if (here.indexOf('act-') === 0) marks.push('act');   // 활동 밑이면 '활동'도
+    if (here === 'pb') marks.push('issue');              // 상담소는 이슈 밑
+    marks.forEach(function (key) {
+      hd.querySelectorAll('[data-nav="' + key + '"]').forEach(function (el) {
+        el.classList.add('is-here');
+        el.setAttribute('aria-current', 'page');
+      });
+    });
+    /* 화면 낭독기에도 알려 줍니다 — 색과 밑줄은 눈으로만 보입니다. */
+    var top = hd.querySelector('.gnb-item>a.is-here');
+    if (top && !top.querySelector('.ah-sr')) {
+      var sr = document.createElement('span');
+      sr.className = 'ah-sr';
+      sr.textContent = ' (현재 위치)';
+      top.appendChild(sr);
+    }
+  }
+
+  /* ── 2. 햄버거 ── */
+  var btn = document.getElementById('ah-menu-btn');
+  var mnav = document.getElementById('ah-mnav');
+  if (btn && mnav) {
+    btn.addEventListener('click', function () {
+      var open = mnav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? '✕' : '☰';
+    });
+    /* 메뉴판에서 어디를 누르면 판을 닫습니다 — 안 닫으면 다음 화면에서도 열려 있습니다. */
+    mnav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) {
+        mnav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = '☰';
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mnav.classList.contains('open')) {
+        mnav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = '☰';
+        btn.focus();
+      }
+    });
+  }
+
+  /* ── 3·4. 스크롤 ──
+     두 가지를 한 번에 봅니다: 헤더 그림자, 떠 있는 후원 버튼.
+     requestAnimationFrame 으로 묶어 스크롤마다 계산이 몰리지 않게 합니다. */
+  var floatCta = document.getElementById('ah-float');
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      var y = window.pageYOffset || document.documentElement.scrollTop;
+      hd.classList.toggle('is-stuck', y > 4);
+      if (floatCta) floatCta.classList.toggle('on', y > window.innerHeight * 0.75);
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+
+<div id="dok" aria-label="밑빠진 독상">
+
+  <nav class="dokh-crumb"><a href="/action-home-preview/">홈</a> &rsaquo; <a href="/action-home-preview/52">활동</a> &rsaquo; 밑빠진 독상</nav>
+
+  <section class="dok-hero">
+    <div class="dok-hero-inner">
+      <div>
+        <span class="dok-eyebrow" id="dokh-eyebrow">2000년부터</span>
+        <h1>
+          세금이 새는 곳에<br>
+          <span class="dok-red">밑빠진 독상</span>을<br>
+          수여합니다
+        </h1>
+        <p>
+          아무리 부어도 채워지지 않는 독처럼, 밑빠진 예산 사업에 시민이 직접 주는 상.
+          2000년 하남국제환경박람회부터 2025년 서울시 한강 리버버스까지,
+          예산낭비의 기록을 이어오고 있습니다.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="dok-stats">
+    <div class="dok-stats-inner">
+      <div class="dok-stat-item">
+        
+        <div class="dok-stat-num"><span class="dok-count" id="dokh-rounds" data-to="0">0</span><span class="dok-stat-unit">회</span></div>
+        <div class="dok-stat-label">수여한 밑빠진 독상</div>
+        <div class="dok-stat-sub">2000년 8월 제1회부터</div>
+      </div>
+      <div class="dok-stat-item is-lead">
+        
+        <div class="dok-stat-num"><span class="dok-count" data-to="1000">0</span><span class="dok-stat-unit">억 원</span></div>
+        <div class="dok-stat-label">밑빠진 독을 감시한 세금</div>
+        <div class="dok-stat-sub">역대 수상 사업의 사업비 합계</div>
+      </div>
+      <div class="dok-stat-item">
+        <div class="dok-stat-num"><span class="dok-count" id="dokh-years" data-to="0">0</span><span class="dok-stat-unit">년</span></div>
+        <div class="dok-stat-label">이어온 예산감시</div>
+        <div class="dok-stat-sub">정부·기업 지원 없이</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dok-section" id="dok-map">
+    <div class="dok-section-tag">MAP</div>
+    <h2>우리 동네 밑빠진 독</h2>
+    <p class="dok-lead">
+      밑빠진 독상이 어디에 수여됐는지 지도에서 확인하세요.
+      지도나 아래 목록에서 지역을 누르면 그곳의 기록이 보입니다.
+    </p>
+
+    <div class="dok-map-wrap">
+      <div class="dok-map-figure">
+        <svg class="dok-map-svg" id="dok-map-svg" role="img" aria-label="대한민국 시도별 밑빠진 독상 지도"></svg>
+        <div class="dok-map-chips" id="dok-map-chips" role="group" aria-label="지역 고르기"></div>
+      </div>
+      <aside class="dok-map-side" id="dok-map-side"></aside>
+    </div>
+
+    <div class="dok-map-offmap" id="dok-map-offmap"></div>
+  </section>
+
+  <section class="dok-section" id="dok-history">
+    <div class="dok-section-tag">HISTORY</div>
+    <h2>밑빠진 독상이 지목해온 것들</h2>
+    <p class="dok-lead">
+      2000년 8월 제1회부터, 중앙정부·지자체·공공기관을 가리지 않고 예산낭비 사례를
+      기록해 왔습니다. 수상에 그치지 않고 사업 중단, 주민소송, 법령·조례 개정으로
+      이어지는 후속 활동을 함께 진행합니다.
+    </p>
+
+    <button type="button" class="dok-all-toggle" id="dok-all-toggle">역대 수상 내역 전체 보기 ▾</button>
+    <div class="dok-all-table-wrap" id="dok-all-table">
+      <table class="dok-all-table">
+        <thead>
+          <tr><th>회차</th><th>수상 시기</th><th>수상자</th><th>대상 사업</th></tr>
+        </thead>
+        
+        <tbody id="dokh-rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="dokh-note" id="dokh-error" hidden>
+    <p>수상 기록을 불러오지 못했습니다. 밑빠진 독상 사이트에서 바로 확인하실 수 있습니다.</p>
+  </div>
+
+  <section class="dokh-now">
+    <div class="dokh-now-in">
+      <div>
+        <h3>지금 회차는 진행 중입니다</h3>
+        <p>제보하기와 이번 회차 감시 참여는 밑빠진 독상 사이트에서 하실 수 있습니다.</p>
+      </div>
+      <a href="https://dokseong-action.bada523082.chatgpt.site/" id="dokh-live">밑빠진 독상 사이트로 →</a>
+    </div>
+  </section>
+
+</div>
+
+<script>
+/* 활동 > 밑빠진 독상 — 역대 기록 화면.
+
+   원본(밑빠진 독상 사이트)의 지도 코드를 가져와 제보 관련 부분을 걷어낸 것입니다.
+   원본과 달라진 곳은 세 군데뿐입니다.
+     1. '시민 제보' 보기 모드와 제보 건수를 뺐습니다 (수상 기록만 그립니다)
+     2. 제보하기 버튼과 제보 폼 지역 채우기를 뺐습니다
+     3. 역대 표를 HTML 에 박지 않고 awards.json 으로 그립니다 (원본은 손으로 적어 둠)
+
+   원본 지도 코드가 바뀌면 tools/sync-dok.py 가 알려 줍니다. */
+(function () {
+  'use strict';
+
+  // ── 어디서 데이터를 받아올지 ──
+  // 배포된 밑빠진 독상 사이트가 원본입니다. 여기 것을 받아 그리므로,
+  // 원본에 수상 기록이 늘면 이 화면도 같이 늘어납니다.
+  var LIVE = 'https://dokseong-action.bada523082.chatgpt.site/';
+  // 로컬 미리보기에서는 같은 서버가 /dok/ 로 저장소를 그대로 물려 줍니다.
+  // 같은 출처라 CORS 없이 확인할 수 있습니다.
+  var isLocal = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
+  var BASE = '/action-home-preview/dok/';   // 정적 시안: 데이터를 같이 담아 CORS 를 피합니다
+  void isLocal; void LIVE;
+
+  var esc = function (v) {
+    return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  };
+
+  // 원본에는 통계 수집 함수가 있습니다. 여기서는 붙이지 않았으므로 빈 함수로 둡니다.
+  var track = function () {};
+
+  var awards = [];
+  var lastRound = 0;   // 표 접기 단추 문구에 씁니다
+
+  /* ═══════════════════════════════════════════════════════════════
+     ★★★ 역대 수상 사업 요약 — 글은 전부 여기에 씁니다 ★★★
+
+     회차 번호를 열쇠로 씁니다. 여기에 없는 회차를 눌러도 팝업은 열리고,
+     "요약 준비 중"이라고 알려 줍니다. 그러니 아는 것부터 채우면 됩니다.
+
+     쓸 수 있는 칸 (전부 없어도 됩니다)
+     ---------------------------------------------------------------
+       lead   맨 위 굵은 한 줄. 이 사업을 한마디로.
+       figs   숫자 카드. [['0.17', '감사원 재산정 B/C'], ...]  최대 3개 권장
+       body   본문. 아래 두 가지를 줄줄이 늘어놓습니다.
+                ['h', '소제목']
+                ['p', '문단 글']
+                ['ul', ['줄1', '줄2']]
+       src    근거 글 링크. [['보이는 글자', '주소'], ...]
+     ---------------------------------------------------------------
+
+     ⚠️ 지어낸 내용을 넣지 마세요. 확인 안 된 것은 아예 빼거나 문장 안에
+        '확인 필요'라고 적어 두세요. 이 화면은 시민이 사실로 읽습니다.
+
+     ⚠️ 40회(한강버스)만 채워져 있습니다. 나머지 39개는 요약 글이 오면
+        아래에 같은 모양으로 줄을 늘리세요.  예)
+            37: { lead: '…', body: [['p', '…']] },
+     ═══════════════════════════════════════════════════════════════ */
+  var DOK_SUMMARY = {
+
+    40: {
+      lead: '경제성이 있다며 시작한 사업이, 감사원이 다시 계산하자 B/C 0.17 로 나왔습니다.',
+      figs: [
+        ['0.17', '감사원 재산정 B/C<br>(서울시 제시 2.82)'],
+        ['120건', '행정안전부 합동점검<br>지적사항'],
+        ['1,750억', '2025년 말까지<br>투입된 사업비']
+      ],
+      body: [
+        ['p', '2025년 3월 4일, 함께하는 시민행동은 서울시 한강버스(한강 리버버스) 사업을 ' +
+              '제40회 밑빠진 독상 수여 대상으로 발표했습니다. 선정 사유는 네 가지였습니다.'],
+        ['ul', [
+          '이미 실패한 한강 수상택시 사례',
+          '사업 타당성 평가 과정과 결과의 왜곡',
+          '과도한 사업비로 인한 서울시 재정 부담',
+          '선박의 안전 문제와 한강의 환경 파괴'
+        ]],
+
+        ['h', '수상 이후 — 운항 중단과 안전 문제'],
+        ['p', '서울시는 반대에도 사업을 강행해 2025년 9월 18일 첫 정식운항에 들어갔습니다. ' +
+              '그러나 열흘 만에 네 차례 기술적 문제가 발생해 승객 탑승을 중단했고, ' +
+              '11월에는 잠실 인근에서 바닥걸림 사고가 났습니다.'],
+        ['p', '11월 21일부터 26일까지 행정안전부 주관으로 실시된 안전관리 실태 합동점검에서 ' +
+              '120건이 지적됐습니다(규정위반 28건, 유지관리 미흡 39건, 개선권고 53건). ' +
+              '서울시는 이듬해 2월까지 96건을 조치한 뒤 2026년 3월 전 구간 운항을 재개했습니다.'],
+
+        ['h', '감사원 감사 — 애초에 추진할 만한 사업이었나'],
+        ['p', '국회 요구(2024년 11월 29일)에 따른 감사원 감사에서 총사업비 산정 · 선박 속도 · ' +
+              '경제성 분석 지침 위반 세 건에 처분요구와 통보가 이뤄졌습니다. ' +
+              '시민사회가 사업 시작 전부터 제기한 문제가 상당 부분 사실로 확인된 것입니다.'],
+        ['p', '서울시는 투자심사에서 총사업비를 자신이 직접 부담하는 선착장 하부시설 조성비 ' +
+              '212억 원만으로 제시했고, 경제성 분석에서도 민간 부담분을 뺐습니다. ' +
+              '그렇게 나온 B/C 값이 1차 2.82, 2차 1.71이었습니다. ' +
+              '감사원이 민간 부담 상부시설비와 선박 도입·운영비까지 넣어 다시 계산하자 ' +
+              '1차 기준 0.42, 2차 기준 0.22, 2024년 12월 23일 사업비 기준 0.17로 떨어졌습니다.'],
+        ['p', '대중교통이라는 명분도 흔들렸습니다. 마곡–잠실 급행 54분은 평균 17노트를 전제로 한 ' +
+              '값이었지만, 감사보고서상 선박별 만재상태 예상속도는 12~16노트였고 ' +
+              '한국해양교통안전공단 시뮬레이션에서는 급행 운항시간이 64~85분으로 나왔습니다.'],
+
+        ['h', '지금 — 완전자본잠식'],
+        ['p', '2025년 말 기준 (주)한강버스의 자본총계는 약 -61.3억 원으로 완전자본잠식 상태이고, ' +
+              '당기순손실은 142.4억 원입니다. 현금성 자산이 약 2,643만 원인 데 비해 ' +
+              '유동부채는 약 717억 원입니다. 회계법인도 "계속기업으로서의 존속능력에 ' +
+              '유의적 의문을 제기할 만한 중요한 불확실성"이 있다고 봤습니다.'],
+        ['p', '투입된 공적자금은 (주)한강버스를 통한 1,523억 원과 서울시 선착장 조성비 227억 원 등 ' +
+              '약 1,750억 원이며, 그 상당수는 SH공사를 통해 조달됐습니다. ' +
+              '잘못된 사업을 추진한 지방자치단체장에게 책임을 물을 방법이 마땅치 않다는 것이 ' +
+              '이 사건이 남긴 가장 큰 숙제입니다.'],
+
+        ['p', '<i>※ 이 요약은 뉴스레터 「밑빠진 독상 — 시민의 세금은 어떻게 새고 있나」 ' +
+              'vol.1 · vol.2 를 줄인 것입니다.</i>']
+      ],
+      src: [
+        ['보류 중인 한강 개발 사업', '/57/?idx=171787220&bmode=view'],
+        ['한강버스 좌초 긴급 토론회', '/27/?idx=168760009&bmode=view'],
+        ['감사원 감사 결과 원문', 'https://www.bai.go.kr/bai/result/branch/detail?srno=3289']
+      ]
+    }
+
+  };
+
+  /* ── 팝업 ──
+     열고 닫기, 앞뒤 회차로 넘기기, 키보드로 다루기.
+
+     설계 원칙(DESIGN.md): 켜는 것만 스크립트가 합니다.
+     '누를 수 있다'는 표시(.is-clickable)도 여기서 붙이므로, 이 코드가 막히면
+     목록과 표는 그냥 읽는 것으로만 남고 헛되이 누를 일이 없습니다. */
+  var modal, modalBody, modalHd, btnPrev, btnNext, lastFocus = null, curRound = null;
+
+  function renderBody(a) {
+    var s = DOK_SUMMARY[a.round];
+    if (!s) {
+      return '<div class="dok-modal-none">' +
+        '<b>요약을 준비하고 있습니다</b>' +
+        '이 회차의 자세한 경과는 아직 정리되지 않았습니다.<br>' +
+        '수상 사실과 대상 사업은 위에 있는 그대로입니다.' +
+        '</div>';
+    }
+
+    var out = '';
+    if (s.lead) out += '<p class="lead">' + s.lead + '</p>';
+
+    if (s.figs && s.figs.length) {
+      out += '<div class="dok-modal-fig">' + s.figs.map(function (f) {
+        return '<div><b>' + f[0] + '</b><span>' + f[1] + '</span></div>';
+      }).join('') + '</div>';
+    }
+
+    (s.body || []).forEach(function (blk) {
+      var kind = blk[0], val = blk[1];
+      if (kind === 'h') out += '<h4>' + val + '</h4>';
+      else if (kind === 'p') out += '<p>' + val + '</p>';
+      else if (kind === 'ul') {
+        out += '<ul>' + val.map(function (li) { return '<li>' + li + '</li>'; }).join('') + '</ul>';
+      }
+    });
+
+    if (s.src && s.src.length) {
+      out += '<div class="dok-modal-src">' + s.src.map(function (l) {
+        var ext = /^https?:/.test(l[1]) ? ' target="_blank" rel="noopener"' : '';
+        return '<a href="' + l[1] + '"' + ext + '>' + l[0] + ' →</a>';
+      }).join('') + '</div>';
+    }
+    return out;
+  }
+
+  function byRound(n) {
+    for (var i = 0; i < awards.length; i++) {
+      if (awards[i].round === n) return awards[i];
+    }
+    return null;
+  }
+
+  function openModal(round) {
+    var a = byRound(round);
+    if (!a || !modal) return;
+    curRound = round;
+
+    modalHd.innerHTML =
+      '<span class="dok-modal-no">제' + esc(a.round) + '회</span>' +
+      '<span class="dok-modal-when">' + esc(a.date) + '</span>' +
+      '<h3>' + esc(a.project) + '</h3>' +
+      '<div class="dok-modal-who">' + esc(a.awardee) + '</div>';
+    modalBody.innerHTML = renderBody(a);
+    modalBody.scrollTop = 0;
+
+    // 앞뒤 회차 — 없는 쪽은 눌리지 않게 흐려 둡니다.
+    var rounds = awards.map(function (x) { return x.round; }).sort(function (p, q) { return p - q; });
+    var at = rounds.indexOf(round);
+    btnPrev.disabled = at <= 0;
+    btnNext.disabled = at < 0 || at >= rounds.length - 1;
+    btnPrev.dataset.go = at > 0 ? rounds[at - 1] : '';
+    btnNext.dataset.go = (at >= 0 && at < rounds.length - 1) ? rounds[at + 1] : '';
+
+    if (!modal.classList.contains('open')) {
+      lastFocus = document.activeElement;
+      modal.classList.add('open');
+      // 뒤 화면이 같이 스크롤되지 않게 잠급니다. 닫을 때 원래대로 돌립니다.
+      document.body.style.overflow = 'hidden';
+    }
+    modal.querySelector('.dok-modal-x').focus();
+  }
+
+  function closeModal() {
+    if (!modal || !modal.classList.contains('open')) return;
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    curRound = null;
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+    lastFocus = null;
+  }
+
+  function buildModal() {
+    var root = document.getElementById('dok');
+    if (!root || document.getElementById('dok-modal')) return;
+
+    var el = document.createElement('div');
+    el.className = 'dok-modal';
+    el.id = 'dok-modal';
+    el.setAttribute('role', 'dialog');
+    el.setAttribute('aria-modal', 'true');
+    el.setAttribute('aria-labelledby', 'dok-modal-hd');
+    el.innerHTML =
+      '<div class="dok-modal-back" data-close></div>' +
+      '<div class="dok-modal-box">' +
+        '<button type="button" class="dok-modal-x" data-close aria-label="닫기">✕</button>' +
+        '<div class="dok-modal-hd" id="dok-modal-hd"></div>' +
+        '<div class="dok-modal-body" id="dok-modal-body" tabindex="0"></div>' +
+        '<div class="dok-modal-ft">' +
+          '<button type="button" class="dok-modal-prev">← 이전 회차</button>' +
+          '<button type="button" class="dok-modal-next">다음 회차 →</button>' +
+          '<button type="button" class="dok-modal-close" data-close>닫기</button>' +
+        '</div>' +
+      '</div>';
+    root.appendChild(el);
+
+    modal = el;
+    modalHd = el.querySelector('#dok-modal-hd');
+    modalBody = el.querySelector('#dok-modal-body');
+    btnPrev = el.querySelector('.dok-modal-prev');
+    btnNext = el.querySelector('.dok-modal-next');
+
+    el.addEventListener('click', function (e) {
+      if (e.target.closest('[data-close]')) { closeModal(); return; }
+      var nav = e.target.closest('.dok-modal-prev, .dok-modal-next');
+      if (nav && nav.dataset.go) openModal(parseInt(nav.dataset.go, 10));
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (!modal.classList.contains('open')) return;
+      if (e.key === 'Escape') { closeModal(); return; }
+      // ← → 로도 회차를 넘길 수 있게. 본문을 읽는 중에는 방해하지 않습니다.
+      if (e.key === 'ArrowLeft' && !btnPrev.disabled && btnPrev.dataset.go) {
+        openModal(parseInt(btnPrev.dataset.go, 10));
+      } else if (e.key === 'ArrowRight' && !btnNext.disabled && btnNext.dataset.go) {
+        openModal(parseInt(btnNext.dataset.go, 10));
+      }
+    });
+  }
+
+  /* 목록·표에 '누를 수 있음'을 켜고 클릭을 받습니다.
+     목록은 지역을 고를 때마다 다시 그려지므로, 한 번 걸어 두고 위임으로 받습니다. */
+  function wireOpeners() {
+    buildModal();
+
+    // 지도 옆 목록 — 다시 그려져도 계속 동작하도록 바깥 칸에 걸어 둡니다.
+    ['dok-map-side', 'dok-map-offmap'].forEach(function (id) {
+      var box = document.getElementById(id);
+      if (!box) return;
+      box.addEventListener('click', function (e) {
+        var li = e.target.closest('.dok-map-list li');
+        if (li && li.dataset.round) openModal(parseInt(li.dataset.round, 10));
+      });
+      box.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        var li = e.target.closest('.dok-map-list li');
+        if (li && li.dataset.round) { e.preventDefault(); openModal(parseInt(li.dataset.round, 10)); }
+      });
+    });
+
+    // 역대 표
+    var table = document.querySelector('#dok .dok-all-table');
+    if (table) {
+      table.classList.add('is-clickable');
+      table.addEventListener('click', function (e) {
+        var tr = e.target.closest('tbody tr');
+        if (tr && tr.dataset.round) openModal(parseInt(tr.dataset.round, 10));
+      });
+      table.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        var tr = e.target.closest('tbody tr');
+        if (tr && tr.dataset.round) { e.preventDefault(); openModal(parseInt(tr.dataset.round, 10)); }
+      });
+    }
+  }
+
+  // ── 역대 수상 표 ──
+  // 원본은 40줄을 HTML 에 손으로 적어 두었습니다. 여기서는 데이터로 그립니다.
+  // 그래야 원본에 41회가 추가될 때 이 화면도 따라옵니다.
+  function drawTable() {
+    var tbody = document.getElementById('dokh-rows');
+    if (!tbody) return;
+    var rows = awards.slice().sort(function (a, b) { return a.round - b.round; });
+    tbody.innerHTML = rows.map(function (a) {
+      // data-round 는 팝업을 여는 열쇠입니다. tabindex 로 키보드로도 고를 수 있습니다.
+      // 요약이 이미 쓰인 회차에는 작은 점을 찍어, 읽을 게 있다는 걸 알려 줍니다.
+      var note = DOK_SUMMARY[a.round] ? '<span class="dok-has-note" title="요약 있음">●</span>' : '';
+      return '<tr data-round="' + esc(a.round) + '" tabindex="0">' +
+        '<td class="dok-no">' + esc(a.round) + '회' + note + '</td>' +
+        '<td>' + esc(a.date) + '</td>' +
+        '<td>' + esc(a.awardee) + '</td>' +
+        '<td>' + esc(a.project) + '</td>' +
+        '</tr>';
+    }).join('');
+
+    lastRound = rows.length ? rows[rows.length - 1].round : 0;
+    var toggle = document.getElementById('dok-all-toggle');
+    if (toggle && lastRound && !document.getElementById('dok-all-table').classList.contains('open')) {
+      toggle.textContent = '역대 수상 내역 전체 보기 (1~' + lastRound + '회) ▾';
+    }
+  }
+
+  // ── 위쪽 숫자 ──
+  // 회차와 햇수는 데이터에서 셉니다. 손으로 적으면 회차가 늘 때마다 틀립니다.
+  function fillStats() {
+    var rounds = document.getElementById('dokh-rounds');
+    var years = document.getElementById('dokh-years');
+    var eyebrow = document.getElementById('dokh-eyebrow');
+    var last = awards.reduce(function (m, a) { return Math.max(m, a.round || 0); }, 0);
+
+    if (rounds && last) rounds.setAttribute('data-to', String(last));
+    if (years) years.setAttribute('data-to', String(new Date().getFullYear() - 2000));
+    if (eyebrow && last) eyebrow.textContent = '2000년부터 ' + last + '회';
+  }
+
+  // ── 지역 지도 ──
+  // 원본 코드입니다. 시도 단위(16개)까지만 그립니다.
+  var svg = document.getElementById('dok-map-svg');
+  var side = document.getElementById('dok-map-side');
+  var off = document.getElementById('dok-map-offmap');
+
+  var NUDGE = {
+    '11': [14, -20],   // 서울
+    '23': [-46, 4],    // 인천
+    '31': [46, 34],    // 경기
+    '29': [-30, -10],  // 세종
+    '25': [16, 14],    // 대전
+    '22': [10, -6]     // 대구
+  };
+
+  // 지도 위 건수 숫자는 원본과 똑같이 꺼 둡니다(바로 아래 칩에 같은 숫자가 나옵니다).
+  var SHOW_MAP_COUNT = false;
+
+  var areas = [];
+  var selected = null;
+
+  function awardsOf(code) {
+    return awards.filter(function (a) { return a.sido === code; });
+  }
+  function countOf(code) { return awardsOf(code).length; }
+
+  function paint() {
+    if (!svg) return;
+    var max = 1;
+    areas.forEach(function (a) { max = Math.max(max, countOf(a.code)); });
+
+    areas.forEach(function (a) {
+      var el = svg.querySelector('[data-code="' + a.code + '"]');
+      if (!el) return;
+      var n = countOf(a.code);
+      var t = n / max;
+      // 수상이 1건뿐인 시도가 여럿이라, 가장 옅은 칸을 0.34 에서 시작합니다.
+      el.style.fill = n === 0 ? '#eaf1f5' : 'rgba(0, 135, 184, ' + (0.34 + t * 0.56) + ')';
+      el.classList.toggle('is-on', selected === a.code);
+
+      var label = svg.querySelector('.dok-map-label[data-code="' + a.code + '"]');
+      if (label) label.classList.toggle('is-light', t > 0.55);
+      var dot = svg.querySelector('.dok-map-dot[data-code="' + a.code + '"]');
+      if (dot) dot.textContent = n ? n : '';
+
+      var chip = document.querySelector('.dok-map-chip[data-code="' + a.code + '"]');
+      if (chip) {
+        chip.setAttribute('aria-pressed', String(selected === a.code));
+        chip.classList.toggle('is-empty', n === 0);
+        chip.querySelector('.dok-chip-n').textContent = n ? n : '';
+      }
+    });
+  }
+
+  var PANEL_BAR =
+    '<div class="dok-map-panelbar">' +
+      '<button type="button" class="dok-map-back">← 전국 보기</button>' +
+      '<button type="button" class="dok-map-panel-close" aria-label="닫고 전국으로">✕</button>' +
+    '</div>';
+
+  function wirePanelBar() {
+    side.querySelectorAll('.dok-map-back, .dok-map-panel-close').forEach(function (el) {
+      el.addEventListener('click', function () {
+        selected = null;
+        paint();
+        renderSide();
+      });
+    });
+  }
+
+  function listHtml(list) {
+    // is-clickable 은 '누를 수 있다'는 표시를 켜는 클래스입니다.
+    // 팝업 코드가 죽으면 이 함수도 안 돌아가므로, 헛되이 누를 일이 생기지 않습니다.
+    return '<ul class="dok-map-list is-clickable">' + list.map(function (a) {
+      var note = DOK_SUMMARY[a.round] ? '<span class="dok-has-note" title="요약 있음">●</span>' : '';
+      return '<li data-round="' + esc(a.round) + '" tabindex="0" role="button" ' +
+             'aria-label="제' + esc(a.round) + '회 ' + esc(a.project) + ' 자세히 보기">' +
+        '<div class="dok-map-round">제' + esc(a.round) + '회 · ' + esc(a.date) + note + '</div>' +
+        '<div class="dok-map-proj">' + esc(a.project) + '</div>' +
+        '<div class="dok-map-who">' + esc(a.awardee) + '</div>' +
+        '</li>';
+    }).join('') + '</ul>';
+  }
+
+  function renderSide() {
+    if (!side) return;
+    if (!selected) {
+      var totalAwards = awards.filter(function (a) { return a.scope === 'local'; }).length;
+      side.innerHTML =
+        '<h3>전국</h3>' +
+        '<p class="dok-map-sub">지도나 아래 지역 목록을 눌러보세요.</p>' +
+        '<div class="dok-map-stats">' +
+          '<div class="dok-map-stat"><b>' + totalAwards + '</b><span>지역에 수여된 독상</span></div>' +
+          '<div class="dok-map-stat"><b>' + awards.length + '</b><span>전체 수상</span></div>' +
+        '</div>';
+      return;
+    }
+
+    var area = areas.filter(function (a) { return a.code === selected; })[0];
+    var list = awardsOf(selected).sort(function (a, b) { return b.round - a.round; });
+
+    side.innerHTML =
+      PANEL_BAR +
+      '<h3>' + esc(area.name) + '</h3>' +
+      '<p class="dok-map-sub">밑빠진 독상 수여 기록</p>' +
+      '<div class="dok-map-stats">' +
+        '<div class="dok-map-stat"><b>' + list.length + '</b><span>수여된 독상</span></div>' +
+      '</div>' +
+      (list.length
+        ? listHtml(list)
+        : '<p class="dok-map-none">아직 이 지역에 수여된 밑빠진 독상은 없습니다.</p>');
+
+    wirePanelBar();
+  }
+
+  function renderOffmap() {
+    if (!off) return;
+    var central = awards.filter(function (a) { return a.scope === 'central'; });
+    var multi = awards.filter(function (a) { return a.scope === 'multi'; });
+    var unknown = awards.filter(function (a) { return a.scope === 'unknown'; });
+
+    off.innerHTML =
+      '<b>지도에 찍히지 않는 ' + (central.length + multi.length + unknown.length) + '건</b><br>' +
+      '중앙정부·공공기관 ' + central.length + '건, 여러 지자체에 걸친 사업 ' + multi.length + '건' +
+      (unknown.length ? ', 지역 확인이 필요한 ' + unknown.length + '건' : '') +
+      '. 밑빠진 독상의 절반 이상은 특정 지역이 아니라 중앙정부를 향했습니다.' +
+      '<br><button type="button" id="dok-map-central">중앙정부 수상 내역 보기</button>';
+
+    document.getElementById('dok-map-central').addEventListener('click', function () {
+      selected = null;
+      paint();
+      var list = central.sort(function (a, b) { return b.round - a.round; });
+      side.innerHTML =
+        PANEL_BAR +
+        '<h3>중앙정부·공공기관</h3>' +
+        '<p class="dok-map-sub">특정 지역에 속하지 않는 수상 내역 ' + list.length + '건</p>' +
+        listHtml(list);
+      wirePanelBar();
+      if (window.matchMedia('(max-width: 860px)').matches) {
+        side.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
+  function drawMap(data) {
+    areas = data.areas;
+    svg.setAttribute('viewBox', data.viewBox);
+    svg.innerHTML =
+      areas.map(function (a) {
+        return '<path class="dok-map-area" data-code="' + a.code + '" d="' + a.d + '">' +
+               '<title>' + esc(a.name) + '</title></path>';
+      }).join('') +
+      areas.map(function (a) {
+        var nud = NUDGE[a.code] || [0, 0];
+        var x = a.cx + nud[0], y = a.cy + nud[1];
+        return '<text class="dok-map-label" data-code="' + a.code + '" x="' + x + '" y="' + y + '">' +
+                 esc(a.short || a.name) + '</text>' +
+               (SHOW_MAP_COUNT
+                 ? '<text class="dok-map-dot" data-code="' + a.code + '" x="' + x + '" y="' + (y + 22) + '" data-y="' + y + '"></text>'
+                 : '');
+      }).join('');
+
+    svg.querySelectorAll('.dok-map-area').forEach(function (el) {
+      el.addEventListener('click', function () { select(el.dataset.code); });
+    });
+    fitMapText();
+  }
+
+  // SVG 안 글자는 viewBox 단위라 지도가 좁아지면 같이 줄어듭니다.
+  // 실제로 그려진 폭을 재서 화면에서 늘 같은 크기로 보이게 되돌립니다.
+  function fitMapText() {
+    if (!svg) return;
+    var w = svg.clientWidth;
+    if (!w) return;
+    var vb = svg.viewBox.baseVal.width || 857;
+    var scale = w / vb;
+    var label = Math.max(18, Math.min(46, Math.round(13.5 / scale)));
+    var dot = Math.max(16, Math.min(42, Math.round(13 / scale)));
+    svg.style.setProperty('--dok-map-label', label + 'px');
+    svg.style.setProperty('--dok-map-dot', dot + 'px');
+    svg.querySelectorAll('.dok-map-dot').forEach(function (el) {
+      var base = Number(el.dataset.y);
+      if (!isNaN(base)) el.setAttribute('y', base + label * 0.92);
+    });
+  }
+
+  function select(code) {
+    selected = selected === code ? null : code;
+    paint();
+    renderSide();
+    if (selected && window.matchMedia('(max-width: 860px)').matches && side) {
+      side.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  function drawChips() {
+    var box = document.getElementById('dok-map-chips');
+    if (!box) return;
+    box.innerHTML = areas.map(function (a) {
+      return '<button type="button" class="dok-map-chip" data-code="' + a.code + '" aria-pressed="false">' +
+             '<span>' + esc(a.short || a.name) + '</span><span class="dok-chip-n"></span></button>';
+    }).join('');
+    box.querySelectorAll('.dok-map-chip').forEach(function (el) {
+      el.addEventListener('click', function () { select(el.dataset.code); });
+    });
+  }
+
+  if (svg) {
+    if ('ResizeObserver' in window) new ResizeObserver(fitMapText).observe(svg);
+    else window.addEventListener('resize', fitMapText);
+  }
+
+  // ── 원본에서 받아오기 ──
+  function failed(err) {
+    console.error('밑빠진 독상 기록을 불러오지 못했습니다', err);
+    var note = document.getElementById('dokh-error');
+    if (note) note.hidden = false;
+    if (side) side.innerHTML = '<p class="dok-map-none">지도를 불러오지 못했습니다.</p>';
+  }
+
+  Promise.all([
+    fetch(BASE + 'data/map-sido.json').then(function (r) { return r.json(); }),
+    fetch(BASE + 'data/awards.json').then(function (r) { return r.json(); })
+  ]).then(function (res) {
+    awards = res[1].awards || [];
+    fillStats();
+    drawTable();
+    if (svg) {
+      drawMap(res[0]);
+      drawChips();
+      paint();
+      renderSide();
+      renderOffmap();
+    }
+    startCounters();
+    // 수상 기록이 들어온 뒤에 팝업을 겁니다. 데이터가 없으면 열 것도 없습니다.
+    wireOpeners();
+  }).catch(failed);
+
+  // ── 숫자 올리기 ──
+  // 화면에 들어왔을 때 한 번만 0 에서 목표까지 올립니다.
+  function startCounters() {
+    var nums = document.querySelectorAll('#dok .dok-count');
+    if (!nums.length) return;
+
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var run = function (el) {
+      var to = Number(el.getAttribute('data-to')) || 0;
+      if (still || !('requestAnimationFrame' in window)) { el.textContent = to; return; }
+      var t0 = null, dur = 900;
+      var tick = function (t) {
+        if (t0 === null) t0 = t;
+        var p = Math.min(1, (t - t0) / dur);
+        el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    if (!('IntersectionObserver' in window)) {
+      nums.forEach(run);
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        run(e.target);
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.4 });
+    nums.forEach(function (el) { io.observe(el); });
+  }
+
+  // ── 전체 수상 내역 접기·펴기 ──
+  // 원본과 같은 클래스(.open)를 씁니다. CSS 를 원본에서 가져왔기 때문입니다.
+  (function () {
+    var btn = document.getElementById('dok-all-toggle');
+    var box = document.getElementById('dok-all-table');
+    if (!btn || !box) return;
+    btn.setAttribute('aria-expanded', 'false');
+    btn.addEventListener('click', function () {
+      var open = box.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open
+        ? '역대 수상 내역 접기 ▴'
+        : '역대 수상 내역 전체 보기 (1~' + lastRound + '회) ▾';
+    });
+  })();
+
+  // ── 스크롤로 들어올 때 살짝 올라오기 ──
+  // 원본과 같은 방식입니다. 감추는 CSS 가 #dok.dok-reveal-on 안에만 있어서,
+  // 스크립트가 막히면 그 클래스가 안 붙고 내용이 그냥 다 보입니다.
+  (function () {
+    var root = document.getElementById('dok');
+    var items = document.querySelectorAll('#dok .dok-section, #dok .dok-stats, #dok .dokh-now');
+    if (!root || !items.length || !('IntersectionObserver' in window)) return;
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-in');
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -10% 0px' });
+
+    items.forEach(function (el) {
+      el.setAttribute('data-reveal', '');
+      io.observe(el);
+    });
+    root.classList.add('dok-reveal-on');
+  })();
+})();
+
+</script>
+
+</body>
+</html>
