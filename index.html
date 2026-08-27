@@ -41,8 +41,10 @@
   <a href="/action-home-preview/49">지자체 감시</a>
   <a href="/action-home-preview/act-power">권력감시</a>
   <a href="/action-home-preview/act-budget">예산감시</a>
+  <a href="/action-home-preview/51">시민참여</a>
   <a href="/action-home-preview/dok-history">밑빠진 독상</a>
   <a href="/action-home-preview/pb/">참여예산 상담소</a>
+  <a href="/action-home-preview/library">자료실</a>
 </nav>
 
 <style>
@@ -104,62 +106,77 @@
     gap:clamp(16px,1.8vw,26px);align-items:stretch
   }
 
-  #action-home-v2 .stage{position:relative;min-height:clamp(360px,42vw,536px);background:var(--ink);overflow:hidden}
-  #action-home-v2 .slide{position:absolute;inset:0;opacity:0;visibility:hidden;z-index:0}
+  #action-home-v2 .stage{
+    display:grid;
+    background:#fff;border:1px solid var(--line);overflow:hidden
+  }
+  #action-home-v2 .slide{grid-area:1/1;opacity:0;visibility:hidden;z-index:0}
   
   #action-home-v2 .slide:first-child,
   #action-home-v2 .slide.is-on{opacity:1;visibility:visible;z-index:1}
   #action-home-v2 .slide.is-on{transition:opacity .55s ease}
-  #action-home-v2 .slide-link{display:block;position:absolute;inset:0}
+  #action-home-v2 .slide-link{display:flex;flex-direction:column;height:100%}
 
-  #action-home-v2 .slide-bg{position:absolute;inset:0;background:var(--tile,var(--ink));overflow:hidden}
-  #action-home-v2 .slide-bg img{
-    position:absolute;inset:0;height:100%;object-fit:cover;object-position:center;
-    opacity:.42;transform:scale(1.06);transition:transform 7s linear,opacity .55s
-  }
-  #action-home-v2 .slide.is-on .slide-bg img{transform:scale(1)}
-  #action-home-v2 .slide-bg::after{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(180deg,rgba(6,35,48,.12) 0%,rgba(6,35,48,.52) 46%,rgba(6,35,48,.88) 100%)
+  #action-home-v2 .slide-shot{
+    position:relative;flex:0 0 auto;aspect-ratio:16/9;width:100%;
+    background:var(--band);overflow:hidden;
+    border-bottom:1px solid var(--line)
   }
   
-  #action-home-v2 .slide-bg .mark{
-    position:absolute;right:-.06em;bottom:-.28em;margin:0;
-    font-family:GmarketSans,sans-serif;font-size:clamp(120px,17vw,240px);font-weight:700;
-    line-height:.8;color:rgba(255,255,255,.07);letter-spacing:-.05em;pointer-events:none
+  #action-home-v2 .slide-shot .fill{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    filter:blur(26px) saturate(1.25);transform:scale(1.18);opacity:.55
+  }
+  
+  #action-home-v2 .slide-shot .real{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;
+    transform:scale(1.03);transition:transform 7s linear
+  }
+  #action-home-v2 .slide.is-on .slide-shot .real{transform:scale(1)}
+  
+  #action-home-v2 .slide-shot::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    box-shadow:inset 0 0 0 1px rgba(6,35,48,.14)
+  }
+  
+  #action-home-v2 .slide-shot .mark{
+    position:absolute;inset:0;display:grid;place-items:center;margin:0;
+    background:var(--tile,var(--ink));
+    font-family:GmarketSans,sans-serif;font-size:clamp(64px,8vw,110px);font-weight:700;
+    line-height:1;color:rgba(255,255,255,.2);letter-spacing:-.05em;pointer-events:none
   }
 
   #action-home-v2 .slide-in{
-    position:absolute;left:0;right:0;bottom:0;z-index:2;
-    display:flex;flex-direction:column;align-items:flex-start;gap:clamp(9px,1vw,14px);
-    padding:clamp(24px,3vw,44px);color:#fff
+    flex:1 1 auto;z-index:2;
+    display:flex;flex-direction:column;align-items:flex-start;gap:clamp(7px,.8vw,11px);
+    padding:clamp(18px,2.2vw,28px);background:#fff;color:var(--ink)
   }
   #action-home-v2 .slide-t{
     font-family:GmarketSans,sans-serif;font-weight:700;letter-spacing:-.03em;line-height:1.26;
-    font-size:clamp(23px,2.9vw,42px);text-wrap:balance
+    font-size:clamp(21px,2.3vw,32px);text-wrap:balance
   }
   #action-home-v2 .slide-d{
-    font-size:clamp(14px,1.05vw,16px);line-height:1.65;color:rgba(255,255,255,.85);max-width:44ch
+    font-size:clamp(13.5px,1vw,15px);line-height:1.6;color:var(--soft);max-width:52ch
   }
-  #action-home-v2 .slide-f{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:4px}
+  #action-home-v2 .slide-f{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
   #action-home-v2 .slide-go{
-    background:#fff;color:var(--ink);border-radius:999px;padding:11px 22px;
-    font-size:14.5px;font-weight:700;transition:transform .15s
+    background:var(--ink);color:#fff;border-radius:999px;padding:10px 20px;
+    font-size:14px;font-weight:700;transition:transform .15s,background .15s
   }
-  #action-home-v2 .slide:hover .slide-go{transform:translateX(3px)}
+  #action-home-v2 .slide:hover .slide-go{transform:translateX(3px);background:var(--deep)}
   
   #action-home-v2 .pill{
-    border:1.5px solid rgba(255,255,255,.7);border-radius:999px;padding:5px 13px;
+    background:var(--brand);color:#fff;border-radius:999px;padding:5px 13px;
     font-size:12px;font-weight:800;letter-spacing:-.01em
   }
-  #action-home-v2 .pill.is-todo{border-style:dashed;color:rgba(255,255,255,.82)}
+  #action-home-v2 .pill.is-todo{background:rgba(6,35,48,.6)}
 
   #action-home-v2 .dday{
     font-family:GmarketSans,sans-serif;font-weight:700;line-height:1;letter-spacing:-.02em;
     font-size:clamp(20px,1.8vw,26px)
   }
-  #action-home-v2 .slide-f .dday{color:#fff}
-  #action-home-v2 .due-line{font-size:13px;color:rgba(255,255,255,.78)}
+  #action-home-v2 .slide-f .dday{color:var(--deep)}
+  #action-home-v2 .due-line{font-size:13px;color:var(--faint)}
 
   #action-home-v2 .lead-list{display:flex;flex-direction:column;border-top:2px solid var(--ink)}
   #action-home-v2 .litem{
@@ -348,7 +365,8 @@
     
     #action-home-v2 .lead{padding:24px 0 40px}
     #action-home-v2 .lead-in{grid-template-columns:1fr;gap:0}
-    #action-home-v2 .stage{min-height:clamp(300px,66vw,420px)}
+    
+    #action-home-v2 .slide-shot{aspect-ratio:3/2}
     #action-home-v2 .lead-list{border-top:none}
     #action-home-v2 .litem{padding:13px 12px 14px}
     #action-home-v2 .pgrid{gap:16px 14px}
@@ -455,10 +473,15 @@
     transition:opacity .15s,transform .15s,visibility .15s
   }
   #ah-nav .gnb-item:hover .drop,
-  #ah-nav .gnb-item:focus-within .drop{opacity:1;visibility:visible;transform:none}
+  #ah-nav .gnb-item:focus-within .drop,
+  #ah-nav .gnb-item.is-open .drop{opacity:1;visibility:visible;transform:none}
+  
+  #ah-nav .gnb-item.is-open>a{border-color:var(--brand);color:var(--brand-deep)}
   #ah-nav .drop ul{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;box-shadow:0 14px 34px rgba(13,28,38,.14)}
   #ah-nav .drop ul a{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;font-size:14.5px;font-weight:600;white-space:nowrap}
   #ah-nav .drop ul a:hover{background:var(--brand-tint);color:var(--brand-deep)}
+  
+  #ah-nav .gnb-item:last-child .drop{left:auto;right:0}
   #ah-nav .todo-mark{border:1px dashed var(--line);border-radius:999px;padding:1px 7px;font-size:11px;font-weight:700;color:var(--ink-soft)}
 
   #ah-nav .drop.is-act ul{min-width:298px;padding:6px}
@@ -473,48 +496,24 @@
   }
   #ah-nav .drow .dmain:hover{background:var(--brand-tint);color:var(--brand-deep)}
   #ah-nav .drow .dmain:hover em{color:var(--brand-deep)}
-  #ah-nav .drow .ddoc{
-    flex:none;align-self:center;border:1px solid var(--line);border-radius:999px;
-    padding:5px 11px;font-size:11.5px;font-weight:700;color:var(--ink-soft);
-    opacity:.55;transition:.15s;white-space:nowrap
-  }
-  #ah-nav .drow:hover .ddoc{opacity:1}
-  #ah-nav .drow .ddoc:hover{border-color:var(--brand);background:var(--brand);color:#fff}
-  #ah-nav .msub a.is-doc{background:none;border:1px dashed var(--line);color:var(--brand-deep)}
+  #ah-nav .msub a.is-all{background:var(--brand-tint);color:var(--brand-deep);font-weight:700}
 
-  #ah-nav .gnb-item.is-mega{position:static}
-  #ah-nav .drop.mega{left:0;right:0;min-width:0;padding-top:0;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 16px 34px rgba(13,28,38,.1)}
-  #ah-nav .is-mega:hover>a,#ah-nav .is-mega:focus-within>a{border-color:var(--brand);color:var(--brand-deep)}
-  #ah-nav .mega-in{width:min(1280px,calc(100% - 48px));margin:0 auto;padding:26px 0 32px}
-  #ah-nav .mega-hd{font-size:15px;font-weight:700;color:var(--ink-soft);margin-bottom:18px}
-  #ah-nav .mega-hd b{color:var(--brand-deep)}
+  #ah-nav .drop.is-iss ul{min-width:290px;padding:6px}
+  #ah-nav .drop.is-iss a{
+    display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+    padding:9px 12px;white-space:normal;line-height:1.4
+  }
+  #ah-nav .drop.is-iss .idue{
+    flex:none;font-size:11.5px;font-weight:700;color:var(--ink-soft);white-space:nowrap
+  }
+  #ah-nav .drop.is-iss a:hover .idue{color:var(--brand-deep)}
   
-  #ah-nav .mega-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr)) minmax(190px,.7fr);gap:18px}
-  #ah-nav .icard{display:block;white-space:normal}
-  #ah-nav .icard-media{
-    display:grid;place-items:center;position:relative;aspect-ratio:4/3;overflow:hidden;
-    border-radius:8px;background:var(--paper)
+  #ah-nav .drop .iall{
+    font-weight:700;color:var(--brand-deep);background:var(--brand-tint)
   }
-  #ah-nav .icard-media img{position:absolute;inset:0;height:100%;object-fit:cover}
-  #ah-nav .icard-note{
-    display:grid;place-items:center;gap:2px;width:100%;height:100%;
-    border:2px dashed var(--line);border-radius:8px;
-    font-size:12.5px;font-weight:700;color:var(--ink-soft);text-align:center
-  }
-  #ah-nav .icard-note small{font-weight:500;font-size:11px}
-  #ah-nav .icard strong{display:block;margin-top:12px;font-size:15.5px;font-weight:700;line-height:1.45}
-  #ah-nav .icard:hover strong{color:var(--brand-deep)}
-  #ah-nav .icard:hover .icard-media{outline:2px solid var(--brand);outline-offset:2px}
-  #ah-nav .icard-due{display:block;margin-top:5px;font-size:12.5px;font-weight:700;color:var(--brand-deep)}
-  #ah-nav .mega-side{display:grid;gap:10px;align-content:start}
-  #ah-nav .mega-side a{
-    display:flex;align-items:center;justify-content:space-between;gap:14px;
-    border:1.5px solid var(--line);border-radius:6px;padding:14px 18px;
-    font-size:14.5px;font-weight:700;line-height:1.35
-  }
-  #ah-nav .mega-side a:hover{border-color:var(--brand);color:var(--brand-deep)}
-  #ah-nav .mega-side .is-fill{background:var(--brand);border-color:var(--brand);color:#fff}
-  #ah-nav .mega-side .is-fill:hover{background:var(--brand-deep);color:#fff}
+  #ah-nav .drop .iall:hover{background:var(--brand);color:#fff}
+  #ah-nav .drop .iall:hover .idue{color:#fff}
+  #ah-nav .drop li.isep{margin:6px 4px;border-bottom:1px solid var(--line)}
 
   #ah-nav .hd-tools{display:flex;align-items:center;gap:6px;flex:none;margin-left:8px}
   #ah-nav .ico{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:17px;color:var(--ink-soft);background:none;cursor:pointer}
@@ -619,6 +618,33 @@
     #ah-nav .gnb-item:last-child{padding-right:14px}
     #ah-nav .drop{display:none}
     #ah-nav .menu-btn{display:grid}
+
+    #ah-nav .gnb-sheet{
+      display:none;
+      border-top:1px solid var(--line);
+      background:var(--paper);
+      max-height:min(64vh,520px);overflow-y:auto;
+      animation:ah-sheet-in .16s ease-out
+    }
+    #ah-nav .gnb-sheet.open{display:block}
+    @keyframes ah-sheet-in{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+
+    #ah-nav .gnb-sheet>.drop{
+      position:static;opacity:1;visibility:visible;transform:none;
+      padding:0;min-width:0;display:block
+    }
+    #ah-nav .gnb-sheet ul{
+      background:none;border:none;border-radius:0;box-shadow:none;
+      padding:8px 0 14px;
+      width:min(100% - 36px,1280px);margin:0 auto
+    }
+    #ah-nav .gnb-sheet ul a{white-space:normal}
+    #ah-nav .gnb-sheet .drop.is-act ul{min-width:0}
+    #ah-nav .gnb-sheet .drow{
+      background:#fff;border:1px solid var(--line);border-radius:10px;
+      padding:2px;margin-bottom:6px
+    }
+    #ah-nav .gnb-sheet .drow .dmain{white-space:normal}
     #ah-nav .hd-tools{margin-left:auto}
     
     #ah-nav .gnb-item>a.is-here::after{display:none}
@@ -674,86 +700,42 @@
         <div class="drop is-act"><ul>
           <li class="drow">
             <a class="dmain" href="/action-home-preview/49" data-nav="act-local">지자체 감시<em>지방정부 · 지방의회</em></a>
-            <a class="ddoc" href="/action-home-preview/23" aria-label="지자체 감시 자료실">자료실</a>
           </li>
           <li class="drow">
             <a class="dmain" href="/action-home-preview/act-power" data-nav="act-power">권력감시<em>중앙정부 · 국회</em></a>
-            <a class="ddoc" href="/action-home-preview/23" aria-label="권력감시 자료실">자료실</a>
           </li>
           <li class="drow">
             <a class="dmain" href="/action-home-preview/act-budget" data-nav="act-budget">예산감시<em>나라살림 · 지방재정</em></a>
-            <a class="ddoc" href="/action-home-preview/23" aria-label="예산감시 자료실">자료실</a>
           </li>
           <li class="drow">
             <a class="dmain" href="/action-home-preview/51" data-nav="act-civic">시민참여<em>참여예산 제도 개선 · 시민 교육</em></a>
-            <a class="ddoc" href="/action-home-preview/23" aria-label="시민참여 자료실">자료실</a>
           </li>
           <li class="drow">
             <a class="dmain" href="/action-home-preview/dok-history" data-nav="act-dok">밑빠진 독상<em>역대 기록 · 지도</em></a>
-            <a class="ddoc" href="/action-home-preview/23" aria-label="밑빠진 독상 자료실">자료실</a>
           </li>
         </ul></div>
       </div>
 
-      <div class="gnb-item is-mega">
+      <div class="gnb-item">
         <a href="/action-home-preview/issue/" data-nav="issue">이슈</a>
-        <div class="drop mega"><div class="mega-in">
-          <p class="mega-hd">지금 시민의 선택이 필요한, <b>이슈</b></p>
-          <div class="mega-grid">
-
-            <a class="icard" href="/action-home-preview/27/?idx=173013295&amp;bmode=view">
-              <span class="icard-media">
-                <img src="https://cdn.imweb.me/thumbnail/20260811/59d0381d6c5b7.png" alt="추가세수 시민의견 수렴 캠페인">
-              </span>
-              <strong>더 걷힐 세금, 어디에 쓸래?</strong>
-              <span class="icard-due">8월 31일 마감</span>
-            </a>
-
-            <a class="icard" href="https://dokseong-action.bada523082.chatgpt.site/">
-              <span class="icard-media">
-                <img src="https://cdn.imweb.me/thumbnail/20260825/c4b8e2d1b259d.png" alt="2026 하반기 밑빠진 독상">
-              </span>
-              <strong>2026 하반기 밑빠진독상</strong>
-              <span class="icard-due">9월 15일 제보 마감</span>
-            </a>
-
-            <a class="icard" href="https://vote.action.or.kr/">
-              <span class="icard-media">
-                <img src="https://vote.action.or.kr/og-budget-vote-v1.png?v=2" alt="10만원 예산 편성 투표">
-              </span>
-              <strong>10만원 예산편성</strong>
-              <span class="icard-due">기간 확인 필요</span>
-            </a>
-
-            <a class="icard" href="/action-home-preview/pb/" data-nav="pb">
-              <span class="icard-media">
-                <span class="icard-note">이미지 자리<small>가로 4:3</small></span>
-              </span>
-              <strong>참여예산 상담소</strong>
-              <span class="icard-due">상시 운영</span>
-            </a>
-
-            <a class="icard" href="#">
-              <span class="icard-media">
-                <span class="icard-note">이미지 자리<small>가로 4:3</small></span>
-              </span>
-              <strong>1회 참여예산 고민대회</strong>
-              <span class="icard-due">기간 미정</span>
-            </a>
-
-            <div class="mega-side">
-              <a href="https://donate.action.or.kr/">정기후원 회원가입 <span aria-hidden="true">⟶</span></a>
-              <a href="/action-home-preview/25">뉴스레터 받기 <span aria-hidden="true">⟶</span></a>
-              <a class="is-fill" href="/action-home-preview/52">시민행동다운<br>예산감시 <span aria-hidden="true">⟶</span></a>
-            </div>
-
-          </div>
-        </div></div>
+        <div class="drop is-iss"><ul>
+          
+          <li><a class="iall" href="/action-home-preview/issue/" data-nav="issue">함께보기<span class="idue">진행 중 · 종료</span></a></li>
+          <li class="isep" aria-hidden="true"></li>
+          <li><a href="/action-home-preview/27/?idx=173013295&amp;bmode=view">더 걷힐 세금, 어디에 쓸래?</a></li>
+          <li><a href="https://dokseong-action.bada523082.chatgpt.site/">2026 하반기 밑빠진독상</a></li>
+          <li><a href="https://vote.action.or.kr/">10만원 예산편성</a></li>
+          
+          <li><a href="/action-home-preview/pb/" data-nav="pb">참여예산 상담소</a></li>
+          <li><a href="#">1회 참여예산 고민대회</a></li>
+        </ul></div>
       </div>
 
       <div class="gnb-item">
         <a href="/action-home-preview/26" data-nav="news">소식</a>
         <div class="drop"><ul>
+          
+          <li><a href="/action-home-preview/library" data-nav="library">자료실</a></li>
           <li><a href="/action-home-preview/26">공지</a></li>
           <li><a href="/action-home-preview/23">발행물</a></li>
           <li><a href="/action-home-preview/24">뉴스룸</a></li>
@@ -790,6 +772,8 @@
     </div>
   </div>
 
+  <div class="gnb-sheet" id="ah-sheet" hidden></div>
+
   <nav class="mnav" id="ah-mnav" aria-label="전체 메뉴"><div class="wrap"><ul>
     <li>
       <a href="/action-home-preview/aboutus">소개</a>
@@ -809,12 +793,12 @@
         <li><a href="/action-home-preview/act-budget" data-nav="act-budget">예산감시</a></li>
         <li><a href="/action-home-preview/51" data-nav="act-civic">시민참여</a></li>
         <li><a href="/action-home-preview/dok-history" data-nav="act-dok">밑빠진 독상</a></li>
-        <li><a class="is-doc" href="/action-home-preview/23">활동 자료실 →</a></li>
       </ul>
     </li>
     <li>
       <a href="/action-home-preview/issue/">이슈</a>
       <ul class="msub">
+        <li><a class="is-all" href="/action-home-preview/issue/">함께보기 →</a></li>
         <li><a href="/action-home-preview/27/?idx=173013295&amp;bmode=view">더 걷힐 세금, 어디에 쓸래?</a></li>
         <li><a href="https://dokseong-action.bada523082.chatgpt.site/">2026 하반기 밑빠진독상</a></li>
         <li><a href="https://vote.action.or.kr/">10만원 예산편성</a></li>
@@ -825,6 +809,7 @@
     <li>
       <a href="/action-home-preview/26">소식</a>
       <ul class="msub">
+        <li><a href="/action-home-preview/library" data-nav="library">자료실</a></li>
         <li><a href="/action-home-preview/26">공지</a></li>
         <li><a href="/action-home-preview/23">발행물</a></li>
         <li><a href="/action-home-preview/24">뉴스룸</a></li>
@@ -876,6 +861,14 @@
     document.documentElement.style.setProperty('--ah-sb', (sb > 0 ? sb : 0) + 'px');
   }
   measureBar();
+  /* 이 스크립트는 본문보다 먼저 놓입니다. 첫 호출 때는 아직 세로 스크롤바가
+     생기지 않아 0px 으로 재는 경우가 있으므로, 본문이 모두 들어온 뒤 다시 잽니다. */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', measureBar);
+  } else {
+    requestAnimationFrame(measureBar);
+  }
+  window.addEventListener('load', measureBar);
   window.addEventListener('resize', measureBar);
 
   /* ── 1. 지금 보고 있는 곳 표시 ──
@@ -902,7 +895,90 @@
     }
   }
 
-  /* ── 2. 햄버거 ── */
+  /* ── 2. 알약을 누르면 하위 목차가 펼쳐진다 ──
+     예전에는 알약이 그냥 링크였습니다. 활동을 누르면 /52 로 가서
+     "아직 안 만들었습니다"만 뜨고, 정작 활동 다섯은 볼 수가 없었습니다.
+     이제 누르면 주소로 가지 않고 하위 목차를 폅니다.
+
+     넓은 화면 — 원래 있던 떠 있는 판을 그대로 켭니다(.is-open).
+     좁은 화면 — 알약 줄이 가로로 스크롤되는 상자라 그 안에서는 판이 잘립니다.
+                그래서 상자 밖 #ah-sheet 에 목차를 복사해 넣고 헤더 밑에 폅니다.
+
+     후원하기는 이 규칙에서 뺐습니다 — 눌러서 바로 가야 하는 버튼입니다. */
+  var narrow = window.matchMedia('(max-width:1060px)');
+  var sheet = document.getElementById('ah-sheet');
+  var openItem = null;
+
+  function closeDrops() {
+    if (openItem) {
+      openItem.classList.remove('is-open');
+      var a = openItem.querySelector('a');
+      if (a) a.setAttribute('aria-expanded', 'false');
+      openItem = null;
+    }
+    if (sheet) {
+      sheet.classList.remove('open');
+      sheet.hidden = true;
+      sheet.innerHTML = '';
+    }
+  }
+
+  function openDrop(item) {
+    var was = openItem;
+    closeDrops();
+    if (was === item) return;          // 같은 알약을 다시 누르면 닫기
+
+    item.classList.add('is-open');
+    var a = item.querySelector('a');
+    if (a) a.setAttribute('aria-expanded', 'true');
+    openItem = item;
+
+    if (narrow.matches && sheet) {
+      var drop = item.querySelector('.drop');
+      if (!drop) return;
+      // 원본을 옮기지 않고 복사합니다. 목차를 고칠 곳은 여전히 .drop 한 곳뿐입니다.
+      sheet.appendChild(drop.cloneNode(true));
+      sheet.hidden = false;
+      sheet.classList.add('open');
+      sheet.scrollTop = 0;
+    }
+  }
+
+  hd.querySelectorAll('.gnb-item').forEach(function (item) {
+    var a = item.querySelector('a');
+    var drop = item.querySelector('.drop');
+    if (!a || !drop || a.classList.contains('is-cta')) return;
+
+    a.setAttribute('aria-haspopup', 'true');
+    a.setAttribute('aria-expanded', 'false');
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      openDrop(item);
+    });
+    // 넓은 화면에서 다른 알약에 마우스를 올리면 눌러 둔 판은 닫습니다.
+    // 안 그러면 판이 둘 겹쳐 보입니다.
+    item.addEventListener('mouseenter', function () {
+      if (!narrow.matches && openItem && openItem !== item) closeDrops();
+    });
+  });
+
+  // 판 밖을 누르면 닫습니다. 판 안의 링크를 누르면 어차피 화면이 바뀌므로 같이 닫습니다.
+  document.addEventListener('click', function (e) {
+    if (!openItem) return;
+    var t = e.target;
+    if (sheet && sheet.contains(t)) {
+      if (t.closest('a')) closeDrops();
+      return;
+    }
+    if (!t.closest || !t.closest('.gnb-item')) closeDrops();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeDrops();
+  });
+  // 넓은 화면과 좁은 화면은 펴는 자리가 달라, 경계를 넘으면 닫고 다시 열게 합니다.
+  if (narrow.addEventListener) narrow.addEventListener('change', closeDrops);
+
+  /* ── 3. 햄버거 ── */
   var btn = document.getElementById('ah-menu-btn');
   var mnav = document.getElementById('ah-mnav');
   if (btn && mnav) {
@@ -929,7 +1005,7 @@
     });
   }
 
-  /* ── 3·4. 스크롤 ──
+  /* ── 4. 스크롤 ──
      두 가지를 한 번에 봅니다: 헤더 그림자, 떠 있는 후원 버튼.
      requestAnimationFrame 으로 묶어 스크롤마다 계산이 몰리지 않게 합니다. */
   var floatCta = document.getElementById('ah-float');
@@ -963,56 +1039,69 @@
         <div class="stage" id="lead-stage">
         <article class="slide" data-due="2026-08-31" style="--tile:#0079a6">
           <a class="slide-link" href="/action-home-preview/27/?idx=173013295&amp;bmode=view">
-            <span class="slide-bg"><img src="https://cdn.imweb.me/thumbnail/20260811/59d0381d6c5b7.png" alt="더 걷힐 세금, 어디에 쓸래? 추가세수 시민의견 수렴 캠페인"></span>
+            <span class="slide-shot">
+              <img class="fill" src="https://cdn.imweb.me/thumbnail/20260811/59d0381d6c5b7.png" alt="" aria-hidden="true">
+              <img class="real" src="https://cdn.imweb.me/thumbnail/20260811/59d0381d6c5b7.png" alt="더 걷힐 세금, 어디에 쓸래? 추가세수 시민의견 수렴 캠페인">
+            </span>
             <span class="slide-in">
               <span class="pill">진행 중</span>
               <strong class="slide-t">더 걷힐 세금, 어디에 쓸래?</strong>
               <span class="slide-d">추가세수 100조의 쓰임을 시민이 직접 고르고, 그 순위를 정부와 국회에 전합니다.</span>
-              <span class="slide-f"><b class="dday" data-dday>8/31</b><span class="due-line">8월 31일 마감</span><span class="slide-go">자세히 보기 →</span></span>
+              <span class="slide-f"><span class="slide-go">자세히 보기 →</span></span>
             </span>
           </a>
         </article>
         <article class="slide" data-due="2026-09-15" style="--tile:#062330">
           <a class="slide-link" href="https://dokseong-action.bada523082.chatgpt.site/">
-            <span class="slide-bg"><img src="https://cdn.imweb.me/thumbnail/20260825/c4b8e2d1b259d.png" alt="2026 하반기 밑빠진 독상"></span>
+            <span class="slide-shot">
+              <img class="fill" src="https://cdn.imweb.me/thumbnail/20260825/c4b8e2d1b259d.png" alt="" aria-hidden="true">
+              <img class="real" src="https://cdn.imweb.me/thumbnail/20260825/c4b8e2d1b259d.png" alt="2026 하반기 밑빠진 독상">
+            </span>
             <span class="slide-in">
               <span class="pill">진행 중</span>
               <strong class="slide-t">2026 하반기 밑빠진독상</strong>
               <span class="slide-d">세금이 새는 현장을 시민이 제보하고, 그중 최악의 사업을 함께 고릅니다.</span>
-              <span class="slide-f"><b class="dday" data-dday>9/15</b><span class="due-line">9월 15일 제보 마감</span><span class="slide-go">자세히 보기 →</span></span>
+              <span class="slide-f"><span class="slide-go">자세히 보기 →</span></span>
             </span>
           </a>
         </article>
         <article class="slide" style="--tile:#0d4f66">
           <a class="slide-link" href="https://vote.action.or.kr/">
-            <span class="slide-bg"><img src="https://vote.action.or.kr/og-budget-vote-v1.png?v=2" alt="10만원 예산 편성"></span>
+            <span class="slide-shot">
+              <img class="fill" src="https://vote.action.or.kr/og-budget-vote-v1.png?v=2" alt="" aria-hidden="true">
+              <img class="real" src="https://vote.action.or.kr/og-budget-vote-v1.png?v=2" alt="10만원 예산 편성">
+            </span>
             <span class="slide-in">
               <span class="pill is-todo">진행 중</span>
               <strong class="slide-t">10만원 예산편성</strong>
               <span class="slide-d">내 몫의 예산 10만원을 어디에 쓸지 직접 편성해 봅니다.</span>
-              <span class="slide-f"><span class="due-line">마감일 확인 필요</span><span class="slide-go">자세히 보기 →</span></span>
+              <span class="slide-f"><span class="slide-go">자세히 보기 →</span></span>
             </span>
           </a>
         </article>
         <article class="slide" style="--tile:#062330">
           <a class="slide-link" href="/action-home-preview/pb/">
-            <span class="slide-bg"><span class="mark" aria-hidden="true">상담</span></span>
+            <span class="slide-shot">
+              <span class="mark" aria-hidden="true">상담</span>
+            </span>
             <span class="slide-in">
               <span class="pill is-todo">확인 필요</span>
               <strong class="slide-t">참여예산 상담소</strong>
               <span class="slide-d">참여예산을 두고 생기는 궁금증과 고민을 상담합니다.</span>
-              <span class="slide-f"><span class="due-line">마감일 확인 필요</span><span class="slide-go">자세히 보기 →</span></span>
+              <span class="slide-f"><span class="slide-go">자세히 보기 →</span></span>
             </span>
           </a>
         </article>
         <article class="slide" style="--tile:#0d4f66">
           <a class="slide-link" href="#">
-            <span class="slide-bg"><span class="mark" aria-hidden="true">대회</span></span>
+            <span class="slide-shot">
+              <span class="mark" aria-hidden="true">대회</span>
+            </span>
             <span class="slide-in">
               <span class="pill is-todo">확인 필요</span>
               <strong class="slide-t">1회 참여예산 고민대회</strong>
               <span class="slide-d">참여예산위원들이 현장에서 부딪히는 고민을 모아 함께 풀어 봅니다.</span>
-              <span class="slide-f"><span class="due-line">주소 · 기간 확인 필요</span><span class="slide-go">자세히 보기 →</span></span>
+              <span class="slide-f"><span class="slide-go">자세히 보기 →</span></span>
             </span>
           </a>
         </article>
@@ -1022,31 +1111,31 @@
         <a class="litem is-on" href="/action-home-preview/27/?idx=173013295&amp;bmode=view" data-go="0" data-due="2026-08-31">
           <span class="lno">01</span>
           <span class="lt">더 걷힐 세금, 어디에 쓸래?</span>
-          <span class="lm"><b class="d" data-dday>8/31</b><span>8월 31일 마감</span></span>
+          
           <span class="lbar" aria-hidden="true"><i></i></span>
         </a>
         <a class="litem" href="https://dokseong-action.bada523082.chatgpt.site/" data-go="1" data-due="2026-09-15">
           <span class="lno">02</span>
           <span class="lt">2026 하반기 밑빠진독상</span>
-          <span class="lm"><b class="d" data-dday>9/15</b><span>9월 15일 제보 마감</span></span>
+          
           <span class="lbar" aria-hidden="true"><i></i></span>
         </a>
         <a class="litem" href="https://vote.action.or.kr/" data-go="2">
           <span class="lno">03</span>
           <span class="lt">10만원 예산편성</span>
-          <span class="lm"><b class="d is-todo" data-dday>기간 미정</b><span>마감일 확인 필요</span></span>
+          
           <span class="lbar" aria-hidden="true"><i></i></span>
         </a>
         <a class="litem" href="/action-home-preview/pb/" data-go="3">
           <span class="lno">04</span>
           <span class="lt">참여예산 상담소</span>
-          <span class="lm"><b class="d is-todo" data-dday>기간 미정</b><span>마감일 확인 필요</span></span>
+          
           <span class="lbar" aria-hidden="true"><i></i></span>
         </a>
         <a class="litem" href="#" data-go="4">
           <span class="lno">05</span>
           <span class="lt">1회 참여예산 고민대회</span>
-          <span class="lm"><b class="d is-todo" data-dday>기간 미정</b><span>주소 · 기간 확인 필요</span></span>
+          
           <span class="lbar" aria-hidden="true"><i></i></span>
         </a>
         </div>
@@ -1309,9 +1398,9 @@
       </div>
 
       <div class="ft-col">
-        <h3>SNS</h3>
+        <h3>소셜미디어</h3>
         <div class="ft-btns">
-          <a href="https://blog.naver.com/together_action" target="_blank" rel="noopener">네이버 블로그 <span class="mark" aria-hidden="true">blog</span></a>
+          <a href="https://blog.naver.com/together_action" target="_blank" rel="noopener">네이버 블로그 <span class="mark" aria-hidden="true">N</span></a>
           <a href="https://www.youtube.com/user/actionCANvideo" target="_blank" rel="noopener">유튜브 <span class="mark" aria-hidden="true">▶</span></a>
           <a href="https://www.instagram.com/action.together.1999/" target="_blank" rel="noopener">인스타그램 <span class="mark" aria-hidden="true">◎</span></a>
           <a href="https://www.facebook.com/withAction/" target="_blank" rel="noopener">페이스북 <span class="mark" aria-hidden="true">f</span></a>

@@ -41,8 +41,10 @@
   <a href="/action-home-preview/49" class="on" aria-current="page">지자체 감시</a>
   <a href="/action-home-preview/act-power">권력감시</a>
   <a href="/action-home-preview/act-budget">예산감시</a>
+  <a href="/action-home-preview/51">시민참여</a>
   <a href="/action-home-preview/dok-history">밑빠진 독상</a>
   <a href="/action-home-preview/pb/">참여예산 상담소</a>
+  <a href="/action-home-preview/library">자료실</a>
 </nav>
 
 <style>
@@ -72,10 +74,6 @@
 #act .sec:first-of-type{border-top:none}
 
 #act .sh{margin-bottom:clamp(20px,2.4vw,30px)}
-#act .sh .eyebrow{
-  display:block; font-size:11.5px; font-weight:700; letter-spacing:.14em;
-  color:var(--deep); margin-bottom:9px
-}
 #act .sh h2{font-size:clamp(20px,2.3vw,27px); font-weight:700; line-height:1.4}
 #act .sh p{margin-top:8px; font-size:14.5px; color:var(--soft); line-height:1.65; max-width:60ch}
 
@@ -86,19 +84,30 @@
 #act .crumb span{opacity:.45; margin:0 6px}
 #act .crumb a:hover{text-decoration:underline; text-underline-offset:3px}
 
-#act .hero{background:var(--navy); color:#fff; padding:clamp(44px,5.4vw,76px) 0}
-#act .hero .crumb{padding:0 0 clamp(22px,2.6vw,34px); color:#7fb7ce}
-#act .hero .crumb a{color:#7fb7ce}
-#act .hero .who{
-  display:inline-block; border:1.5px solid rgba(255,255,255,.42); border-radius:999px;
-  padding:5px 14px; font-size:12.5px; font-weight:700; color:#cfe8f4; margin-bottom:16px
-}
-#act .hero h1{font-size:clamp(27px,4.4vw,44px); font-weight:700; line-height:1.28; text-wrap:balance}
-#act .hero .by{margin-top:15px; font-size:clamp(14.5px,1.2vw,16.5px); color:#a8cddc; max-width:52ch; line-height:1.7}
+#act .top{padding:clamp(20px,2.4vw,30px) 0 0; border-bottom:2px solid var(--ink)}
+#act .top .crumb{padding:0}
 
-#act .nums{display:grid; grid-template-columns:repeat(3,1fr); background:var(--band)}
-#act .num{padding:clamp(20px,2.4vw,30px) 18px; text-align:center; border-left:1px solid var(--line)}
-#act .num:first-child{border-left:none}
+#act .top .who{
+  display:inline-block; margin-top:clamp(18px,2vw,26px);
+  background:var(--tint); color:var(--deep); border-radius:999px;
+  padding:5px 14px; font-size:12.5px; font-weight:700
+}
+#act .top h1{
+  margin-top:12px;
+  font-size:clamp(28px,4.4vw,46px); font-weight:700; line-height:1.24;
+  letter-spacing:-.03em; text-wrap:balance
+}
+#act .top .by{
+  margin-top:14px; font-size:clamp(14.5px,1.2vw,16.5px);
+  color:var(--soft); max-width:52ch; line-height:1.7
+}
+
+#act .nums{
+  display:grid; grid-auto-flow:column; grid-auto-columns:1fr;
+  margin-top:clamp(26px,3vw,40px); border-top:1px solid var(--line)
+}
+#act .num{padding:clamp(16px,1.8vw,22px) 0; border-left:1px solid var(--line); padding-left:clamp(14px,1.6vw,20px)}
+#act .num:first-child{border-left:none; padding-left:0}
 #act .num b{
   display:block; font-family:GmarketSans,sans-serif; font-weight:700; line-height:1.1;
   font-size:clamp(24px,3vw,38px); color:var(--deep); letter-spacing:-.03em
@@ -165,12 +174,72 @@
 #act .sig-cal .law{margin-top:16px; font-size:12.5px; color:var(--faint); line-height:1.6}
 #act .sig-cal .law b{color:var(--soft)}
 
-#act .now{border-top:2px solid var(--ink)}
-#act .now li{border-bottom:1px solid var(--line)}
-#act .now a{display:block; padding:17px 2px}
-#act .now a:hover .t{color:var(--deep); text-decoration:underline; text-underline-offset:3px}
-#act .now .t{font-family:GmarketSans,sans-serif; font-weight:700; font-size:16px; line-height:1.5}
-#act .now .m{display:flex; align-items:center; gap:8px; margin-top:6px; font-size:12.5px; color:var(--faint)}
+#act .sig-way .ways{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+#act .sig-way .way{
+  display:flex; flex-direction:column; gap:5px;
+  border:1px solid var(--line); border-left:3px solid var(--brand);
+  padding:16px 18px; background:#fff; transition:.15s
+}
+#act .sig-way .way:hover{border-color:var(--brand); background:var(--tint)}
+#act .sig-way .way:hover .wt{color:var(--deep)}
+#act .sig-way .wt{font-family:GmarketSans,sans-serif; font-weight:700; font-size:16px; line-height:1.4}
+#act .sig-way .wd{font-size:13.5px; color:var(--soft); line-height:1.6}
+#act .sig-way .wm{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:5px}
+#act .sig-way .when{font-size:12.5px; color:var(--faint)}
+
+#act .sig-way .st{
+  border-radius:999px; padding:3px 11px;
+  font-size:12px; font-weight:700; white-space:nowrap
+}
+#act .sig-way .st-open{background:var(--brand); color:#fff}
+#act .sig-way .st-soon{background:var(--flag-bg); color:var(--flag); border:1px solid var(--flag-line)}
+#act .sig-way .st-closed{background:var(--band); color:var(--faint)}
+@media(max-width:640px){
+  #act .sig-way .ways{grid-template-columns:1fr}
+}
+
+#act .now{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,330px));
+  justify-content:start;
+  gap:clamp(14px,1.8vw,22px);
+}
+@media(max-width:560px){
+  #act .now{grid-template-columns:1fr}
+}
+#act .now li{min-width:0}
+#act .now a{display:flex; flex-direction:column; height:100%}
+#act .now a:hover .t{color:var(--deep)}
+#act .now a:hover .shot{transform:translateY(-2px)}
+#act .now a:hover .shot img{transform:scale(1.04)}
+
+#act .now .shot{
+  position:relative; display:block; aspect-ratio:4/3; overflow:hidden;
+  border:1px solid var(--line); background:var(--band);
+  transition:transform .18s;
+}
+#act .now .shot img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; transition:transform .35s;
+}
+
+#act .now .shot[data-mark]::before{
+  content:attr(data-mark);
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  font-family:GmarketSans,sans-serif; font-weight:700;
+  font-size:clamp(38px,6vw,58px); letter-spacing:-.04em;
+  color:var(--brand); opacity:.16;
+}
+
+#act .now .shot[data-mark]{background:var(--tint)}
+
+#act .now .t{
+  display:block; margin-top:12px;
+  font-family:GmarketSans,sans-serif; font-weight:700; font-size:15.5px;
+  line-height:1.5; word-break:keep-all; transition:color .14s;
+}
+#act .now .m{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:8px; font-size:12.5px; color:var(--faint)}
+#act .now .m:empty{display:none}
 
 #act .due{background:var(--tint); color:var(--deep); border-radius:999px; padding:2px 10px; font-weight:700}
 
@@ -240,11 +309,12 @@
 
 @media(max-width:640px){
   #act{font-size:15.5px}
-  #act .hero{padding:34px 0}
+  #act .top{padding-top:16px}
   #act .sec{padding:34px 0}
-  #act .nums{grid-template-columns:1fr}
-  #act .num{border-left:none; border-top:1px solid var(--line); text-align:left; display:flex;
-    align-items:baseline; gap:10px; padding:15px 20px}
+  
+  #act .nums{grid-auto-flow:row; grid-auto-columns:auto; grid-template-columns:1fr}
+  #act .num{border-left:none; border-top:1px solid var(--line); display:flex;
+    align-items:baseline; gap:10px; padding:13px 0}
   #act .num:first-child{border-top:none}
   #act .num span{margin-top:0}
   #act .case{padding:18px 18px}
@@ -321,10 +391,15 @@
     transition:opacity .15s,transform .15s,visibility .15s
   }
   #ah-nav .gnb-item:hover .drop,
-  #ah-nav .gnb-item:focus-within .drop{opacity:1;visibility:visible;transform:none}
+  #ah-nav .gnb-item:focus-within .drop,
+  #ah-nav .gnb-item.is-open .drop{opacity:1;visibility:visible;transform:none}
+  
+  #ah-nav .gnb-item.is-open>a{border-color:var(--brand);color:var(--brand-deep)}
   #ah-nav .drop ul{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;box-shadow:0 14px 34px rgba(13,28,38,.14)}
   #ah-nav .drop ul a{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;font-size:14.5px;font-weight:600;white-space:nowrap}
   #ah-nav .drop ul a:hover{background:var(--brand-tint);color:var(--brand-deep)}
+  
+  #ah-nav .gnb-item:last-child .drop{left:auto;right:0}
   #ah-nav .todo-mark{border:1px dashed var(--line);border-radius:999px;padding:1px 7px;font-size:11px;font-weight:700;color:var(--ink-soft)}
 
   #ah-nav .drop.is-act ul{min-width:298px;padding:6px}
@@ -339,48 +414,24 @@
   }
   #ah-nav .drow .dmain:hover{background:var(--brand-tint);color:var(--brand-deep)}
   #ah-nav .drow .dmain:hover em{color:var(--brand-deep)}
-  #ah-nav .drow .ddoc{
-    flex:none;align-self:center;border:1px solid var(--line);border-radius:999px;
-    padding:5px 11px;font-size:11.5px;font-weight:700;color:var(--ink-soft);
-    opacity:.55;transition:.15s;white-space:nowrap
-  }
-  #ah-nav .drow:hover .ddoc{opacity:1}
-  #ah-nav .drow .ddoc:hover{border-color:var(--brand);background:var(--brand);color:#fff}
-  #ah-nav .msub a.is-doc{background:none;border:1px dashed var(--line);color:var(--brand-deep)}
+  #ah-nav .msub a.is-all{background:var(--brand-tint);color:var(--brand-deep);font-weight:700}
 
-  #ah-nav .gnb-item.is-mega{position:static}
-  #ah-nav .drop.mega{left:0;right:0;min-width:0;padding-top:0;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 16px 34px rgba(13,28,38,.1)}
-  #ah-nav .is-mega:hover>a,#ah-nav .is-mega:focus-within>a{border-color:var(--brand);color:var(--brand-deep)}
-  #ah-nav .mega-in{width:min(1280px,calc(100% - 48px));margin:0 auto;padding:26px 0 32px}
-  #ah-nav .mega-hd{font-size:15px;font-weight:700;color:var(--ink-soft);margin-bottom:18px}
-  #ah-nav .mega-hd b{color:var(--brand-deep)}
+  #ah-nav .drop.is-iss ul{min-width:290px;padding:6px}
+  #ah-nav .drop.is-iss a{
+    display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+    padding:9px 12px;white-space:normal;line-height:1.4
+  }
+  #ah-nav .drop.is-iss .idue{
+    flex:none;font-size:11.5px;font-weight:700;color:var(--ink-soft);white-space:nowrap
+  }
+  #ah-nav .drop.is-iss a:hover .idue{color:var(--brand-deep)}
   
-  #ah-nav .mega-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr)) minmax(190px,.7fr);gap:18px}
-  #ah-nav .icard{display:block;white-space:normal}
-  #ah-nav .icard-media{
-    display:grid;place-items:center;position:relative;aspect-ratio:4/3;overflow:hidden;
-    border-radius:8px;background:var(--paper)
+  #ah-nav .drop .iall{
+    font-weight:700;color:var(--brand-deep);background:var(--brand-tint)
   }
-  #ah-nav .icard-media img{position:absolute;inset:0;height:100%;object-fit:cover}
-  #ah-nav .icard-note{
-    display:grid;place-items:center;gap:2px;width:100%;height:100%;
-    border:2px dashed var(--line);border-radius:8px;
-    font-size:12.5px;font-weight:700;color:var(--ink-soft);text-align:center
-  }
-  #ah-nav .icard-note small{font-weight:500;font-size:11px}
-  #ah-nav .icard strong{display:block;margin-top:12px;font-size:15.5px;font-weight:700;line-height:1.45}
-  #ah-nav .icard:hover strong{color:var(--brand-deep)}
-  #ah-nav .icard:hover .icard-media{outline:2px solid var(--brand);outline-offset:2px}
-  #ah-nav .icard-due{display:block;margin-top:5px;font-size:12.5px;font-weight:700;color:var(--brand-deep)}
-  #ah-nav .mega-side{display:grid;gap:10px;align-content:start}
-  #ah-nav .mega-side a{
-    display:flex;align-items:center;justify-content:space-between;gap:14px;
-    border:1.5px solid var(--line);border-radius:6px;padding:14px 18px;
-    font-size:14.5px;font-weight:700;line-height:1.35
-  }
-  #ah-nav .mega-side a:hover{border-color:var(--brand);color:var(--brand-deep)}
-  #ah-nav .mega-side .is-fill{background:var(--brand);border-color:var(--brand);color:#fff}
-  #ah-nav .mega-side .is-fill:hover{background:var(--brand-deep);color:#fff}
+  #ah-nav .drop .iall:hover{background:var(--brand);color:#fff}
+  #ah-nav .drop .iall:hover .idue{color:#fff}
+  #ah-nav .drop li.isep{margin:6px 4px;border-bottom:1px solid var(--line)}
 
   #ah-nav .hd-tools{display:flex;align-items:center;gap:6px;flex:none;margin-left:8px}
   #ah-nav .ico{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font-size:17px;color:var(--ink-soft);background:none;cursor:pointer}
@@ -485,6 +536,33 @@
     #ah-nav .gnb-item:last-child{padding-right:14px}
     #ah-nav .drop{display:none}
     #ah-nav .menu-btn{display:grid}
+
+    #ah-nav .gnb-sheet{
+      display:none;
+      border-top:1px solid var(--line);
+      background:var(--paper);
+      max-height:min(64vh,520px);overflow-y:auto;
+      animation:ah-sheet-in .16s ease-out
+    }
+    #ah-nav .gnb-sheet.open{display:block}
+    @keyframes ah-sheet-in{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+
+    #ah-nav .gnb-sheet>.drop{
+      position:static;opacity:1;visibility:visible;transform:none;
+      padding:0;min-width:0;display:block
+    }
+    #ah-nav .gnb-sheet ul{
+      background:none;border:none;border-radius:0;box-shadow:none;
+      padding:8px 0 14px;
+      width:min(100% - 36px,1280px);margin:0 auto
+    }
+    #ah-nav .gnb-sheet ul a{white-space:normal}
+    #ah-nav .gnb-sheet .drop.is-act ul{min-width:0}
+    #ah-nav .gnb-sheet .drow{
+      background:#fff;border:1px solid var(--line);border-radius:10px;
+      padding:2px;margin-bottom:6px
+    }
+    #ah-nav .gnb-sheet .drow .dmain{white-space:normal}
     #ah-nav .hd-tools{margin-left:auto}
     
     #ah-nav .gnb-item>a.is-here::after{display:none}
@@ -540,86 +618,42 @@
         <div class="drop is-act"><ul>
           <li class="drow">
             <a class="dmain" href="/action-home-preview/49" data-nav="act-local">지자체 감시<em>지방정부 · 지방의회</em></a>
-            <a class="ddoc" href="/action-home-preview/23" aria-label="지자체 감시 자료실">자료실</a>
           </li>
           <li class="drow">
             <a class="dmain" href="/action-home-preview/act-power" data-nav="act-power">권력감시<em>중앙정부 · 국회</em></a>
-            <a class="ddoc" href="/action-home-preview/23" aria-label="권력감시 자료실">자료실</a>
           </li>
           <li class="drow">
             <a class="dmain" href="/action-home-preview/act-budget" data-nav="act-budget">예산감시<em>나라살림 · 지방재정</em></a>
-            <a class="ddoc" href="/action-home-preview/23" aria-label="예산감시 자료실">자료실</a>
           </li>
           <li class="drow">
             <a class="dmain" href="/action-home-preview/51" data-nav="act-civic">시민참여<em>참여예산 제도 개선 · 시민 교육</em></a>
-            <a class="ddoc" href="/action-home-preview/23" aria-label="시민참여 자료실">자료실</a>
           </li>
           <li class="drow">
             <a class="dmain" href="/action-home-preview/dok-history" data-nav="act-dok">밑빠진 독상<em>역대 기록 · 지도</em></a>
-            <a class="ddoc" href="/action-home-preview/23" aria-label="밑빠진 독상 자료실">자료실</a>
           </li>
         </ul></div>
       </div>
 
-      <div class="gnb-item is-mega">
+      <div class="gnb-item">
         <a href="/action-home-preview/issue/" data-nav="issue">이슈</a>
-        <div class="drop mega"><div class="mega-in">
-          <p class="mega-hd">지금 시민의 선택이 필요한, <b>이슈</b></p>
-          <div class="mega-grid">
-
-            <a class="icard" href="/action-home-preview/27/?idx=173013295&amp;bmode=view">
-              <span class="icard-media">
-                <img src="https://cdn.imweb.me/thumbnail/20260811/59d0381d6c5b7.png" alt="추가세수 시민의견 수렴 캠페인">
-              </span>
-              <strong>더 걷힐 세금, 어디에 쓸래?</strong>
-              <span class="icard-due">8월 31일 마감</span>
-            </a>
-
-            <a class="icard" href="https://dokseong-action.bada523082.chatgpt.site/">
-              <span class="icard-media">
-                <img src="https://cdn.imweb.me/thumbnail/20260825/c4b8e2d1b259d.png" alt="2026 하반기 밑빠진 독상">
-              </span>
-              <strong>2026 하반기 밑빠진독상</strong>
-              <span class="icard-due">9월 15일 제보 마감</span>
-            </a>
-
-            <a class="icard" href="https://vote.action.or.kr/">
-              <span class="icard-media">
-                <img src="https://vote.action.or.kr/og-budget-vote-v1.png?v=2" alt="10만원 예산 편성 투표">
-              </span>
-              <strong>10만원 예산편성</strong>
-              <span class="icard-due">기간 확인 필요</span>
-            </a>
-
-            <a class="icard" href="/action-home-preview/pb/" data-nav="pb">
-              <span class="icard-media">
-                <span class="icard-note">이미지 자리<small>가로 4:3</small></span>
-              </span>
-              <strong>참여예산 상담소</strong>
-              <span class="icard-due">상시 운영</span>
-            </a>
-
-            <a class="icard" href="#">
-              <span class="icard-media">
-                <span class="icard-note">이미지 자리<small>가로 4:3</small></span>
-              </span>
-              <strong>1회 참여예산 고민대회</strong>
-              <span class="icard-due">기간 미정</span>
-            </a>
-
-            <div class="mega-side">
-              <a href="https://donate.action.or.kr/">정기후원 회원가입 <span aria-hidden="true">⟶</span></a>
-              <a href="/action-home-preview/25">뉴스레터 받기 <span aria-hidden="true">⟶</span></a>
-              <a class="is-fill" href="/action-home-preview/52">시민행동다운<br>예산감시 <span aria-hidden="true">⟶</span></a>
-            </div>
-
-          </div>
-        </div></div>
+        <div class="drop is-iss"><ul>
+          
+          <li><a class="iall" href="/action-home-preview/issue/" data-nav="issue">함께보기<span class="idue">진행 중 · 종료</span></a></li>
+          <li class="isep" aria-hidden="true"></li>
+          <li><a href="/action-home-preview/27/?idx=173013295&amp;bmode=view">더 걷힐 세금, 어디에 쓸래?</a></li>
+          <li><a href="https://dokseong-action.bada523082.chatgpt.site/">2026 하반기 밑빠진독상</a></li>
+          <li><a href="https://vote.action.or.kr/">10만원 예산편성</a></li>
+          
+          <li><a href="/action-home-preview/pb/" data-nav="pb">참여예산 상담소</a></li>
+          <li><a href="#">1회 참여예산 고민대회</a></li>
+        </ul></div>
       </div>
 
       <div class="gnb-item">
         <a href="/action-home-preview/26" data-nav="news">소식</a>
         <div class="drop"><ul>
+          
+          <li><a href="/action-home-preview/library" data-nav="library">자료실</a></li>
           <li><a href="/action-home-preview/26">공지</a></li>
           <li><a href="/action-home-preview/23">발행물</a></li>
           <li><a href="/action-home-preview/24">뉴스룸</a></li>
@@ -656,6 +690,8 @@
     </div>
   </div>
 
+  <div class="gnb-sheet" id="ah-sheet" hidden></div>
+
   <nav class="mnav" id="ah-mnav" aria-label="전체 메뉴"><div class="wrap"><ul>
     <li>
       <a href="/action-home-preview/aboutus">소개</a>
@@ -675,12 +711,12 @@
         <li><a href="/action-home-preview/act-budget" data-nav="act-budget">예산감시</a></li>
         <li><a href="/action-home-preview/51" data-nav="act-civic">시민참여</a></li>
         <li><a href="/action-home-preview/dok-history" data-nav="act-dok">밑빠진 독상</a></li>
-        <li><a class="is-doc" href="/action-home-preview/23">활동 자료실 →</a></li>
       </ul>
     </li>
     <li>
       <a href="/action-home-preview/issue/">이슈</a>
       <ul class="msub">
+        <li><a class="is-all" href="/action-home-preview/issue/">함께보기 →</a></li>
         <li><a href="/action-home-preview/27/?idx=173013295&amp;bmode=view">더 걷힐 세금, 어디에 쓸래?</a></li>
         <li><a href="https://dokseong-action.bada523082.chatgpt.site/">2026 하반기 밑빠진독상</a></li>
         <li><a href="https://vote.action.or.kr/">10만원 예산편성</a></li>
@@ -691,6 +727,7 @@
     <li>
       <a href="/action-home-preview/26">소식</a>
       <ul class="msub">
+        <li><a href="/action-home-preview/library" data-nav="library">자료실</a></li>
         <li><a href="/action-home-preview/26">공지</a></li>
         <li><a href="/action-home-preview/23">발행물</a></li>
         <li><a href="/action-home-preview/24">뉴스룸</a></li>
@@ -742,6 +779,14 @@
     document.documentElement.style.setProperty('--ah-sb', (sb > 0 ? sb : 0) + 'px');
   }
   measureBar();
+  /* 이 스크립트는 본문보다 먼저 놓입니다. 첫 호출 때는 아직 세로 스크롤바가
+     생기지 않아 0px 으로 재는 경우가 있으므로, 본문이 모두 들어온 뒤 다시 잽니다. */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', measureBar);
+  } else {
+    requestAnimationFrame(measureBar);
+  }
+  window.addEventListener('load', measureBar);
   window.addEventListener('resize', measureBar);
 
   /* ── 1. 지금 보고 있는 곳 표시 ──
@@ -768,7 +813,90 @@
     }
   }
 
-  /* ── 2. 햄버거 ── */
+  /* ── 2. 알약을 누르면 하위 목차가 펼쳐진다 ──
+     예전에는 알약이 그냥 링크였습니다. 활동을 누르면 /52 로 가서
+     "아직 안 만들었습니다"만 뜨고, 정작 활동 다섯은 볼 수가 없었습니다.
+     이제 누르면 주소로 가지 않고 하위 목차를 폅니다.
+
+     넓은 화면 — 원래 있던 떠 있는 판을 그대로 켭니다(.is-open).
+     좁은 화면 — 알약 줄이 가로로 스크롤되는 상자라 그 안에서는 판이 잘립니다.
+                그래서 상자 밖 #ah-sheet 에 목차를 복사해 넣고 헤더 밑에 폅니다.
+
+     후원하기는 이 규칙에서 뺐습니다 — 눌러서 바로 가야 하는 버튼입니다. */
+  var narrow = window.matchMedia('(max-width:1060px)');
+  var sheet = document.getElementById('ah-sheet');
+  var openItem = null;
+
+  function closeDrops() {
+    if (openItem) {
+      openItem.classList.remove('is-open');
+      var a = openItem.querySelector('a');
+      if (a) a.setAttribute('aria-expanded', 'false');
+      openItem = null;
+    }
+    if (sheet) {
+      sheet.classList.remove('open');
+      sheet.hidden = true;
+      sheet.innerHTML = '';
+    }
+  }
+
+  function openDrop(item) {
+    var was = openItem;
+    closeDrops();
+    if (was === item) return;          // 같은 알약을 다시 누르면 닫기
+
+    item.classList.add('is-open');
+    var a = item.querySelector('a');
+    if (a) a.setAttribute('aria-expanded', 'true');
+    openItem = item;
+
+    if (narrow.matches && sheet) {
+      var drop = item.querySelector('.drop');
+      if (!drop) return;
+      // 원본을 옮기지 않고 복사합니다. 목차를 고칠 곳은 여전히 .drop 한 곳뿐입니다.
+      sheet.appendChild(drop.cloneNode(true));
+      sheet.hidden = false;
+      sheet.classList.add('open');
+      sheet.scrollTop = 0;
+    }
+  }
+
+  hd.querySelectorAll('.gnb-item').forEach(function (item) {
+    var a = item.querySelector('a');
+    var drop = item.querySelector('.drop');
+    if (!a || !drop || a.classList.contains('is-cta')) return;
+
+    a.setAttribute('aria-haspopup', 'true');
+    a.setAttribute('aria-expanded', 'false');
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      openDrop(item);
+    });
+    // 넓은 화면에서 다른 알약에 마우스를 올리면 눌러 둔 판은 닫습니다.
+    // 안 그러면 판이 둘 겹쳐 보입니다.
+    item.addEventListener('mouseenter', function () {
+      if (!narrow.matches && openItem && openItem !== item) closeDrops();
+    });
+  });
+
+  // 판 밖을 누르면 닫습니다. 판 안의 링크를 누르면 어차피 화면이 바뀌므로 같이 닫습니다.
+  document.addEventListener('click', function (e) {
+    if (!openItem) return;
+    var t = e.target;
+    if (sheet && sheet.contains(t)) {
+      if (t.closest('a')) closeDrops();
+      return;
+    }
+    if (!t.closest || !t.closest('.gnb-item')) closeDrops();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeDrops();
+  });
+  // 넓은 화면과 좁은 화면은 펴는 자리가 달라, 경계를 넘으면 닫고 다시 열게 합니다.
+  if (narrow.addEventListener) narrow.addEventListener('change', closeDrops);
+
+  /* ── 3. 햄버거 ── */
   var btn = document.getElementById('ah-menu-btn');
   var mnav = document.getElementById('ah-mnav');
   if (btn && mnav) {
@@ -795,7 +923,7 @@
     });
   }
 
-  /* ── 3·4. 스크롤 ──
+  /* ── 4. 스크롤 ──
      두 가지를 한 번에 봅니다: 헤더 그림자, 떠 있는 후원 버튼.
      requestAnimationFrame 으로 묶어 스크롤마다 계산이 몰리지 않게 합니다. */
   var floatCta = document.getElementById('ah-float');
@@ -817,23 +945,20 @@
 
 <div id="act" aria-label="지자체 감시">
 
-  <section class="hero"><div class="wrap">
-    <nav class="crumb"><a href="/action-home-preview/69?preview_mode=1">홈</a><span>&rsaquo;</span><a href="/action-home-preview/52">활동</a><span>&rsaquo;</span>지자체 감시</nav>
+  <section class="top"><div class="wrap">
+    <nav class="crumb"><a href="/action-home-preview/69?preview_mode=1">홈</a><span>&rsaquo;</span>활동<span>&rsaquo;</span>지자체 감시</nav>
     <span class="who">지방정부 · 지방의회</span>
     <h1>지방의회, 지켜보고 있습니다</h1>
     <p class="by">우리 동네 예산과 조례가 어떻게 정해지는지, 의회가 제 역할을 하는지 기록합니다.</p>
-  </div></section>
-
-  <section class="nums">
-    <div class="num"><b>27<i>년</i></b><span>1999년 창립 이후</span></div>
+    <div class="nums">
     <div class="num"><b><span class="tbd">확인 필요</span></b><span>감시한 지자체 수</span></div>
     <div class="num"><b><span class="tbd">확인 필요</span></b><span>올해 낸 의견서</span></div>
-  </section>
+    </div>
+  </div></section>
 
   <div class="wrap">
 
     <section class="sec sig sig-where"><div class="sh">
-      <span class="eyebrow">WHERE</span>
       <h2>올해 들여다본 곳 <span class="tbd">채울 값 있음</span></h2>
       <p>한 곳을 오래 보는 것보다, 여러 곳을 같은 잣대로 보는 것이 지자체 감시입니다.</p>
     </div>
@@ -841,16 +966,17 @@
     </section>
 
     <section class="sec"><div class="sh">
-      <span class="eyebrow">NOW</span>
       <h2>지금 무엇을 보고 있나</h2>
       <p>끝나는 날짜가 붙은 일이 늘어나면 그건 '활동'이 아니라 '이슈'로 올립니다.</p>
     </div>
       <ul class="now">
         <li><a href="#">
+          <span class="shot" data-mark="추경" aria-hidden="true"></span>
           <span class="t">2026년 서울시 추가경정예산 심사 모니터링</span>
           <span class="m"><span class="due">9월 심사</span><span class="tbd">확인 필요</span></span>
         </a></li>
         <li><a href="#">
+          <span class="shot" data-mark="의정비" aria-hidden="true"></span>
           <span class="t">기초의회 의정비 인상안 전수 조사</span>
           <span class="m"><span class="tbd">확인 필요</span></span>
         </a></li>
@@ -858,7 +984,6 @@
     </section>
 
     <section class="sec"><div class="sh">
-      <span class="eyebrow">RESULT</span>
       <h2>무엇이 달라졌나</h2>
       <p>글이 아니라 사건으로 적습니다. 무엇을 했고, 그래서 무엇이 바뀌었는지 두 줄입니다.</p>
     </div>
@@ -881,7 +1006,6 @@
     </section>
 
     <section class="sec"><div class="sh">
-      <span class="eyebrow">POSTS</span>
       <h2>최근에 쓴 글</h2>
       <p>⚠️ 아래 글은 실제 글이지만 예산 모니터링(/57)·일반 활동(/27) 게시판에 올라가 있습니다. 게시판이 정해지면 옮겨 주세요.</p>
     </div>
@@ -903,7 +1027,6 @@
     </section>
 
     <section class="sec"><div class="sh">
-      <span class="eyebrow">LIBRARY</span>
       <h2>더 깊이 보려면</h2>
       <p>이 활동에서 나온 보고서와 자료를 모아 둔 곳입니다. <span class="tbd">주소 확인 필요</span></p>
     </div>
@@ -915,7 +1038,6 @@
     </section>
 
     <section class="sec"><div class="sh">
-      <span class="eyebrow">OTHERS</span>
       <h2>시민행동이 하는 다른 일</h2>
     </div>
       <div class="sibs">
@@ -927,7 +1049,6 @@
     </section>
 
     <section class="sec"><div class="sh">
-      <span class="eyebrow">CONTACT</span>
       <h2>알려 주실 것이 있나요</h2>
     </div>
       <div class="contact">
