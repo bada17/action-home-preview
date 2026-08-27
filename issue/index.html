@@ -165,16 +165,15 @@
 #iss .foot .go{display:inline-block; margin-top:16px; font-size:14px; font-weight:700; color:var(--deep)}
 #iss .foot .go:hover{text-decoration:underline; text-underline-offset:3px}
 
-@media(max-width:900px){ #iss .grid{grid-template-columns:1fr 1fr} }
+@media(max-width:900px){ #iss .grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media(max-width:560px){
   #iss .wrap{width:min(100% - 32px,1120px)}
   #iss .top{padding-top:16px}
   #iss .crumb{margin-bottom:18px}
   #iss .tabs{padding:24px 0 16px}
   #iss .tab{flex:1; padding:11px 8px; font-size:14px}
-  #iss .grid{grid-template-columns:1fr; gap:14px}
+  #iss .grid{grid-template-columns:minmax(0,1fr); gap:14px}
   
-  #iss .card{aspect-ratio:16/10}
 }
 @media(prefers-reduced-motion:reduce){ #iss *{transition:none!important; animation:none!important} }
 </style>
