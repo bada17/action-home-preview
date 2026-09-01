@@ -88,14 +88,8 @@
 
 #act .top{padding:clamp(20px,2.4vw,30px) 0 0; border-bottom:2px solid var(--ink)}
 #act .top .crumb{padding:0}
-
-#act .top .who{
-  display:inline-block; margin-top:clamp(18px,2vw,26px);
-  background:var(--tint); color:var(--deep); border-radius:999px;
-  padding:5px 14px; font-size:12.5px; font-weight:700
-}
 #act .top h1{
-  margin-top:12px;
+  margin-top:clamp(18px,2vw,26px);
   font-size:clamp(28px,4.4vw,46px); font-weight:700; line-height:1.24;
   letter-spacing:-.03em; text-wrap:balance
 }
@@ -263,18 +257,6 @@
 #act .row:hover .t{color:var(--deep); text-decoration:underline; text-underline-offset:3px}
 #act .row .t{font-family:GmarketSans,sans-serif; font-weight:700; font-size:15.5px; line-height:1.5}
 #act .row .meta{font-size:12.5px; color:var(--faint); white-space:nowrap}
-#act .more{display:inline-block; margin-top:18px; font-size:14px; font-weight:700; color:var(--deep)}
-#act .more:hover{text-decoration:underline; text-underline-offset:3px}
-
-#act .docs{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:10px}
-#act .doc{
-  display:flex; align-items:center; justify-content:space-between; gap:12px;
-  border:1px solid var(--line); background:#fff; padding:16px 18px;
-  font-size:14.5px; font-weight:700; line-height:1.4; transition:.16s
-}
-#act .doc:hover{border-color:var(--brand); color:var(--deep); transform:translateY(-2px)}
-#act .doc small{display:block; margin-top:3px; font-size:12px; font-weight:600; color:var(--faint)}
-#act .doc .go{flex:none; color:var(--brand)}
 
 #act .shots{margin:0 calc(50% - 50vw); padding:0}
 #act .shots-rail{
@@ -961,14 +943,10 @@
 
   <section class="top"><div class="wrap">
     <nav class="crumb"><a href="/action-home-preview/69?preview_mode=1">홈</a><span>&rsaquo;</span>활동<span>&rsaquo;</span>예산감시</nav>
-    <span class="who">나라살림 · 지방재정</span>
+    
     <h1 id="act-head">세금이 어디로 갔는지<br>끝까지 따라갑니다</h1>
     <p class="by" id="act-lede">나라살림과 지방재정을 들여다보고, 새는 곳을 찾아 기록하고 공개합니다.</p>
-    <div class="nums" id="act-nums">
-    <div class="num"><b>27<i>년</i></b><span>이어온 예산감시</span></div>
-    <div class="num"><b>0<i>원</i></b><span>정부 · 기업 지원금</span></div>
-    <div class="num"><b><span class="tbd">확인 필요</span></b><span>올해 살펴본 사업 수</span></div>
-    </div>
+    
   </div></section>
 
   <div class="wrap">
@@ -1052,18 +1030,6 @@
           <span class="t">국민과 함께하는 지출구조조정 토론회 쟁점, 질문 정리</span>
           <span class="meta">2026.06.18</span>
         </a>
-      </div>
-      <a class="more" href="/action-home-preview/57">글 전체보기 →</a>
-    </section>
-
-    <section class="sec"><div class="sh">
-      <h2>더 깊이 보려면</h2>
-      <p>이 활동에서 나온 보고서와 자료를 모아 둔 곳입니다. <span class="tbd">주소 확인 필요</span></p>
-    </div>
-      <div class="docs">
-        <a class="doc" href="/action-home-preview/23">발행물<small>보고서 · 이슈페이퍼</small><span class="go" aria-hidden="true">→</span></a>
-        <a class="doc" href="/action-home-preview/24">뉴스룸<small>보도자료 · 언론보도</small><span class="go" aria-hidden="true">→</span></a>
-        <a class="doc" href="/action-home-preview/57">게시판<small>예산감시 글 전체</small><span class="go" aria-hidden="true">→</span></a>
       </div>
     </section>
 
