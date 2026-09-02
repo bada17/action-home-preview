@@ -1616,9 +1616,9 @@ html { scroll-behavior: smooth; }
       </div>
       <div class="dok-stat-item is-lead">
         
-        <div class="dok-stat-num"><span class="dok-count" data-to="1000">0</span><span class="dok-stat-unit">억 원</span></div>
-        <div class="dok-stat-label">밑빠진 독을 감시한 세금</div>
-        <div class="dok-stat-sub">역대 수상 사업의 사업비 합계</div>
+        <div class="dok-stat-num"><span class="dok-count" data-to="175824">0</span><span class="dok-stat-unit">억 원</span></div>
+        <div class="dok-stat-label">들여다본 예산</div>
+        <div class="dok-stat-sub">34개 수상 사업의 사업비 · 예산낭비액 합계</div>
       </div>
       <div class="dok-stat-item">
         <div class="dok-stat-num"><span class="dok-count" id="dokh-years" data-to="0">0</span><span class="dok-stat-unit">년</span></div>
@@ -2610,7 +2610,9 @@ html { scroll-behavior: smooth; }
     var last = awards.reduce(function (m, a) { return Math.max(m, a.round || 0); }, 0);
 
     if (rounds && last) rounds.setAttribute('data-to', String(last));
-    if (years) years.setAttribute('data-to', String(new Date().getFullYear() - 2000));
+    // 시민행동 창립은 1999년 9월 9일입니다. 2000년(제1회 수상)이 아니라
+    // 창립 해를 기준으로 셉니다 — 2026년이면 27년째입니다.
+    if (years) years.setAttribute('data-to', String(new Date().getFullYear() - 1999));
     if (eyebrow && last) eyebrow.textContent = '2000년부터 ' + last + '회';
   }
 
@@ -2891,15 +2893,23 @@ html { scroll-behavior: smooth; }
     if (!nums.length) return;
 
     var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // data-dec="1" 을 붙이면 소수점 한 자리까지 셉니다(17.6조 처럼).
+    // 없으면 예전처럼 정수입니다.
     var run = function (el) {
       var to = Number(el.getAttribute('data-to')) || 0;
-      if (still || !('requestAnimationFrame' in window)) { el.textContent = to; return; }
+      var dec = Number(el.getAttribute('data-dec')) || 0;
+      // 여섯 자리(175,824억)가 들어오므로 쉼표를 찍습니다. 안 찍으면 자릿수를 세게 됩니다.
+      var show = function (v) {
+        return dec ? v.toFixed(dec) : Math.round(v).toLocaleString('ko-KR');
+      };
+      if (still || !('requestAnimationFrame' in window)) { el.textContent = show(to); return; }
       var t0 = null, dur = 900;
       var tick = function (t) {
         if (t0 === null) t0 = t;
         var p = Math.min(1, (t - t0) / dur);
-        el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+        el.textContent = show(to * (1 - Math.pow(1 - p, 3)));
         if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = show(to);
       };
       requestAnimationFrame(tick);
     };
