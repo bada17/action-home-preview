@@ -955,18 +955,20 @@
 #pb .ask .two{display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:9px}
 #pb .ask .two input{margin-top:0}
 
-#pb .ask .opt{display:flex; align-items:flex-start; gap:9px; margin-top:12px; cursor:pointer; font-size:14px; color:var(--soft); line-height:1.5}
-#pb .ask .opt input{flex:none; width:19px; height:19px; margin:1px 0 0; accent-color:var(--brand); cursor:pointer}
-#pb .ask .opt i{font-style:normal; font-size:11.5px; font-weight:700; color:var(--faint);
+#pb .ask .opt,#pb .form .opt{display:flex; align-items:flex-start; gap:9px; margin-top:12px; cursor:pointer; font-size:14px; color:var(--soft); line-height:1.5}
+#pb .ask .opt input,#pb .form .opt input{flex:none; width:19px; height:19px; margin:1px 0 0; accent-color:var(--brand); cursor:pointer}
+#pb .ask .opt i,#pb .form .opt i{font-style:normal; font-size:11.5px; font-weight:700; color:var(--faint);
   border:1px solid var(--line); border-radius:999px; padding:1px 7px; margin-left:3px}
-#pb .ask .opt i.must{color:var(--deep); border-color:var(--brand); background:var(--tint)}
-#pb .ask .fine{margin-top:10px; font-size:12.5px; color:var(--faint); line-height:1.6}
+#pb .ask .opt i.must,#pb .form .opt i.must{color:var(--deep); border-color:var(--brand); background:var(--tint)}
+#pb .ask .fine,#pb .form .fine{margin-top:10px; font-size:12.5px; color:var(--faint); line-height:1.6}
 
-#pb .ask .legal{margin-top:10px; padding-top:10px; border-top:1px solid var(--line); font-size:12px}
-#pb .ask .legal b{color:var(--soft)}
-#pb .ask .legal a{color:var(--deep); font-weight:700; text-decoration:underline; text-underline-offset:2px}
-#pb .ask .msg{margin-top:10px; font-size:14px; font-weight:700; color:var(--deep); display:none}
-#pb .ask .msg.on{display:block}
+#pb .ask .legal,#pb .form .legal{margin-top:10px; padding-top:10px; border-top:1px solid var(--line); font-size:12px}
+#pb .ask .legal b,#pb .form .legal b{color:var(--soft)}
+#pb .ask .legal a,#pb .form .legal a{color:var(--deep); font-weight:700; text-decoration:underline; text-underline-offset:2px}
+#pb .ask .msg,#pb .form .msg{margin-top:10px; font-size:14px; font-weight:700; color:var(--deep); display:none}
+#pb .ask .msg.on,#pb .form .msg.on{display:block}
+
+#pb .hp{position:absolute; left:-9999px; width:1px; height:1px; opacity:0; pointer-events:none}
 
 #pb .qtools{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:14px}
 #pb .qtools .count{font-size:13px; color:var(--faint); margin-right:auto}
@@ -1116,6 +1118,8 @@
         <button type="button" data-topic="jachi" aria-pressed="false">주민자치회</button>
         <button type="button" data-topic="policy" aria-pressed="false">시민참여정책</button>
       </div>
+      
+      <input type="hidden" id="pb-topic" value="budget">
       <label class="sr-only" for="pb-q" hidden>궁금한 것</label>
       <textarea id="pb-q" placeholder="궁금한 것을 편하게 적어 주세요. 짧아도 괜찮습니다."></textarea>
       
@@ -1133,6 +1137,8 @@
         <span>개인정보 수집·이용에 동의합니다 <i class="must">필수</i></span></label>
       <label class="opt"><input type="checkbox" id="pb-news">
         <span>함께하는 시민행동 소식도 받겠습니다 <i>선택</i></span></label>
+      
+      <input class="hp" type="text" id="pb-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button type="submit" class="go">질문 보내기</button>
       <p class="fine"><b>답은 이 페이지 아래 '오간 질문'에 올라갑니다</b> — 보통 5일 안입니다.
         올라오면 알려 드립니다. 질문 내용만 올라가고 <b>이름·연락처는 화면에 올리지 않습니다.</b></p>
@@ -1141,6 +1147,7 @@
         <b>이용 목적</b> 질문에 답하고, 답이 올라온 것을 알려 드리기 위해 &nbsp;
         <b>보유기간</b> 수집일로부터 5년
         (소식 받기에 동의하신 경우, 수신을 그만두실 때까지)<br>
+        <b>보관</b> 받은 내용은 구글 스프레드시트(Google LLC)에 저장합니다.
         처리 주체는 <b>함께하는 시민행동</b>, 개인정보관리책임자는 정남진 사무처장입니다.
         동의하지 않아도 되지만, 그러면 답을 보내 드릴 길이 없습니다.
         자세한 것은 <a href="/action-home-preview/8" target="_blank" rel="noopener">개인정보처리방침</a>에 있습니다.</p>
@@ -1319,7 +1326,19 @@
           <div class="f"><label for="pb-o4">시기 · 인원</label><input type="text" id="pb-o4"></div>
         </div>
         <div class="f"><label for="pb-o5">필요한 것</label><textarea id="pb-o5"></textarea></div>
+        
+        <label class="opt"><input type="checkbox" id="pb-oagree" required>
+          <span>개인정보 수집·이용에 동의합니다 <i class="must">필수</i></span></label>
+        
+        <input class="hp" type="text" id="pb-ohp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button type="submit" class="go">의뢰 보내기</button>
+        <p class="fine legal">
+          <b>수집 항목</b> 기관 · 담당자 이름 · 이메일 &nbsp;
+          <b>이용 목적</b> 의뢰 내용을 확인하고 진행을 협의하기 위해 &nbsp;
+          <b>보유기간</b> 수집일로부터 5년<br>
+          <b>보관</b> 받은 내용은 구글 스프레드시트(Google LLC)에 저장합니다.
+          처리 주체는 <b>함께하는 시민행동</b>, 개인정보관리책임자는 정남진 사무처장입니다.
+          자세한 것은 <a href="/action-home-preview/8" target="_blank" rel="noopener">개인정보처리방침</a>에 있습니다.</p>
         <p class="msg" id="pb-omsg" role="status"></p>
       </form>
     </section>
@@ -1359,10 +1378,12 @@
   });
 
   /* ── 히어로에서 고른 주제 ── */
-  var askTopic = 'budget';
+  /* 고른 주제는 숨은 칸(#pb-topic)에 적어 둡니다. 전에는 이 파일 안의 변수에만
+     담겨서, 접수가 열려도 주제가 함께 가지 않았습니다. */
+  var askTopic = root.querySelector('#pb-topic');
   root.querySelectorAll('#pb-ask .topic button').forEach(function (b, _i, btns) {
     b.addEventListener('click', function () {
-      askTopic = b.dataset.topic;
+      if (askTopic) askTopic.value = b.dataset.topic;
       btns.forEach(function (x) {
         x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
       });
@@ -1370,10 +1391,13 @@
   });
 
   /* ── 폼 ──
-     ⚠️ 아직 아무 데도 보내지 않습니다. 받는 곳이 정해지면 여기에 연결하세요.
-        보낼 것: 주제(askTopic) · 질문 · 이름 · 휴대전화 · 이메일 ·
-        동의 두 개(pb-agree 필수 / pb-news 소식 받기 선택).
-        pb-news 가 꺼진 사람의 연락처를 소식지에 쓰면 안 됩니다 — 목적이 다릅니다. */
+     이 파일(캠페이너스 미리보기)에서는 아무 데도 보내지 않습니다.
+     실제 접수는 굽는 쪽에 있습니다 — participatory-budget/build.py 가 아래 두 줄을
+     setupIntake 로 바꾸고, 보낼 곳은 그 파일의 PB_ENDPOINT 한 곳에서 정합니다.
+
+     보내는 것: 주제(pb-topic) · 질문 · 이름 · 휴대전화 · 이메일 ·
+     동의 두 개(pb-agree 필수 / pb-news 소식 받기 선택) · 허니팟(pb-hp).
+     ⚠️ pb-news 가 꺼진 사람의 연락처를 소식지에 쓰면 안 됩니다 — 목적이 다릅니다. */
   function fakeSubmit(formId, msgId, text) {
     var form = document.getElementById(formId);
     var msg = document.getElementById(msgId);
