@@ -89,6 +89,8 @@
     border:1.5px solid var(--line);font-size:15px;font-weight:700;transition:.15s;white-space:nowrap
   }
   #ah-nav .gnb-item>a:hover{border-color:var(--brand);color:var(--brand-deep)}
+  
+  #ah-nav .gnb-item>a[role="button"]{cursor:pointer}
 
   #ah-nav .gnb-item>a.is-here{
     border-color:var(--brand);background:var(--brand-tint);color:var(--brand-deep)
@@ -250,7 +252,9 @@
   #ah-nav .mnav.open{display:block}
   #ah-nav .mnav>div>ul{padding:10px 0 18px}
   #ah-nav .mnav>div>ul>li+li{border-top:1px solid var(--line)}
-  #ah-nav .mnav>div>ul>li>a{display:flex;align-items:center;justify-content:space-between;padding:15px 4px 8px;font-size:16px;font-weight:700}
+  
+  #ah-nav .mnav>div>ul>li>a,
+  #ah-nav .mnav>div>ul>li>.mtitle{display:flex;align-items:center;justify-content:space-between;padding:15px 4px 8px;font-size:16px;font-weight:700}
   #ah-nav .mnav a:hover{color:var(--brand-deep)}
   #ah-nav .mnav a.is-cta{color:var(--brand-deep);padding-bottom:15px}
   #ah-nav .msub{display:flex;flex-wrap:wrap;gap:6px;padding:0 4px 14px}
@@ -391,7 +395,7 @@
       </div>
 
       <div class="gnb-item">
-        <a href="/action-home-preview/52" data-nav="act">활동</a>
+        <a data-nav="act" role="button" tabindex="0">활동</a>
         <div class="drop is-act"><ul>
           <li class="drow">
             <a class="dmain" href="/action-home-preview/49" data-nav="act-local">지자체 감시<em>지방정부 · 지방의회</em></a>
@@ -489,7 +493,8 @@
       </ul>
     </li>
     <li>
-      <a href="/action-home-preview/52">활동</a>
+      
+      <span class="mtitle">활동</span>
       <ul class="msub">
         <li><a href="/action-home-preview/49" data-nav="act-local">지자체 감시</a></li>
         
@@ -791,6 +796,17 @@
       e.preventDefault();
       openDrop(item);
     });
+    /* href 가 없는 알약('활동')은 엔터·스페이스로도 열려야 합니다.
+       주소가 있는 <a> 는 브라우저가 엔터를 알아서 누름으로 바꿔 주지만,
+       href 가 없으면 그 일이 일어나지 않습니다. */
+    if (!a.getAttribute('href')) {
+      a.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+          e.preventDefault();
+          openDrop(item);
+        }
+      });
+    }
   });
 
   // 판 밖을 누르면 닫습니다. 판 안의 링크를 누르면 어차피 화면이 바뀌므로 같이 닫습니다.
@@ -3244,7 +3260,7 @@ const COVER_PHOTOS = [
         <h3>관련 페이지</h3>
         <div class="ft-btns">
           <a href="http://www.goodbudget.kr" target="_blank" rel="noopener"><img class="ft-logo" src="https://cdn.imweb.me/thumbnail/20230216/c6bdf8489c62b.jpeg" alt="좋은예산센터" loading="lazy" decoding="async"> <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 13.5V19a1.5 1.5 0 0 1-1.5 1.5H6A1.5 1.5 0 0 1 4.5 19V7A1.5 1.5 0 0 1 6 5.5h5.5"/><path d="M15 3.5h5.5V9"/><path d="M11.2 12.8 20.2 3.8"/></svg></span></a>
-          <a href="http://csrcenter.cafe24.com" target="_blank" rel="noopener"><img class="ft-logo" src="https://cdn.imweb.me/thumbnail/20230216/3a2115a51c49e.jpg" alt="좋은기업센터" loading="lazy" decoding="async"> <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 13.5V19a1.5 1.5 0 0 1-1.5 1.5H6A1.5 1.5 0 0 1 4.5 19V7A1.5 1.5 0 0 1 6 5.5h5.5"/><path d="M15 3.5h5.5V9"/><path d="M11.2 12.8 20.2 3.8"/></svg></span></a>
+          <a href="http://csr.action.or.kr" target="_blank" rel="noopener"><img class="ft-logo" src="https://cdn.imweb.me/thumbnail/20230216/3a2115a51c49e.jpg" alt="좋은기업센터" loading="lazy" decoding="async"> <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 13.5V19a1.5 1.5 0 0 1-1.5 1.5H6A1.5 1.5 0 0 1 4.5 19V7A1.5 1.5 0 0 1 6 5.5h5.5"/><path d="M15 3.5h5.5V9"/><path d="M11.2 12.8 20.2 3.8"/></svg></span></a>
           <a href="http://www.privacy.or.kr" target="_blank" rel="noopener"><img class="ft-logo" src="https://cdn.imweb.me/thumbnail/20230216/d3611c220acbd.png" alt="정보인권센터" loading="lazy" decoding="async"> <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 13.5V19a1.5 1.5 0 0 1-1.5 1.5H6A1.5 1.5 0 0 1 4.5 19V7A1.5 1.5 0 0 1 6 5.5h5.5"/><path d="M15 3.5h5.5V9"/><path d="M11.2 12.8 20.2 3.8"/></svg></span></a>
           <a href="https://donate.action.or.kr/" target="_blank" rel="noopener">후원 안내 <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 13.5V19a1.5 1.5 0 0 1-1.5 1.5H6A1.5 1.5 0 0 1 4.5 19V7A1.5 1.5 0 0 1 6 5.5h5.5"/><path d="M15 3.5h5.5V9"/><path d="M11.2 12.8 20.2 3.8"/></svg></span></a>
         </div>
