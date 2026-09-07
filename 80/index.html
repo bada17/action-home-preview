@@ -1033,7 +1033,7 @@
 #pb .qa summary .tail{margin-left:auto; display:flex; align-items:center; gap:7px; flex:none}
 
 #pb .qa .ans{display:flex; gap:11px; padding:0 2px 20px}
-#pb .qa .ans .body{font-size:15px; line-height:1.8; color:var(--ink)}
+#pb .qa .ans .body{font-size:16.5px; line-height:1.85; color:var(--ink)}
 
 #pb .words{display:grid; grid-template-columns:repeat(4,1fr); gap:10px}
 
@@ -1054,7 +1054,7 @@
 #pb .word[aria-pressed="true"] b{font-size:12px; color:#7fb7ce; font-weight:700}
 #pb .word[aria-pressed="true"] span{display:block}
 
-#pb .people,#pb .pmodal{position:relative}
+#pb .people{position:relative}
 #pb .people-sec{
   position:relative; isolation:isolate; overflow:hidden; min-height:100svh;
   margin-left:calc(50% - 50vw + var(--ah-sb,0px)/2);
@@ -1197,8 +1197,6 @@
 #pb .pcount b{color:var(--deep)}
 #pb .phint{margin-top:9px; text-align:center; font-size:12.5px; color:var(--faint)}
 
-#pb .person .more{display:none}
-
 @media(min-width:900px){
   #pb .person{
     grid-template-columns:minmax(430px,1.08fr) minmax(330px,.92fr);
@@ -1207,58 +1205,6 @@
   }
   #pb .person > div:last-child{text-align:left}
   #pb .person .nm{font-size:clamp(30px,3vw,42px)}
-}
-
-#pb .pmodal{
-  width:min(920px,calc(100% - 40px)); max-height:calc(100% - 40px);
-  padding:0; border:0; border-radius:20px; overflow:hidden;
-  background:#fff; color:var(--ink);
-  box-shadow:0 40px 90px -40px rgba(6,35,48,.6)
-}
-#pb .pmodal::backdrop{background:rgba(6,35,48,.62)}
-@keyframes pb-zoom{
-  from{opacity:0; transform:scale(.88) translateY(26px)}
-  to  {opacity:1; transform:none}
-}
-@keyframes pb-fade{from{opacity:0} to{opacity:1}}
-#pb .pmodal[open]{animation:pb-zoom .36s cubic-bezier(.22,1,.36,1)}
-#pb .pmodal[open]::backdrop{animation:pb-fade .36s ease}
-#pb .pmodal-bar{
-  position:absolute; top:14px; left:14px; right:14px; z-index:2;
-  display:flex; justify-content:flex-end; gap:8px; pointer-events:none
-}
-#pb .pmodal-bar button{
-  pointer-events:auto; width:40px; height:40px; padding:0;
-  border:1px solid var(--line); border-radius:999px;
-  background:rgba(255,255,255,.94); color:var(--deep);
-  font-size:19px; line-height:1; cursor:pointer;
-  transition:background .18s, color .18s, transform .18s, border-color .18s
-}
-#pb .pmodal-bar button:hover:not([disabled]){
-  background:var(--brand); border-color:var(--brand); color:#fff; transform:scale(1.08)
-}
-#pb .pmodal-bar button[disabled]{opacity:.3; cursor:default}
-#pb .pmodal-bar .pmodal-prev{margin-right:auto}   
-#pb .pmodal-in{padding:38px; overflow:auto; max-height:calc(100vh - 40px)}
-
-#pb .pmodal .person{
-  display:grid; grid-template-columns:260px minmax(0,1fr); gap:32px;
-  align-items:start; justify-items:start; text-align:left;
-  background:transparent; border:0; padding:0; cursor:default;
-  opacity:1; --s:1; transform:none
-}
-#pb .pmodal .person.is-on{box-shadow:none; transform:none}
-#pb .pmodal .person .phw{width:100%}
-#pb .pmodal .person > div:last-child{max-width:none}
-#pb .pmodal .person .nm{font-size:clamp(24px,2.6vw,32px)}
-#pb .pmodal .person .career{display:block; margin-top:20px}
-#pb .pmodal .person .more{display:none}
-@media(max-width:700px){
-  
-  #pb .pmodal{width:100%; max-width:100%; height:100%; max-height:100%; border-radius:0}
-  #pb .pmodal-in{padding:64px 20px 34px; max-height:100vh}
-  #pb .pmodal .person{grid-template-columns:1fr; justify-items:center; text-align:center}
-  #pb .pmodal .person .phw{width:min(240px,72%)}
 }
 
 #pb .person > div:last-child{width:100%; max-width:660px}
@@ -1517,7 +1463,11 @@
 #pb .cintro p{margin:0; font-size:16px; line-height:1.8; color:var(--soft)}
 #pb .cintro p + p{margin-top:12px}
 #pb .cintro b{color:var(--navy)}
-#pb .cintro-lead{font-size:18.5px; font-weight:600; color:var(--navy)}
+
+#pb .cintro p.cintro-lead{
+  margin-bottom:20px; font-family:GmarketSans,sans-serif; font-size:21px;
+  font-weight:700; line-height:1.5; color:var(--deep); word-break:keep-all
+}
 
 #pb .cin-row{margin-top:12px}
 #pb .cintro .cin-row p{margin:0}
@@ -1712,10 +1662,8 @@
   #pb .sh p{font-size:18px; max-width:72ch}
   #pb .sh .eyebrow{font-size:15px}
   #pb .cintro p{font-size:19.5px}
-  #pb .cintro-lead{font-size:23px}
-  #pb .cin-row{grid-template-columns:170px 1fr; gap:18px; align-items:start;
-    margin-top:15px; padding-top:15px}
-  #pb .cin-q,#pb .cin-a{font-size:15.5px}
+  #pb .cintro p.cintro-lead{font-size:29px; margin-bottom:26px}
+  #pb .cin-row{margin-top:16px}
   #pb .cintro{max-width:70ch}
   #pb .hero h1{font-size:clamp(54px,5.8vw,74px)}
   #pb .hero .by{font-size:21px; max-width:60ch}
@@ -1750,7 +1698,7 @@
 
   #pb .qa summary{font-size:19px}
   #pb .mark{width:30px; height:30px; font-size:14px}
-  #pb .qa .ans .body{font-size:18px}
+  #pb .qa .ans .body{font-size:19.5px; line-height:1.9}
 
   #pb .word{min-height:150px; padding:20px 18px}
   #pb .word b{font-size:19px}
@@ -1949,21 +1897,22 @@
 
       <div class="cintro">
         <p class="cintro-lead">시민의 참여로 재정을 바꾸고, 제도를 움직입니다.</p>
+        
         <div class="cin-row">
-          <p><b>시민참여정책위원회</b>는 중앙정부와 지방자치단체, 교육청 등 공공부문의
-            재정 운용 과정에 시민의 참여를 넓히고, 재정의 민주성·투명성·책임성을 높이기 위해
-            <b>함께하는 시민행동</b> 안에 둔 시민참여정책 전문기구입니다.</p>
+          <p>예산은 숫자가 아닙니다. <b>무엇을 먼저 할 것인가</b>를 정하는 일입니다.
+            도로를 넓힐지 돌봄을 늘릴지, 그 순서를 정하는 자리에 시민이 앉는 것 —
+            재정민주주의는 거기서 시작합니다.</p>
         </div>
         <div class="cin-row">
-          <p>예산은 단순한 숫자가 아니라, 우리 사회가 무엇을 중요하게 생각하고 어디에 자원을
-            배분할 것인지를 결정하는 과정입니다. 시민이 그 결정에 참여하는 것이
-            재정민주주의의 출발점입니다.</p>
+          <p><b>시민참여정책위원회</b>는 그 자리를 넓히는 <b>함께하는 시민행동</b>의
+            전문기구입니다. 중앙정부와 지방자치단체, 교육청의 돈이 어떻게 쓰이는지 살피고,
+            그 과정을 <b>더 민주적으로, 더 투명하게, 쓴 만큼 책임지게</b> 만드는 일을 합니다.</p>
         </div>
         <div class="cin-row">
-          <p>함께하는 시민행동은 2002년 주민참여예산조례 제정운동을 시작으로 제도 연구와
-            모니터링, 시민교육, 활동가 네트워크, 제도 개선 활동을 이어 왔습니다. 위원회는 그
-            경험을 바탕으로 참여예산을 넘어 주민자치회와 청년·청소년 참여, 시민위원회 등
-            여러 민관거버넌스 영역으로 범위를 넓히고 있습니다.</p>
+          <p>시작은 <b>2002년</b>이었습니다. 전국 지자체에 주민참여예산조례를 만들자는
+            운동이었고, 그 뒤로 20년 넘게 제도 연구와 모니터링, 시민교육, 활동가 네트워크를
+            이어 왔습니다. 지금은 참여예산을 넘어 <b>주민자치회</b>와
+            <b>청년·청소년 참여</b>, <b>시민위원회</b>까지 봅니다.</p>
         </div>
       </div>
       
@@ -1987,8 +1936,6 @@
               <li><i>전</i>서울시 자치구 참여예산 운영 평가위원</li>
               <li><i>전</i>서울시 동(洞) 지역회의 시범사업 운영 컨설턴트</li>
             </ul>
-            
-            <span class="more" aria-hidden="true">이력 보기 →</span>
           </div>
         </article>
 
@@ -2008,8 +1955,6 @@
               <li><i>전</i>서울시 청년자율예산 자치구 청년정책 거버넌스 활성화 TF위원</li>
               <li><i>전</i>서울시 서대문구 참여예산 지원단</li>
             </ul>
-            
-            <span class="more" aria-hidden="true">이력 보기 →</span>
           </div>
         </article>
 
@@ -2029,8 +1974,6 @@
               <li><i>전</i>전국 지속가능발전협의회 사무국장</li>
               <li><i>전</i>좋은예산센터 사무국장</li>
             </ul>
-            
-            <span class="more" aria-hidden="true">이력 보기 →</span>
           </div>
         </article>
 
@@ -2051,8 +1994,6 @@
               <li><i>전</i>서울시 참여예산 지원협의회 시민사회 전문가</li>
               <li><i>전</i>경기도 주민참여예산 연구회 / 시흥시 주민참여예산 연구회</li>
             </ul>
-            
-            <span class="more" aria-hidden="true">이력 보기 →</span>
           </div>
         </article>
 
@@ -2072,8 +2013,6 @@
               <li><i>전</i>서울시 시민참여예산 온예산위원회 코디네이터</li>
               <li><i>전</i>서울시 공익활동지원사업 심사평가 위원</li>
             </ul>
-            
-            <span class="more" aria-hidden="true">이력 보기 →</span>
           </div>
         </article>
 
@@ -2085,15 +2024,6 @@
          <button type="button" class="pnav next" aria-label="다음 전문위원">›</button>
        </div>
       </div>
-
-      <dialog class="pmodal" id="pb-pmodal" aria-label="전문위원 소개">
-        <div class="pmodal-bar">
-          <button type="button" class="pmodal-prev" aria-label="이전 전문위원">‹</button>
-          <button type="button" class="pmodal-next" aria-label="다음 전문위원">›</button>
-          <button type="button" class="pmodal-x" aria-label="닫기">✕</button>
-        </div>
-        <div class="pmodal-in" id="pb-pmodal-in"></div>
-      </dialog>
 
       <p class="phint">전문위원이 3초마다 순서대로 바뀝니다. 화살표로 직접 넘길 수도 있습니다.</p>
     </section>
@@ -2677,72 +2607,12 @@
       }, { threshold: .35 }).observe(box);
     }
 
-    /* ── 전문위원 창 (2026-09-03) ──
-       사용자: "그 사람을 클릭하면 그 창이 슝하고 나와서 전체 화면으로 볼 수 있게."
-       ⚠️ 좁은 화면(카루셀)에서는 열지 않습니다 — 거기서는 카드 안에 이력이
-          이미 다 펼쳐져 있어, 창을 띄우면 같은 글을 두 번 보게 됩니다. */
-    var modal = document.getElementById('pb-pmodal');
-    var mBody = document.getElementById('pb-pmodal-in');
-    var mAt = -1, mLast = null;
-
-    function fillModal(i) {
-      if (!mBody || !slides[i]) return;
-      mAt = i;
-      // 카드 속을 그대로 옮겨 담습니다 — 글이 마크업 한 곳에만 있게.
-      mBody.innerHTML = '<article class="person is-on">' + slides[i].innerHTML + '</article>';
-      mBody.scrollTop = 0;
-      var mp = modal.querySelector('.pmodal-prev');
-      var mn = modal.querySelector('.pmodal-next');
-      if (mp) mp.disabled = i <= 0;
-      if (mn) mn.disabled = i >= slides.length - 1;
-    }
-
-    function openPerson(i) {
-      // showModal 이 없는 옛 브라우저에서는 그냥 열리지 않습니다.
-      // 그 사람에게도 카드의 이름·분야는 그대로 보입니다.
-      if (!modal || !modal.showModal || !slides[i]) return;
-      mLast = document.activeElement;
-      fillModal(i);
-      modal.showModal();
-      document.body.style.overflow = 'hidden';
-      var x = modal.querySelector('.pmodal-x');
-      if (x) x.focus();
-    }
-    function closePerson() { if (modal && modal.open) modal.close(); }
-
-    if (modal) {
-      modal.addEventListener('close', function () {
-        document.body.style.overflow = '';
-        if (mLast && mLast.focus) mLast.focus();
-      });
-      // 어두운 바탕을 누르면 닫습니다(그 클릭은 dialog 자신에게 옵니다).
-      modal.addEventListener('click', function (e) {
-        if (e.target === modal) { closePerson(); return; }
-        var b = e.target.closest && e.target.closest('.pmodal-x, .pmodal-prev, .pmodal-next');
-        if (!b) return;
-        if (b.className.indexOf('pmodal-x') >= 0) closePerson();
-        else fillModal(b.className.indexOf('pmodal-prev') >= 0 ? mAt - 1 : mAt + 1);
-      });
-      // 창 안에서도 방향키로 사람을 넘깁니다.
-      modal.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowRight' && mAt < slides.length - 1) { e.preventDefault(); fillModal(mAt + 1); }
-        if (e.key === 'ArrowLeft'  && mAt > 0)                 { e.preventDefault(); fillModal(mAt - 1); }
-      });
-    }
-
-    /* 이 시안은 카드가 아니라 아래 이름 버튼으로 사람을 바꿉니다. */
-    function syncWide() {
-      slides.forEach(function (s) {
-        s.removeAttribute('tabindex');
-        s.removeAttribute('role');
-      });
-      stop(); closePerson();
-    }
-    if (wideMq.addEventListener) wideMq.addEventListener('change', syncWide);
-    else if (wideMq.addListener) wideMq.addListener(syncWide);
-
+    /* ⚠️ 2026-09-07 에 syncWide() 를 걷었습니다. 하던 일이 셋이었는데 셋 다
+       필요 없어졌습니다 — 걸지도 않는 tabindex·role 을 떼고, 열리지도 않는 창을
+       닫고, **저절로 넘어가는 것을 멈췄습니다.** 마지막 것이 문제였습니다:
+       화면 폭이 900px 을 넘나들 때마다 stop() 만 부르고 start() 를 안 불러서,
+       창을 줄였다 늘리면 카루셀이 영영 멈춰 있었습니다. 되살리지 마세요. */
     paint(0);
-    syncWide();
     start();
     /* 창 크기가 바뀌면 스냅 위치가 어긋납니다. 보던 사람에게 다시 맞춥니다. */
     var rt;
