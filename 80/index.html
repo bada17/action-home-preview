@@ -68,6 +68,8 @@
   
   #ah-nav.is-stuck{box-shadow:0 6px 20px rgba(13,28,38,.09)}
   #ah-nav a{color:inherit;text-decoration:none}
+  
+  #ah-nav :focus-visible{outline:2.5px solid var(--brand);outline-offset:3px}
   #ah-nav img{display:block;width:100%}
   #ah-nav ul{list-style:none;margin:0;padding:0}
   #ah-nav p{margin:0}
@@ -195,7 +197,10 @@
   #ah-nav .hd-search button:hover{background:var(--brand-deep)}
 
   #ah-nav .msearch{display:flex;align-items:center;gap:4px;margin:0 0 14px;
-    border:1.5px solid var(--line);border-radius:999px;padding:4px 5px 4px 16px;background:#fff}
+    border:1.5px solid var(--line);border-radius:999px;padding:4px 5px 4px 16px;background:#fff;
+    transition:border-color .18s,box-shadow .18s}
+  
+  #ah-nav .msearch:focus-within{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-tint)}
   #ah-nav .msearch input{flex:1;border:0;outline:0;background:none;padding:10px 0;
     font-family:inherit;font-size:16px;color:var(--ink);min-width:0}
   #ah-nav .msearch input::-webkit-search-cancel-button{display:none}
@@ -372,11 +377,11 @@
 
     <nav class="gnb" aria-label="주요 메뉴">
       <div class="gnb-item">
-        <a class="is-cta" href="https://mrmweb.hsit.co.kr/v2/Member/MemberJoin.aspx?action=join&amp;server=GdGrmt6XtgAAdxPdh65AQQ==" target="_blank" rel="noopener"><span class="ah-heart" aria-hidden="true">♥</span>후원하기</a>
+        <a class="is-cta" href="https://secure.donus.org/withaction0909/pay/step1" target="_blank" rel="noopener"><span class="ah-heart" aria-hidden="true">♥</span>후원하기</a>
         
         <div class="drop"><ul>
           
-          <li><a href="https://mrmweb.hsit.co.kr/v2/Member/MemberJoin.aspx?action=join&amp;server=GdGrmt6XtgAAdxPdh65AQQ==" target="_blank" rel="noopener">정기후원하기</a></li>
+          <li><a href="https://secure.donus.org/withaction0909/pay/step1" target="_blank" rel="noopener">정기후원하기</a></li>
           <li><a href="https://donate.action.or.kr/">정기후원 안내</a></li>
           <li><a href="/action-home-preview/36">후원행사</a></li>
           <li><a href="/action-home-preview/35">회원 총회</a></li>
@@ -473,9 +478,9 @@
     </div>
     <ul>
     <li>
-      <a class="is-cta" href="https://mrmweb.hsit.co.kr/v2/Member/MemberJoin.aspx?action=join&amp;server=GdGrmt6XtgAAdxPdh65AQQ==" target="_blank" rel="noopener">후원하기 →</a>
+      <a class="is-cta" href="https://secure.donus.org/withaction0909/pay/step1" target="_blank" rel="noopener">후원하기 →</a>
       <ul class="msub">
-        <li><a href="https://mrmweb.hsit.co.kr/v2/Member/MemberJoin.aspx?action=join&amp;server=GdGrmt6XtgAAdxPdh65AQQ==" target="_blank" rel="noopener">정기후원하기</a></li>
+        <li><a href="https://secure.donus.org/withaction0909/pay/step1" target="_blank" rel="noopener">정기후원하기</a></li>
         <li><a href="https://donate.action.or.kr/">정기후원 안내</a></li>
         <li><a href="/action-home-preview/36">후원행사</a></li>
         <li><a href="/action-home-preview/35">회원 총회</a></li>
@@ -529,7 +534,7 @@
 
 <div id="ah-nav-space" aria-hidden="true"></div>
 
-<a class="ah-float" id="ah-float" href="https://mrmweb.hsit.co.kr/v2/Member/MemberJoin.aspx?action=join&amp;server=GdGrmt6XtgAAdxPdh65AQQ==" target="_blank" rel="noopener">
+<a class="ah-float" id="ah-float" href="https://secure.donus.org/withaction0909/pay/step1" target="_blank" rel="noopener">
   <span>예산은 저절로 지켜지지 않습니다<br><b>월 1만원으로 감시에 함께하기</b></span>
   <span class="arrow" aria-hidden="true">→</span>
 </a>
@@ -903,12 +908,12 @@
 
 #pb{
   --brand:#00afec; --deep:#0079a6; --tint:#e2f5fd; --band:#eef7fb;
-  --navy:#062330; --ink:#0b1e28; --soft:#4a6473; --faint:#7d95a3;
-  --line:#d5e4eb; --paper:#f1f6f8;
+  --navy:#062330; --ink:#0b1e28; --soft:#3d5663; --faint:#657b87;
+  --line:#cfdee5; --paper:#f4f8fa;
   --flag:#9a5c06; --flag-bg:#fff4e1; --flag-line:#ecd3a2;
 
   margin-left:calc(50% - 50vw + var(--ah-sb, 0px) / 2);margin-right:calc(50% - 50vw + var(--ah-sb, 0px) / 2);
-  background:#fff; color:var(--ink);
+  background:#fff; color:var(--ink); overflow-x:clip;
   font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',-apple-system,sans-serif;
   font-size:16px; line-height:1.7; word-break:keep-all; -webkit-font-smoothing:antialiased;
 }
@@ -978,16 +983,45 @@
 #pb .ask .opt i.must,#pb .form .opt i.must{color:var(--deep); border-color:var(--brand); background:var(--tint)}
 #pb .ask .fine,#pb .form .fine{margin-top:10px; font-size:12.5px; color:var(--faint); line-height:1.6}
 
-#pb .ask .legal,#pb .form .legal{margin-top:10px; padding-top:10px; border-top:1px solid var(--line); font-size:12px}
+#pb .ask .legal,#pb .form .legal{margin-top:10px; padding-top:10px; border-top:1px solid var(--line); font-size:12px; color:var(--faint); line-height:1.6}
 #pb .ask .legal b,#pb .form .legal b{color:var(--soft)}
 #pb .ask .legal a,#pb .form .legal a{color:var(--deep); font-weight:700; text-decoration:underline; text-underline-offset:2px}
+#pb .ask .legal>summary,#pb .form .legal>summary{cursor:pointer; list-style:none; padding-right:2px}
+#pb .ask .legal>summary::-webkit-details-marker,#pb .form .legal>summary::-webkit-details-marker{display:none}
+
+#pb .ask .legal>summary .more,#pb .form .legal>summary .more{
+  color:var(--deep); font-weight:700; white-space:nowrap; margin-left:4px}
+#pb .ask .legal>summary .more::after,#pb .form .legal>summary .more::after{content:"자세히 ▾"}
+#pb .ask .legal[open]>summary .more::after,#pb .form .legal[open]>summary .more::after{content:"접기 ▴"}
+#pb .ask .legal>summary:hover .more,#pb .form .legal>summary:hover .more{text-decoration:underline}
+#pb .ask .legal .legal-rest,#pb .form .legal .legal-rest{margin-top:7px}
 #pb .ask .msg,#pb .form .msg{margin-top:10px; font-size:14px; font-weight:700; color:var(--deep); display:none}
 #pb .ask .msg.on,#pb .form .msg.on{display:block}
 
 #pb .hp{position:absolute; left:-9999px; width:1px; height:1px; opacity:0; pointer-events:none}
 
 #pb .qtools{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:14px}
-#pb .qtools .count{font-size:13px; color:var(--faint); margin-right:auto}
+
+#pb .qtools .count{font-size:13px; color:var(--faint); margin-left:auto}
+#pb .qfilter{display:flex; flex-wrap:wrap; gap:7px}
+#pb .qfilter button{
+  padding:8px 15px; border:1px solid var(--line); border-radius:999px;
+  background:#fff; color:var(--soft); cursor:pointer;
+  font:700 13px/1 Pretendard,sans-serif;
+  transition:background .18s, border-color .18s, color .18s, transform .18s
+}
+#pb .qfilter button:hover{border-color:var(--brand); color:var(--deep); transform:translateY(-1px)}
+#pb .qfilter button[aria-pressed="true"]{background:var(--deep); border-color:var(--deep); color:#fff}
+
+#pb .qtag{
+  flex:none; padding:3px 9px; border-radius:999px; font-size:11.5px; font-weight:700;
+  border:1px solid rgba(0,121,166,.3); background:var(--tint); color:var(--deep)
+}
+#pb .qempty{
+  margin:18px 0 0; padding:22px 20px; text-align:center; line-height:1.7;
+  border:1px dashed var(--line); border-radius:10px;
+  background:var(--paper); font-size:13.5px; color:var(--faint)
+}
 
 #pb .qa{border-top:2px solid var(--ink)}
 #pb .qa .item{border-bottom:1px solid var(--line)}
@@ -1006,10 +1040,6 @@
 #pb .mark.a{background:var(--brand); color:#fff}
 #pb .qa summary .tail{margin-left:auto; display:flex; align-items:center; gap:7px; flex:none}
 
-#pb .whotag{
-  border-radius:999px; padding:2px 9px; font-size:11.5px; font-weight:700;
-  background:var(--band); color:var(--soft); white-space:nowrap
-}
 #pb .qa .ans{display:flex; gap:11px; padding:0 2px 20px}
 #pb .qa .ans .body{font-size:15px; line-height:1.8; color:var(--ink)}
 
@@ -1027,57 +1057,98 @@
 #pb .word span{font-size:12.5px; line-height:1.6; word-break:keep-all}
 
 #pb .word span{display:none}
-#pb .word b::after{content:"?"; margin-left:4px; color:var(--brand); font-weight:800}
 
 #pb .word[aria-pressed="true"]{background:var(--navy); border-color:var(--navy); color:#dbeef8}
 #pb .word[aria-pressed="true"] b{font-size:12px; color:#7fb7ce; font-weight:700}
-#pb .word[aria-pressed="true"] b::after{content:""}
 #pb .word[aria-pressed="true"] span{display:block}
-#pb .words-fine{margin-top:13px; font-size:12.5px; color:var(--faint); line-height:1.6}
 
-#pb .people{position:relative}
+#pb .people,#pb .pmodal{position:relative}
+#pb .people-sec{
+  position:relative; isolation:isolate; overflow:hidden; min-height:100svh;
+  margin-left:calc(50% - 50vw + var(--ah-sb,0px)/2);
+  margin-right:calc(50% - 50vw + var(--ah-sb,0px)/2);
+  padding-left:max(22px,calc((100vw - 1120px)/2));
+  padding-right:max(22px,calc((100vw - 1120px)/2));
+  background:linear-gradient(135deg,rgba(0,175,236,.08),rgba(255,255,255,0) 45%,rgba(0,121,166,.075))
+}
+#pb .people-sec::before{
+  content:""; position:absolute; inset:-18% -16%; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(circle at 16% 28%,rgba(0,175,236,.18) 0 7%,transparent 7.5%),
+    radial-gradient(ellipse at 78% 58%,rgba(113,190,255,.19) 0 20%,transparent 43%),
+    radial-gradient(ellipse at 38% 82%,rgba(0,121,166,.10) 0 15%,transparent 38%);
+  animation:pb-field 13s ease-in-out infinite alternate
+}
+#pb .people-sec::after{
+  content:""; position:absolute; z-index:0; pointer-events:none;
+  width:clamp(430px,58vw,760px); aspect-ratio:1; right:-24%; top:-20%;
+  border:clamp(7px,.8vw,12px) solid rgba(0,175,236,.18); border-radius:50%;
+  box-shadow:0 0 0 clamp(24px,3vw,44px) rgba(0,121,166,.07),
+             0 0 0 clamp(54px,6vw,88px) rgba(113,190,255,.08);
+  animation:pb-section-ring 21s linear infinite
+}
+#pb .people-sec > .sh,#pb .people-sec > .people{position:relative; z-index:1}
 
 #pb .pv{
-  display:flex; gap:18px; overflow-x:auto; overflow-y:hidden;
-  scroll-snap-type:x mandatory; scroll-behavior:smooth;
-  padding:10px 2px 14px; scrollbar-width:none; -ms-overflow-style:none;
-  overscroll-behavior-x:contain
+  display:grid; overflow:hidden; padding:clamp(44px,5vw,72px) clamp(18px,4vw,52px) 32px
 }
-#pb .pv::-webkit-scrollbar{display:none}
 
 #pb .person{
-  position:relative; flex:0 0 100%; scroll-snap-align:center; scroll-snap-stop:always;
+  position:relative; grid-area:1/1;
   display:grid; grid-template-columns:1fr; gap:clamp(14px,1.8vw,22px);
-  justify-items:center; text-align:center; background:#fff;
-  border:1px solid var(--line); border-radius:18px; padding:clamp(22px,2.6vw,34px);
+  justify-items:center; text-align:center;
+  background:none; border:none; border-radius:0; padding:clamp(16px,2vw,26px) 10px clamp(20px,2.2vw,30px);
   transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--s,.955));
-  opacity:.5; box-shadow:0 2px 10px rgba(6,35,48,.05);
-  transition:opacity .55s ease, box-shadow .55s ease, transform .5s cubic-bezier(.22,1,.36,1)
+  opacity:0; pointer-events:none;
+  transition:opacity .55s ease, transform .5s cubic-bezier(.22,1,.36,1)
 }
 
-#pb .person.is-on{--s:1; opacity:1; box-shadow:0 26px 60px -26px rgba(0,121,166,.55), 0 2px 10px rgba(6,35,48,.05)}
+#pb .person.is-on{--s:1; opacity:1; pointer-events:auto}
 
 #pb .person.tilting{transition:opacity .55s ease, box-shadow .55s ease, transform .12s linear}
 
 #pb .phw{
-  position:relative; width:min(250px,64%); isolation:isolate;
+  position:relative; width:min(440px,74vw); isolation:isolate;
   transition:filter .5s ease, transform .5s cubic-bezier(.22,1,.36,1)
 }
 
-#pb .phw::before{
-  content:""; position:absolute; left:8%; right:8%; bottom:2%; height:34%;
-  border-radius:50%; opacity:0; transition:opacity .6s;
-  background:radial-gradient(closest-side,rgba(11,30,40,.16),rgba(11,30,40,0));
-  filter:blur(10px)
+#pb .phw::after{
+  content:""; position:absolute; left:-24%; right:-24%; top:-10%; bottom:-10%;
+  border-radius:50%; border:clamp(4px,.65vw,9px) solid rgba(0,121,166,.25); z-index:0;
+  opacity:0; transition:opacity .7s
 }
-#pb .person.is-on .phw::before{opacity:1}
+#pb .phw .ring{
+  position:absolute; left:-12%; right:-12%; top:-18%; bottom:-16%;
+  border-radius:50%; border:clamp(3px,.38vw,6px) solid rgba(0,175,236,.34); z-index:0;
+  opacity:0; transition:opacity .7s; pointer-events:none
+}
+#pb .phw .ring::before{
+  content:""; position:absolute; width:clamp(34px,4vw,58px); aspect-ratio:1;
+  left:7%; top:-5%; border-radius:50%; background:#55bdf0;
+  box-shadow:0 0 0 clamp(8px,1.2vw,18px) rgba(0,175,236,.10)
+}
+#pb .phw .ring::after{
+  content:""; position:absolute; width:46%; height:30%; right:-8%; top:12%;
+  border-radius:62% 38% 56% 44%;
+  background:linear-gradient(135deg,rgba(0,175,236,.58),rgba(113,190,255,.22))
+}
+#pb .person.is-on .phw::after{opacity:1; animation:pb-spin 14s linear infinite}
+#pb .person.is-on .phw .ring{opacity:1; animation:pb-spin 22s linear infinite reverse}
+
+#pb .phw::before{
+  content:""; position:absolute; left:-8%; right:-8%; top:8%; bottom:5%;
+  border-radius:54% 46% 60% 40%; opacity:0; transition:opacity .6s; z-index:0;
+  background:linear-gradient(145deg,rgba(0,175,236,.34),rgba(123,201,255,.12) 64%,rgba(255,255,255,0));
+  filter:blur(1px)
+}
+#pb .person.is-on .phw::before{opacity:1; animation:pb-blob 7s ease-in-out infinite}
 
 #pb .phw .spk{position:absolute; inset:0; z-index:3; pointer-events:none; opacity:0; transition:opacity .5s}
 #pb .person.is-on .phw .spk{opacity:1}
 
 #pb .phw .spk i{
   position:absolute; width:13px; height:13px; margin:-6.5px 0 0 -6.5px; font-style:normal;
-  background:radial-gradient(circle,rgba(255,255,255,.95) 0 16%,rgba(120,146,160,.75) 32%,transparent 64%);
+  background:radial-gradient(circle,rgba(255,255,255,.95) 0 16%,rgba(0,175,236,.75) 32%,transparent 64%);
   transform:scale(0); animation:pb-twinkle 3.4s ease-in-out infinite
 }
 #pb .phw .spk i:nth-child(1){left:22%; top:16%; animation-delay:.0s}
@@ -1102,20 +1173,19 @@
   width:100%; aspect-ratio:4/5;
   object-fit:cover; object-position:top center;
   border:none; background:none;
-  filter:grayscale(1) contrast(1.05);
   -webkit-mask-image:radial-gradient(72% 74% at 50% 42%,#000 52%,transparent 100%);
   mask-image:radial-gradient(72% 74% at 50% 42%,#000 52%,transparent 100%);
   display:grid; place-items:center; align-content:center; gap:6px;
   font-family:GmarketSans,sans-serif; font-size:clamp(52px,6vw,78px); font-weight:700;
-  color:#b9c6cd
+  color:var(--deep)
 }
 
 #pb div.pho{
-  background:radial-gradient(58% 52% at 50% 44%,rgba(11,30,40,.075),rgba(11,30,40,0) 72%);
+  background:radial-gradient(58% 52% at 50% 44%,rgba(0,175,236,.16),rgba(0,121,166,0) 72%);
   filter:none
 }
 #pb .person.is-on div.pho{background-size:150% 150%; animation:pb-haze 11s ease-in-out infinite}
-#pb .pho em{font-style:normal; font-size:12px; font-weight:700; color:var(--faint); letter-spacing:.02em}
+#pb .pho em{font-style:normal; font-size:12px; font-weight:700; color:var(--deep); letter-spacing:.02em}
 
 #pb .pnav{
   position:absolute; top:calc(50% - 22px); z-index:4;
@@ -1131,15 +1201,76 @@
 #pb .pnav.prev{left:-8px}
 #pb .pnav.next{right:-8px}
 #pb .pbar{display:flex; align-items:center; justify-content:center; gap:14px; margin-top:2px}
-#pb .pdots{display:flex; gap:8px}
-#pb .pdots button{
-  width:9px; height:9px; padding:0; border:none; border-radius:999px; cursor:pointer;
-  background:var(--line); transition:width .3s cubic-bezier(.22,1,.36,1), background .3s
-}
-#pb .pdots button[aria-selected="true"]{width:30px; background:var(--brand)}
-#pb .pcount{font-size:12.5px; font-weight:700; color:var(--faint); font-variant-numeric:tabular-nums}
+#pb .pcount{display:none}
 #pb .pcount b{color:var(--deep)}
 #pb .phint{margin-top:9px; text-align:center; font-size:12.5px; color:var(--faint)}
+
+#pb .person .more{display:none}
+
+@media(min-width:900px){
+  #pb .person{
+    grid-template-columns:minmax(430px,1.08fr) minmax(330px,.92fr);
+    align-items:center; gap:clamp(42px,6vw,86px); min-height:620px;
+    padding:12px clamp(20px,3vw,48px)
+  }
+  #pb .person > div:last-child{text-align:left}
+  #pb .person .nm{font-size:clamp(30px,3vw,42px)}
+  #pb .tags{justify-content:flex-start}
+}
+
+#pb .pmodal{
+  width:min(920px,calc(100% - 40px)); max-height:calc(100% - 40px);
+  padding:0; border:0; border-radius:20px; overflow:hidden;
+  background:#fff; color:var(--ink);
+  box-shadow:0 40px 90px -40px rgba(6,35,48,.6)
+}
+#pb .pmodal::backdrop{background:rgba(6,35,48,.62)}
+@keyframes pb-zoom{
+  from{opacity:0; transform:scale(.88) translateY(26px)}
+  to  {opacity:1; transform:none}
+}
+@keyframes pb-fade{from{opacity:0} to{opacity:1}}
+#pb .pmodal[open]{animation:pb-zoom .36s cubic-bezier(.22,1,.36,1)}
+#pb .pmodal[open]::backdrop{animation:pb-fade .36s ease}
+#pb .pmodal-bar{
+  position:absolute; top:14px; left:14px; right:14px; z-index:2;
+  display:flex; justify-content:flex-end; gap:8px; pointer-events:none
+}
+#pb .pmodal-bar button{
+  pointer-events:auto; width:40px; height:40px; padding:0;
+  border:1px solid var(--line); border-radius:999px;
+  background:rgba(255,255,255,.94); color:var(--deep);
+  font-size:19px; line-height:1; cursor:pointer;
+  transition:background .18s, color .18s, transform .18s, border-color .18s
+}
+#pb .pmodal-bar button:hover:not([disabled]){
+  background:var(--brand); border-color:var(--brand); color:#fff; transform:scale(1.08)
+}
+#pb .pmodal-bar button[disabled]{opacity:.3; cursor:default}
+#pb .pmodal-bar .pmodal-prev{margin-right:auto}   
+#pb .pmodal-in{padding:38px; overflow:auto; max-height:calc(100vh - 40px)}
+
+#pb .pmodal .person{
+  display:grid; grid-template-columns:260px minmax(0,1fr); gap:32px;
+  align-items:start; justify-items:start; text-align:left;
+  background:transparent; border:0; padding:0; cursor:default;
+  opacity:1; --s:1; transform:none
+}
+#pb .pmodal .person.is-on{box-shadow:none; transform:none}
+#pb .pmodal .person .phw{width:100%}
+#pb .pmodal .person > div:last-child{max-width:none}
+#pb .pmodal .person .nm{font-size:clamp(24px,2.6vw,32px)}
+#pb .pmodal .person .tags{justify-content:flex-start}
+#pb .pmodal .person .career{display:block; margin-top:20px}
+#pb .pmodal .person .more{display:none}
+@media(max-width:700px){
+  
+  #pb .pmodal{width:100%; max-width:100%; height:100%; max-height:100%; border-radius:0}
+  #pb .pmodal-in{padding:64px 20px 34px; max-height:100vh}
+  #pb .pmodal .person{grid-template-columns:1fr; justify-items:center; text-align:center}
+  #pb .pmodal .person .tags{justify-content:center}
+  #pb .pmodal .person .phw{width:min(240px,72%)}
+}
 
 #pb .person > div:last-child{width:100%; max-width:660px}
 #pb .person .nm{display:block; font-family:GmarketSans,sans-serif; font-size:clamp(22px,2.3vw,29px); font-weight:700; color:var(--ink)}
@@ -1161,6 +1292,21 @@
 #pb .career li i.now{background:var(--tint); border-color:var(--brand); color:var(--deep)}
 #pb .career .none{padding:5px 0; font-size:13.5px; color:var(--faint)}
 
+@media(min-width:900px){
+  #pb .pv .person{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #pb .pv .person > div:last-child{
+    max-width:none; min-height:520px; padding:30px 22px 30px 0;
+    display:flex; flex-direction:column; justify-content:center
+  }
+  #pb .pv .person .nm{font-size:clamp(34px,3.4vw,46px)}
+  #pb .pv .tags{margin-top:18px}
+  #pb .pv .tags span{padding:5px 14px; font-size:14px}
+  #pb .pv .career{margin-top:30px; padding-top:24px}
+  #pb .pv .career li{gap:14px; padding:10px 0; font-size:clamp(15.5px,1.35vw,18px); line-height:1.65}
+  #pb .pv .career li i{min-width:46px; padding:3px 8px; font-size:12px}
+  #pb .pv .career .none{font-size:16px}
+}
+
 #pb .rows{border-top:2px solid var(--ink)}
 #pb .row{display:flex; justify-content:space-between; gap:16px; align-items:baseline;
   padding:15px 2px; border-bottom:1px solid var(--line)}
@@ -1172,7 +1318,10 @@
 #pb .row.is-tbd .t{color:var(--faint)}
 #pb .rows-fine{margin-top:12px; font-size:12.5px; color:var(--faint)}
 
-#pb .form{background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px}
+#pb .sec.is-narrow>.sh{width:min(100%,760px); margin-inline:auto}
+#pb .form{--form-w:760px;
+  background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:22px;
+  width:min(100%,var(--form-w)); margin-inline:auto}
 #pb .two{display:grid; grid-template-columns:1fr 1fr; gap:12px}
 #pb .f{display:flex; flex-direction:column; gap:6px; margin-bottom:12px}
 #pb .f label{font-size:12.5px; font-weight:700}
@@ -1181,12 +1330,56 @@
   font-family:inherit; font-size:14.5px; background:#fff; color:var(--ink)
 }
 #pb .f textarea{min-height:88px; resize:vertical}
+
+#pb .f label .req,#pb .pairhead .req{
+  font-style:normal; font-size:11px; font-weight:700; margin-left:5px;
+  color:var(--deep); border:1px solid var(--brand); background:var(--tint);
+  border-radius:999px; padding:1px 7px
+}
+
+#pb .f.files input[type=file]{
+  border:1.5px dashed var(--line); border-radius:9px; padding:10px 12px;
+  font-family:inherit; font-size:13.5px; background:#fff; color:var(--soft); cursor:pointer
+}
+#pb .f.files input[type=file]:focus{outline:none; border-color:var(--brand)}
+#pb .f.files input[type=file]::file-selector-button{
+  font-family:inherit; font-size:13px; font-weight:700; color:var(--deep);
+  border:1px solid var(--brand); background:var(--tint); border-radius:7px;
+  padding:6px 12px; margin-right:10px; cursor:pointer
+}
+#pb .f.files .filehint{margin-top:2px}
+
+#pb .pair{margin-bottom:12px}
+#pb .pairhead{font-size:12.5px; font-weight:700; margin-bottom:6px}
+#pb .pair .two .f{margin-bottom:0}
+
+#pb .kinds{
+  border:1px solid var(--line); border-radius:10px; background:#fff;
+  padding:14px 16px 16px; margin:0 0 12px
+}
+#pb .kinds legend{
+  padding:0 6px; font-size:12.5px; font-weight:700; color:var(--ink)
+}
+#pb .kinds legend .hint{margin-left:6px; font-weight:400; color:var(--faint)}
+
+#pb .form .kinds .opts{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:2px 18px; margin-top:4px}
+#pb .form .kinds .opt{margin-top:7px}
+
+#pb .form .kinds .opt.etc{align-items:center; flex-wrap:wrap; grid-column:1/-1}
+#pb .form .kinds .opt.etc input[type=text]{
+  flex:0 1 240px; min-width:0; border:1px solid var(--line); border-radius:8px;
+  padding:8px 11px; font-family:inherit; font-size:14px; background:#fff; color:var(--ink)
+}
+#pb .form .kinds .opt.etc input[type=text]:focus{outline:none; border-color:var(--brand)}
 #pb .f input:focus,#pb .f textarea:focus{outline:none; border-color:var(--brand)}
+
 #pb .form .go{
-  width:100%; border:none; border-radius:9px; background:var(--ink); color:#fff;
+  width:100%; margin-top:16px; border:none; border-radius:9px; background:var(--ink); color:#fff;
   padding:13px; font-size:15px; font-weight:700; cursor:pointer
 }
 #pb .form .go:hover{background:#000}
+#pb .form .fine+.opt{margin-top:14px}
 
 #pb .draft{
   background:var(--flag-bg); border-bottom:1px solid var(--flag-line); color:var(--flag);
@@ -1194,6 +1387,20 @@
 }
 
 @keyframes pb-spin{to{transform:rotate(1turn)}}
+@keyframes pb-blob{
+  0%,100%{transform:translate(-2%,-1%) rotate(-5deg) scale(.96)}
+  50%{transform:translate(4%,3%) rotate(8deg) scale(1.05)}
+}
+@keyframes pb-field{
+  0%{transform:translate3d(-3%,-2%,0) rotate(-2deg) scale(.98)}
+  55%{transform:translate3d(4%,3%,0) rotate(3deg) scale(1.06)}
+  100%{transform:translate3d(-1%,6%,0) rotate(-1deg) scale(1.02)}
+}
+@keyframes pb-section-ring{
+  0%{transform:translate3d(0,0,0) rotate(0deg) scale(.94)}
+  50%{transform:translate3d(-8%,7%,0) rotate(180deg) scale(1.08)}
+  100%{transform:translate3d(0,0,0) rotate(360deg) scale(.94)}
+}
 @keyframes pb-twinkle{
   0%,100%{transform:scale(0) rotate(0deg); opacity:0}
   45%{transform:scale(1) rotate(90deg); opacity:1}
@@ -1203,6 +1410,8 @@
 
 @keyframes pb-haze{0%,100%{background-position:46% 44%}50%{background-position:56% 50%}}
 @keyframes pb-rise{from{opacity:0; transform:translateY(22px)}to{opacity:1; transform:none}}
+@keyframes pb-slide-in{from{opacity:0; transform:translateX(-44px)}to{opacity:1; transform:none}}
+@keyframes pb-slide-near{from{opacity:0; transform:translateX(-18px)}to{opacity:1; transform:none}}
 @keyframes pb-pop{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
 @keyframes pb-float{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(3%,-4%,0) scale(1.08)}}
 @keyframes pb-sweep{0%{left:-45%}100%{left:135%}}
@@ -1212,6 +1421,19 @@
 #pb.js .rv.in{
   animation:pb-rise .72s cubic-bezier(.22,1,.36,1) var(--d,0s) both
 }
+
+#pb.js .cintro.rv{transform:translateX(-44px)}
+#pb.js .cintro.rv.in{
+  animation:pb-slide-in .8s cubic-bezier(.22,1,.36,1) var(--d,0s) both
+}
+
+#pb.js .cintro .cin-row{opacity:0}
+#pb.js .cintro.in .cin-row{
+  animation:pb-slide-near .62s cubic-bezier(.22,1,.36,1) both
+}
+#pb.js .cintro.in .cin-row:nth-of-type(1){animation-delay:.30s}
+#pb.js .cintro.in .cin-row:nth-of-type(2){animation-delay:.40s}
+#pb.js .cintro.in .cin-row:nth-of-type(3){animation-delay:.50s}
 
 #pb .hero{position:relative; overflow:hidden}
 #pb .hero > .wrap{position:relative; z-index:1}
@@ -1296,6 +1518,167 @@
 #pb .tags span{transition:transform .2s cubic-bezier(.22,1,.36,1), background .2s, color .2s}
 #pb .person.is-on .tags span:hover{transform:translateY(-2px); background:var(--tint); color:var(--deep)}
 
+#pb .sec{border-top-color:var(--line)}
+#pb .sec > .sh{position:relative; padding-top:17px}
+#pb .sec > .sh::before{
+  content:""; position:absolute; top:0; left:0; width:46px; height:4px;
+  background:linear-gradient(90deg,var(--deep),var(--brand)); border-radius:1px
+}
+#pb .sh h2{color:var(--navy)}
+#pb .sh p{color:var(--soft)}
+
+#pb .sh .eyebrow{margin:0 0 5px; font-size:13px; font-weight:700; color:var(--deep)}
+
+#pb .cintro{
+  position:relative; z-index:1;
+  max-width:64ch; margin:0 0 clamp(6px,1vw,14px);
+  padding:clamp(16px,1.8vw,22px) clamp(18px,2vw,26px);
+  border:1px solid var(--line); border-left:4px solid var(--brand);
+  border-radius:10px; background:rgba(255,255,255,.74)
+}
+#pb .cintro p{margin:0; font-size:14.5px; line-height:1.75; color:var(--soft)}
+#pb .cintro p + p{margin-top:12px}
+#pb .cintro b{color:var(--navy)}
+#pb .cintro-lead{font-size:16px; font-weight:600; color:var(--navy)}
+
+#pb .cin-row{
+  display:grid; gap:4px; margin-top:13px; padding-top:13px;
+  border-top:1px solid var(--line)
+}
+#pb .cintro .cin-row p{margin:0}
+#pb .cin-q{font-size:13.5px; font-weight:700; color:var(--deep); line-height:1.6}
+#pb .cin-a{font-size:13.5px; color:var(--faint); line-height:1.7}
+#pb .cin-a .tbd{margin-right:7px}
+#pb .tbd{
+  color:#765213; background:#fbf5e9; border-color:#d8c49e;
+  font-family:'Pretendard Variable',Pretendard,sans-serif; font-weight:700
+}
+
+#pb .hero .ask,#pb .form{
+  border:1px solid var(--line); border-top:4px solid var(--deep);
+  border-radius:12px; box-shadow:0 14px 36px -26px rgba(6,35,48,.42)
+}
+#pb .form{background:#f7fafb}
+#pb .ask textarea,#pb .ask input,#pb .f input,#pb .f textarea{border-radius:7px}
+#pb .ask .go,#pb .form .go{border-radius:7px}
+#pb .ask .go{background:var(--deep)}
+#pb .ask .go:hover{background:var(--navy)}
+#pb .form .go{background:var(--navy)}
+#pb .ask .fine,#pb .form .fine,#pb .ask .legal,#pb .form .legal{color:var(--soft)}
+
+#pb .qa,#pb .rows{border-top:3px solid var(--navy)}
+#pb .qa .item,#pb .row{border-bottom-color:var(--line)}
+#pb .mark{border-radius:7px}
+#pb .qa .item:hover{background:linear-gradient(90deg,rgba(226,245,253,.55),transparent 72%)}
+#pb .row .meta{font-variant-numeric:tabular-nums; letter-spacing:.02em}
+
+#pb .word{
+  align-items:center; text-align:center; border:1px solid var(--line);
+  border-top:3px solid rgba(0,121,166,.58); border-radius:8px; background:#fff;
+  box-shadow:0 10px 24px -24px rgba(6,35,48,.6)
+}
+#pb .word[aria-pressed="true"]{background:var(--navy); border-color:var(--navy)}
+#pb .word:hover{transform:translateY(-2px); box-shadow:0 16px 28px -20px rgba(6,35,48,.38)}
+
+#pb .people-sec{
+  background:
+    linear-gradient(rgba(0,121,166,.032) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,121,166,.032) 1px,transparent 1px),
+    linear-gradient(135deg,rgba(0,175,236,.075),rgba(255,255,255,0) 45%,rgba(0,121,166,.07));
+  background-size:56px 56px,56px 56px,100% 100%
+}
+#pb .people-sec::before{animation-duration:26s; opacity:.86}
+#pb .people-sec::after{animation-duration:38s}
+#pb .person.is-on .phw::after{animation-duration:26s}
+#pb .person.is-on .phw .ring{animation-duration:38s}
+#pb .person.is-on .phw::before{animation-duration:20s}
+#pb .person.is-on .phw .shine::after{animation-duration:9s}
+#pb .person.is-on .phw .spk{opacity:.48}
+#pb .phw .spk i{width:9px; height:9px; margin:-4.5px 0 0 -4.5px; animation-duration:7.2s}
+#pb .pnav{border-radius:10px; box-shadow:0 10px 24px -12px rgba(6,35,48,.45)}
+#pb .career li{border-bottom:1px solid rgba(207,222,229,.72)}
+#pb .career li:last-child{border-bottom:0}
+
+@media(min-width:900px){
+  #pb{font-size:19px}
+  #pb .sec{padding-top:82px; padding-bottom:82px}
+  #pb .sh h2{font-size:clamp(32px,3vw,42px)}
+  #pb .sh p{font-size:18px; max-width:72ch}
+  #pb .sh .eyebrow{font-size:15px}
+  #pb .cintro p{font-size:17px}
+  #pb .cintro-lead{font-size:19px}
+  #pb .cin-row{grid-template-columns:170px 1fr; gap:18px; align-items:start;
+    margin-top:15px; padding-top:15px}
+  #pb .cin-q,#pb .cin-a{font-size:15.5px}
+  #pb .cintro{max-width:70ch}
+  #pb .hero h1{font-size:clamp(54px,5.8vw,74px)}
+  #pb .hero .by{font-size:21px; max-width:60ch}
+
+  #pb .ask .who button{font-size:18px}
+  #pb .ask .topic button{font-size:17px}
+  #pb .ask textarea,#pb .ask input{font-size:17px}
+  #pb .ask .go,#pb .form .go{font-size:18px}
+  #pb .ask .opt,#pb .form .opt{font-size:16px}
+  #pb .ask .opt i,#pb .form .opt i{font-size:13px}
+  #pb .ask .fine,#pb .form .fine{font-size:14.5px}
+  #pb .ask .legal,#pb .form .legal{font-size:14px}
+  
+  #pb .form{padding:30px 32px}
+  #pb .f{margin-bottom:16px; gap:8px}
+  #pb .f label{font-size:14.5px}
+  #pb .f label .req,#pb .pairhead .req{font-size:12.5px}
+  #pb .f input,#pb .f textarea{font-size:17px; padding:13px 15px}
+  #pb .f textarea{min-height:120px}
+  #pb .two{gap:16px}
+  #pb .kinds{padding:16px 20px 18px; margin-bottom:16px}
+  #pb .pairhead{font-size:14.5px; margin-bottom:8px}
+  #pb .pair{margin-bottom:16px}
+  #pb .kinds legend{font-size:14.5px}
+  #pb .kinds legend .hint{font-size:13.5px}
+  #pb .form .kinds .opt.etc input[type=text]{font-size:15.5px; padding:9px 12px}
+  #pb .ask .msg,#pb .form .msg{font-size:16px}
+  #pb .qtools .count{font-size:15px}
+  #pb .qfilter button{padding:10px 18px; font-size:15px}
+  #pb .qtag{font-size:13px; padding:4px 11px}
+  #pb .qempty{font-size:16px; padding:28px 24px}
+
+  #pb .qa summary{font-size:19px}
+  #pb .mark{width:30px; height:30px; font-size:14px}
+  #pb .qa .ans .body{font-size:18px}
+
+  #pb .word{min-height:150px; padding:20px 18px}
+  #pb .word b{font-size:19px}
+  #pb .word span{font-size:16px; line-height:1.65}
+  #pb .word[aria-pressed="true"] b{font-size:14px}
+
+  #pb .pho em{font-size:14px}
+  #pb .phint{font-size:15px}
+  #pb .pv .person .nm{font-size:clamp(40px,4vw,54px)}
+  #pb .pv .person > div:last-child{min-height:560px}
+  #pb .pv .tags::before{
+    content:"전문 분야"; flex:0 0 100%; margin-bottom:3px;
+    color:var(--faint); font-size:13px; font-weight:800; letter-spacing:.08em
+  }
+  #pb .pv .tags span{padding:6px 16px; font-size:16px}
+  #pb .pv .career::before{
+    content:"주요 경력"; display:block; margin-bottom:10px;
+    color:var(--faint); font-size:13px; font-weight:800; letter-spacing:.08em
+  }
+  #pb .pv .career li{font-size:clamp(17px,1.5vw,20px); line-height:1.65}
+  #pb .pv .career li i{min-width:50px; font-size:14px}
+  #pb .pv .career .none{font-size:18px}
+
+  #pb .row{padding:21px 2px}
+  #pb .row .t{font-size:19px}
+  #pb .row .meta,#pb .rows-fine{font-size:15px}
+  #pb .f label{font-size:15px}
+  #pb .f label .req,#pb .pairhead .req{font-size:13px}
+  #pb .kinds legend{font-size:15px}
+  #pb .form .kinds .opt.etc input[type=text]{font-size:16px; padding:10px 13px}
+  #pb .f input,#pb .f textarea{padding:14px 16px; font-size:17px}
+  #pb .draft{font-size:15px}
+}
+
 @media(max-width:820px){
   #pb .wrap{width:min(100% - 36px,1120px)}
   
@@ -1307,19 +1690,20 @@
   #pb .two{grid-template-columns:1fr}
   #pb .ask .two{grid-template-columns:1fr}
   #pb .qa summary{flex-wrap:wrap}
-  #pb .qa summary .tail{margin-left:35px; width:100%}
+  
+  #pb .qa summary .tail{margin-left:35px; width:calc(100% - 35px)}
 }
 
 @media(prefers-reduced-motion:reduce){
   #pb *{transition:none!important; animation:none!important}
-  #pb.js .rv,#pb.js .rv.in,#pb.js .person .career li,
+  #pb.js .rv,#pb.js .rv.in,#pb.js .person .career li,#pb.js .cintro .cin-row,
   #pb.js .hero h1,#pb.js .hero .by,#pb.js .hero .ask{opacity:1!important; transform:none!important}
   #pb .person{opacity:1; --s:1}
   #pb .pv{scroll-behavior:auto}
 }
 </style>
 
-<div id="pb" aria-label="참여예산 상담소">
+<div id="pb" aria-label="시민참여 상담소">
 
   <div class="draft">초안입니다 — 보낸 질문이 실제로 접수되지 않습니다</div>
 
@@ -1327,7 +1711,7 @@
 
     <h1>시민참여, 물어보세요!</h1>
     <p class="by">참여예산도, 주민자치회도, 뭘 물어야 할지 모르겠는 것도.
-      시민행동 <b>시민참여정책위원회</b> 전문위원이 답합니다.</p>
+      제도와 현장을 오래 다뤄 온 <b>전문위원이 직접 답합니다</b>.</p>
 
     <form class="ask" id="pb-ask">
       
@@ -1341,35 +1725,34 @@
       <label class="sr-only" for="pb-q" hidden>궁금한 것</label>
       <textarea id="pb-q" placeholder="궁금한 것을 편하게 적어 주세요. 짧아도 괜찮습니다."></textarea>
       
-      <div class="two">
-        <div><label class="sr-only" for="pb-name" hidden>이름</label>
-          <input type="text" id="pb-name" placeholder="이름" autocomplete="name"></div>
-        
-        <div><label class="sr-only" for="pb-phone" hidden>휴대전화 (선택)</label>
-          <input type="tel" id="pb-phone" placeholder="휴대전화 (선택)" autocomplete="tel"
-                 inputmode="numeric" pattern="[0-9\-]*"></div>
-      </div>
+      <div><label class="sr-only" for="pb-name" hidden>이름</label>
+        <input type="text" id="pb-name" placeholder="이름" autocomplete="name"></div>
       <label class="sr-only" for="pb-mail" hidden>답이 올라오면 알려 드릴 이메일</label>
       <input type="email" id="pb-mail" placeholder="답 올라오면 알려 드릴 이메일" autocomplete="email">
       
       <label class="opt"><input type="checkbox" id="pb-agree" required>
         <span>개인정보 수집·이용에 동의합니다 <i class="must">필수</i></span></label>
+      
+      <details class="fine legal">
+        
+        <summary>개인정보 수집·이용 동의 내용<span class="more"></span></summary>
+        <div class="legal-rest">
+          <b>이름 · 이메일</b>을 받아 답변과 알림에만 쓰고 <b>5년</b> 뒤 지웁니다.
+          동의하지 않아도 되지만, 그러면 답을 보내 드릴 길이 없습니다.<br>
+          <b>누가 읽나</b> <b>함께하는 시민행동</b> 시민참여정책위원회 전문위원이 읽고 답합니다.<br>
+          <b>답</b> 이 페이지 아래 '오간 질문'에 올라갑니다 — 보통 5일 안입니다.
+          올라오면 알려 드립니다. 질문 내용만 올라가고 이름·연락처는 화면에 올리지 않습니다.<br>
+          <b>보유기간</b> 수집일로부터 5년
+          (소식 받기에 동의하신 경우, 수신을 그만두실 때까지)<br>
+          <b>보관</b> 받은 내용은 구글 스프레드시트(Google LLC)에 저장합니다.
+          처리 주체는 <b>함께하는 시민행동</b>, 개인정보관리책임자는 정남진 사무처장입니다.
+          자세한 것은 <a href="/action-home-preview/8" target="_blank" rel="noopener">개인정보처리방침</a>에 있습니다.</div>
+      </details>
       <label class="opt"><input type="checkbox" id="pb-news">
         <span>함께하는 시민행동 소식도 받겠습니다 <i>선택</i></span></label>
       
       <input class="hp" type="text" id="pb-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button type="submit" class="go">질문 보내기</button>
-      <p class="fine"><b>답은 이 페이지 아래 '오간 질문'에 올라갑니다</b> — 보통 5일 안입니다.
-        올라오면 알려 드립니다. 질문 내용만 올라가고 <b>이름·연락처는 화면에 올리지 않습니다.</b></p>
-      <p class="fine legal">
-        <b>수집 항목</b> 이름 · 휴대전화 · 이메일 &nbsp;
-        <b>이용 목적</b> 질문에 답하고, 답이 올라온 것을 알려 드리기 위해 &nbsp;
-        <b>보유기간</b> 수집일로부터 5년
-        (소식 받기에 동의하신 경우, 수신을 그만두실 때까지)<br>
-        <b>보관</b> 받은 내용은 구글 스프레드시트(Google LLC)에 저장합니다.
-        처리 주체는 <b>함께하는 시민행동</b>, 개인정보관리책임자는 정남진 사무처장입니다.
-        동의하지 않아도 되지만, 그러면 답을 보내 드릴 길이 없습니다.
-        자세한 것은 <a href="/action-home-preview/8" target="_blank" rel="noopener">개인정보처리방침</a>에 있습니다.</p>
       <p class="msg" id="pb-msg" role="status"></p>
     </form>
   </div></section>
@@ -1378,21 +1761,26 @@
 
     <section class="sec"><div class="sh">
       <h2>오간 질문</h2>
-      <p>같은 걸 궁금해한 사람이 이미 있었습니다.</p>
     </div>
 
       <div class="qtools">
+        <div class="qfilter" role="group" aria-label="주제로 거르기">
+          <button type="button" data-filter="all" aria-pressed="true">전체</button>
+          <button type="button" data-filter="budget" aria-pressed="false">참여예산</button>
+          <button type="button" data-filter="jachi" aria-pressed="false">주민자치회</button>
+          <button type="button" data-filter="policy" aria-pressed="false">시민참여정책</button>
+        </div>
         <span class="count" id="pb-count"></span>
       </div>
 
       <div class="qa" id="pb-qa">
 
-        <details class="item" data-who="citizen" data-q="town">
+        <details class="item" data-topic="budget" data-q="town">
           <summary>
             <span class="mark q" aria-hidden="true">Q</span>
             <span>우리 동네도 참여예산을 하나요?</span>
             <span class="tail">
-              <span class="whotag">시민</span>            </span>
+              <span class="qtag">참여예산</span>            </span>
           </summary>
           <div class="ans">
             <span class="mark a" aria-hidden="true">A</span>
@@ -1402,12 +1790,12 @@
           </div>
         </details>
 
-        <details class="item" data-who="member" data-q="first">
+        <details class="item" data-topic="budget" data-q="first">
           <summary>
             <span class="mark q" aria-hidden="true">Q</span>
             <span>위원이 됐는데 첫 회의에서 뭘 봐야 하나요?</span>
             <span class="tail">
-              <span class="whotag">참여예산위원</span>            </span>
+              <span class="qtag">참여예산</span>            </span>
           </summary>
           <div class="ans">
             <span class="mark a" aria-hidden="true">A</span>
@@ -1417,12 +1805,12 @@
           </div>
         </details>
 
-        <details class="item" data-who="citizen" data-q="reject">
+        <details class="item" data-topic="budget" data-q="reject">
           <summary>
             <span class="mark q" aria-hidden="true">Q</span>
             <span>제안이 '부적합'으로 반려됐는데 끝인가요?</span>
             <span class="tail">
-              <span class="whotag">시민</span>            </span>
+              <span class="qtag">참여예산</span>            </span>
           </summary>
           <div class="ans">
             <span class="mark a" aria-hidden="true">A</span>
@@ -1433,30 +1821,51 @@
         </details>
 
       </div>
+      
+      <p class="qempty" id="pb-qempty" hidden>고른 주제로 오간 질문이 아직 없습니다.
+        맨 위 칸에서 물어봐 주세요 — 답이 여기 올라옵니다.</p>
 
     </section>
 
     <section class="sec"><div class="sh">
-      <h2>참여예산 말 뜻</h2>
-      <p>못 묻는 가장 큰 이유는 몰라서가 아니라 <b>용어를 몰라서</b>입니다. 눌러서 뒤집어 보세요.</p>
+      <h2>시민참여 개념 정의</h2>
     </div>
       <div class="words">
-        <button type="button" class="word" aria-pressed="false"><b>주민참여예산</b><span>지자체가 예산을 짤 때 주민이 직접 끼어드는 제도. 지방재정법 제39조에 근거가 있습니다.</span></button>
-        <button type="button" class="word" aria-pressed="false"><b>제안사업</b><span>주민이 "이걸 해 달라"고 낸 사업. 심사를 거쳐 예산에 오릅니다.</span></button>
-        <button type="button" class="word" aria-pressed="false"><b>참여예산위원</b><span>주민 가운데 뽑혀 제안을 심사하고 우선순위를 정하는 사람.</span></button>
-        <button type="button" class="word" aria-pressed="false"><b>운영조례</b><span>그 지자체가 참여예산을 어떻게 굴릴지 정해 둔 규칙. 총액·위원 수·절차가 여기 있습니다.</span></button>
-        <button type="button" class="word" aria-pressed="false"><b>지역회의</b><span>동이나 권역 단위로 모여 그 동네 제안을 먼저 추려 내는 자리.</span></button>
-        <button type="button" class="word" aria-pressed="false"><b>총회 · 한마당</b><span>제안들의 최종 우선순위를 정하는 자리. 지역마다 이름이 다릅니다.</span></button>
-        <button type="button" class="word" aria-pressed="false"><b>숙의</b><span>표만 던지지 않고, 왜 그게 필요한지 따져 본 뒤에 정하는 것.</span></button>
-        <button type="button" class="word" aria-pressed="false"><b>반영률</b><span>낸 제안 가운데 실제로 예산에 오른 비율. 그 지역 참여예산이 형식적인지 아닌지를 가늠하는 값입니다.</span></button>
+        <button type="button" class="word" aria-pressed="false"><b>시민참여</b><span>시민이 권리 및 공공의 이익 실현, 사회적 가치 증진 등을 위하여 다양한 영역에서 자율적으로 참여하는 행위</span></button>
+        <button type="button" class="word" aria-pressed="false"><b>주민직접참여제도</b><span>주민조례청구, 주민소환, 주민투표, 주민감사청구, 주민소송, 주민참여예산제도 등 주민이 직접 주권을 행사하는 방식의 제도</span></button>
+        <button type="button" class="word" aria-pressed="false"><b>주민참여예산</b><span>지방재정법 제39조에 따라 지자체 예산 과정에 주민의 참여를 보장하는 제도</span></button>
+        <button type="button" class="word" aria-pressed="false"><b>주민참여예산기구</b><span>지자체 예산과정 전반에 주민의 의견을 반영하기 위해 설치하는 기구</span></button>
+        <button type="button" class="word" aria-pressed="false"><b>참여예산 운영계획</b><span>지자체가 참여예산 기구 현황, 운영 절차, 규모 등을 명시한 연도별 계획</span></button>
+        <button type="button" class="word" aria-pressed="false"><b>참여예산 지역회의</b><span>읍면동 단위에서 지역 주민의 의제를 발굴·숙의하는 기구, 주민자치회가 대행하는 경우도 있음</span></button>
+        <button type="button" class="word" aria-pressed="false"><b>제안사업 반영률</b><span>주민이 제안한 사업 가운데 최종적으로 예산에 반영된 사업의 비율</span></button>
+        <button type="button" class="word" aria-pressed="false"><b>주민의견서</b><span>참여예산제도 운영결과 및 일반예산에 관한 주민의견을 담은 자료로, 지자체 예산안 제출 시 의무적으로 첨부해야 함</span></button>
       </div>
-      <p class="words-fine">낱말을 더하려면 위 카드 하나를 복사해 앞면·뒷면 글자만 바꾸면 됩니다.</p>
     </section>
 
-    <section class="sec"><div class="sh">
-      <h2>시민참여정책위원회 <span class="tbd">사진 준비 중</span></h2>
-      <p>제도와 현장, 교육을 오래 오간 전문위원이 직접 답합니다.</p>
+    <section class="sec people-sec" id="committee"><div class="sh">
+      <p class="eyebrow">함께하는 시민행동</p>
+      <h2>시민참여정책위원회</h2>
     </div>
+
+      <div class="cintro">
+        <p class="cintro-lead"><b>시민참여정책위원회</b>는
+          <b>함께하는 시민행동</b> 안에 있는 기구입니다.</p>
+        <div class="cin-row">
+          <p class="cin-q">왜 생겼나</p>
+          <p class="cin-a"><span class="tbd">준비 중</span>
+            언제, 어떤 필요 때문에 만들어졌는지 한두 줄.</p>
+        </div>
+        <div class="cin-row">
+          <p class="cin-q">무슨 일을 해 왔나</p>
+          <p class="cin-a"><span class="tbd">준비 중</span>
+            구체적인 사례 하나 — 어느 지자체의 무엇을 했는지.</p>
+        </div>
+        <div class="cin-row">
+          <p class="cin-q">왜 상담을 여나</p>
+          <p class="cin-a"><span class="tbd">준비 중</span>
+            이 창구가 찾아온 사람에게 무슨 뜻인지 한두 줄.</p>
+        </div>
+      </div>
       
       <div class="people">
        <div class="pv" id="pb-pv" tabindex="0" role="region"
@@ -1464,7 +1873,8 @@
 
         <article class="person">
           <div class="phw">
-            <div class="pho" aria-hidden="true">김<em>사진 자리</em></div>
+            <img class="pho" src="img/kimmincheol.webp" alt="김민철" loading="lazy" decoding="async">
+            <span class="ring" aria-hidden="true"></span>
             <span class="shine" aria-hidden="true"></span>
             <span class="spk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
           </div>
@@ -1478,12 +1888,15 @@
               <li><i>전</i>서울시 자치구 주민참여예산 운영 평가위원</li>
               <li><i>전</i>서울시 동(洞) 지역회의 시범사업 운영 컨설턴트</li>
             </ul>
+            
+            <span class="more" aria-hidden="true">이력 보기 →</span>
           </div>
         </article>
 
         <article class="person">
           <div class="phw">
-            <div class="pho" aria-hidden="true">정<em>사진 자리</em></div>
+            <img class="pho" src="img/jeongnamjin.webp" alt="정남진" loading="lazy" decoding="async">
+            <span class="ring" aria-hidden="true"></span>
             <span class="shine" aria-hidden="true"></span>
             <span class="spk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
           </div>
@@ -1496,12 +1909,15 @@
               <li><i>전</i>서울시 서대문구 참여예산 지원단</li>
               <li><i>전</i>서울시 청년자율예산 자치구 청년정책 거버넌스 활성화 TF</li>
             </ul>
+            
+            <span class="more" aria-hidden="true">이력 보기 →</span>
           </div>
         </article>
 
         <article class="person">
           <div class="phw">
-            <div class="pho" aria-hidden="true">최<em>사진 자리</em></div>
+            <img class="pho" src="img/choiinwook.webp" alt="최인욱" loading="lazy" decoding="async">
+            <span class="ring" aria-hidden="true"></span>
             <span class="shine" aria-hidden="true"></span>
             <span class="spk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
           </div>
@@ -1514,12 +1930,15 @@
               <li><i>전</i>행정안전부 주민참여예산제 컨설턴트</li>
               <li><i>전</i>좋은예산센터 사무국장</li>
             </ul>
+            
+            <span class="more" aria-hidden="true">이력 보기 →</span>
           </div>
         </article>
 
         <article class="person">
           <div class="phw">
             <img class="pho" src="img/ohjieun.webp" alt="오지은" loading="lazy" decoding="async">
+            <span class="ring" aria-hidden="true"></span>
             <span class="shine" aria-hidden="true"></span>
             <span class="spk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
           </div>
@@ -1529,6 +1948,8 @@
             <ul class="career">
               <li class="none">이력을 받는 대로 채웁니다.</li>
             </ul>
+            
+            <span class="more" aria-hidden="true">크게 보기 →</span>
           </div>
         </article>
 
@@ -1536,17 +1957,25 @@
 
        <div class="pbar">
          <button type="button" class="pnav prev" aria-label="이전 전문위원">‹</button>
-         <div class="pdots" id="pb-dots" role="tablist" aria-label="전문위원 고르기"></div>
          <span class="pcount" id="pb-pcount"></span>
          <button type="button" class="pnav next" aria-label="다음 전문위원">›</button>
        </div>
       </div>
-      <p class="phint">좌우로 넘겨 보세요 — 화살표 · 점 · 방향키 · 손가락 밀기</p>
+
+      <dialog class="pmodal" id="pb-pmodal" aria-label="전문위원 소개">
+        <div class="pmodal-bar">
+          <button type="button" class="pmodal-prev" aria-label="이전 전문위원">‹</button>
+          <button type="button" class="pmodal-next" aria-label="다음 전문위원">›</button>
+          <button type="button" class="pmodal-x" aria-label="닫기">✕</button>
+        </div>
+        <div class="pmodal-in" id="pb-pmodal-in"></div>
+      </dialog>
+
+      <p class="phint">전문위원이 3초마다 순서대로 바뀝니다. 화살표로 직접 넘길 수도 있습니다.</p>
     </section>
 
     <section class="sec"><div class="sh">
       <h2>전문위원의 글 <span class="tbd">전부 예시</span></h2>
-      <p>문답으로 다 못 담는 것은 글로 풉니다.</p>
     </div>
       <div class="rows">
         <div class="row is-tbd"><span class="t">참여예산 총액은 누가 정하나</span><span class="meta">ㅇㅇㅇ · 00.00</span></div>
@@ -1557,35 +1986,83 @@
       <p class="rows-fine">아직 실린 글이 없습니다. 위 넷은 자리 표시입니다.</p>
     </section>
 
-    <section class="sec"><div class="sh">
+    <section class="sec is-narrow"><div class="sh">
       <h2>교육 · 컨설팅 의뢰</h2>
       
-      <p>지자체·중간지원조직 담당자를 위한 칸입니다.
-        시민행동 시민참여정책위원회가 맡습니다.</p>
     </div>
       <form class="form" id="pb-order">
+        
         <div class="two">
-          <div class="f"><label for="pb-o1">기관</label><input type="text" id="pb-o1"></div>
-          <div class="f"><label for="pb-o2">담당자</label><input type="text" id="pb-o2"></div>
+          <div class="f"><label for="pb-o1">단체명 <i class="req">필수</i></label>
+            <input type="text" id="pb-o1" required></div>
+          <div class="f"><label for="pb-o2">담당자 성함 <i class="req">필수</i></label>
+            <input type="text" id="pb-o2" required></div>
         </div>
-        <div class="two">
-          <div class="f"><label for="pb-o3">이메일</label><input type="email" id="pb-o3"></div>
-          <div class="f"><label for="pb-o4">시기 · 인원</label><input type="text" id="pb-o4"></div>
+        
+        <div class="pair">
+          <div class="pairhead">연락처 <i class="req">둘 중 하나</i></div>
+          <div class="two">
+            <div class="f"><label for="pb-o6">휴대폰</label>
+              <input type="tel" id="pb-o6" autocomplete="tel"
+                     inputmode="numeric" pattern="[0-9\-]*" placeholder="010-0000-0000"></div>
+            <div class="f"><label for="pb-o7">행정번호</label>
+              <input type="tel" id="pb-o7" inputmode="numeric" pattern="[0-9\-]*"
+                     placeholder="02-000-0000"></div>
+          </div>
         </div>
-        <div class="f"><label for="pb-o5">필요한 것</label><textarea id="pb-o5"></textarea></div>
+        <div class="f"><label for="pb-o3">이메일</label>
+          <input type="email" id="pb-o3" autocomplete="email"></div>
+
+        <fieldset class="kinds">
+          <legend>어떤 것이 필요하신가요 <span class="hint">여러 개 고를 수 있습니다</span></legend>
+          
+          <div class="opts">
+            <label class="opt"><input type="checkbox" id="pb-k1"><span>단기 강의·교육 진행</span></label>
+            <label class="opt"><input type="checkbox" id="pb-k2"><span>교육 프로그램 운영</span></label>
+            <label class="opt"><input type="checkbox" id="pb-k3"><span>사업 기획 및 운영 지원</span></label>
+            <label class="opt"><input type="checkbox" id="pb-k4"><span>제도 및 운영 컨설팅</span></label>
+            <label class="opt"><input type="checkbox" id="pb-k5"><span>연구 및 성과 분석</span></label>
+            <label class="opt etc"><input type="checkbox" id="pb-k6"><span>기타</span>
+              <input type="text" id="pb-ketc" placeholder="직접 입력" aria-label="기타 — 직접 입력"></label>
+          </div>
+        </fieldset>
+
+        <div class="f"><label for="pb-o5">상세 문의 내용 <i class="req">필수</i></label>
+          <textarea id="pb-o5" required placeholder="어떤 자리인지, 언제쯤인지, 몇 분이 오시는지 적어 주시면 협의가 빠릅니다."></textarea></div>
+        
+        <div class="f files">
+          <label for="pb-ofile">참고 자료</label>
+          <input type="file" id="pb-ofile" multiple
+                 accept=".hwp,.hwpx,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png,.gif">
+          <p class="fine filehint">한글 · 워드 · 엑셀 · PPT · PDF · 사진을 올릴 수 있습니다.
+            <b>3개까지, 한 개 8MB, 모두 합쳐 10MB.</b></p>
+        </div>
+        <p class="fine">더 크거나 다른 형식이면
+          <a href="mailto:action@action.or.kr">action@action.or.kr</a> 로 보내 주세요.</p>
         
         <label class="opt"><input type="checkbox" id="pb-oagree" required>
           <span>개인정보 수집·이용에 동의합니다 <i class="must">필수</i></span></label>
         
+        <details class="fine legal">
+          
+          <summary>개인정보 수집·이용 동의 내용<span class="more"></span></summary>
+          <div class="legal-rest">
+            <b>단체명 · 담당자 연락처</b>를 받아 의뢰를 협의하는 데에만 쓰고
+            <b>5년</b> 뒤 지웁니다. 동의하지 않아도 되지만, 그러면 연락을 드릴 길이
+            없습니다.<br>
+            <b>누가 맡나</b> 지자체·중간지원조직 담당자를 위한 칸입니다.
+            <b>함께하는 시민행동</b> 시민참여정책위원회가 맡습니다.<br>
+            <b>수집 항목</b> 단체명 · 담당자 이름 · 휴대폰 · 행정번호 · 이메일 ·
+            올려 주신 참고 자료 &nbsp;
+            <b>보유기간</b> 수집일로부터 5년<br>
+            <b>보관</b> 받은 내용은 구글 스프레드시트에, 올려 주신 자료는
+            구글 드라이브(Google LLC)에 저장합니다.
+            처리 주체는 <b>함께하는 시민행동</b>, 개인정보관리책임자는 정남진 사무처장입니다.
+            자세한 것은 <a href="/action-home-preview/8" target="_blank" rel="noopener">개인정보처리방침</a>에 있습니다.</div>
+        </details>
+        
         <input class="hp" type="text" id="pb-ohp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button type="submit" class="go">의뢰 보내기</button>
-        <p class="fine legal">
-          <b>수집 항목</b> 기관 · 담당자 이름 · 이메일 &nbsp;
-          <b>이용 목적</b> 의뢰 내용을 확인하고 진행을 협의하기 위해 &nbsp;
-          <b>보유기간</b> 수집일로부터 5년<br>
-          <b>보관</b> 받은 내용은 구글 스프레드시트(Google LLC)에 저장합니다.
-          처리 주체는 <b>함께하는 시민행동</b>, 개인정보관리책임자는 정남진 사무처장입니다.
-          자세한 것은 <a href="/action-home-preview/8" target="_blank" rel="noopener">개인정보처리방침</a>에 있습니다.</p>
         <p class="msg" id="pb-omsg" role="status"></p>
       </form>
     </section>
@@ -1594,7 +2071,7 @@
 </div>
 
 <script>
-/* 참여예산 상담소 — 하는 일 둘.
+/* 시민참여 상담소 — 하는 일 둘.
      1. 히어로에서 고른 주제를 기억
      2. 말 뜻 카드 뒤집기
 
@@ -1612,10 +2089,45 @@
 
   var items = Array.prototype.slice.call(root.querySelectorAll('#pb-qa .item'));
 
-  /* ── 문답이 몇 개인지 ──
-     예전에는 거르기가 이 숫자를 고쳐 썼습니다. 거르기가 없어져서 한 번만 적습니다. */
+  /* ── 문답이 몇 개인지 · 주제로 거르기 (거르기는 2026-09-04 에 되살렸습니다) ──
+     ⚠️ 여기 쓰는 주제 값은 히어로 폼의 data-topic 과 같아야 합니다
+        (budget · jachi · policy). 한쪽만 바꾸면 늘 '없습니다'만 나옵니다. */
   var count = document.getElementById('pb-count');
-  if (count) count.textContent = '문답 ' + items.length + '개';
+  var qempty = document.getElementById('pb-qempty');
+  var qfilter = root.querySelector('.qfilter');
+
+  function drawCount(n) {
+    if (count) count.textContent = '문답 ' + n + '개';
+  }
+
+  function filterQa(topic) {
+    var on = 0;
+    items.forEach(function (it) {
+      var show = topic === 'all' || it.dataset.topic === topic;
+      it.hidden = !show;
+      if (!show) { it.open = false; return; }
+      on++;
+      /* 걸러서 다시 나타난 칸이 투명한 채 남지 않게 합니다 — 스크롤 등장이
+         한 번도 안 걸린 칸이 있을 수 있습니다. */
+      it.classList.add('in');
+    });
+    drawCount(on);
+    if (qempty) qempty.hidden = on > 0;
+  }
+
+  drawCount(items.length);
+
+  if (qfilter) {
+    var fbtns = Array.prototype.slice.call(qfilter.querySelectorAll('button'));
+    fbtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        fbtns.forEach(function (x) {
+          x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
+        });
+        filterQa(b.dataset.filter);
+      });
+    });
+  }
 
   /* ── 2. 말 뜻 카드 뒤집기 ── */
   root.querySelectorAll('.word').forEach(function (b) {
@@ -1656,8 +2168,8 @@
      저절로 따라옵니다. IntersectionObserver 가 없는 옛 브라우저에서는
      'in' 을 바로 붙여 그냥 다 보이게 둡니다. */
   var reveal = root.querySelectorAll(
-    '.sec > .sh, .qtools, .qa .item, .words, .word, .words-fine,' +
-    ' .people, .phint, .rows .row, .rows-fine, .form');
+    '.sec > .sh, .qtools, .qa .item, .words, .word,' +
+    ' .cintro, .people, .phint, .rows .row, .rows-fine, .form');
   if (!('IntersectionObserver' in window) || calm) {
     reveal.forEach(function (el) { el.classList.add('rv', 'in'); });
   } else {
@@ -1687,48 +2199,41 @@
     var slides = Array.prototype.slice.call(pv.querySelectorAll('.person'));
     if (!slides.length) return;
 
-    var dotBox = document.getElementById('pb-dots');
     var countEl = document.getElementById('pb-pcount');
     var prev = root.querySelector('.pnav.prev');
     var next = root.querySelector('.pnav.next');
     var cur = -1;
 
-    /* 점. 이름을 넣어 두면 화면 낭독기에서 "김민철 보기"로 읽힙니다. */
-    var dots = slides.map(function (s, i) {
-      var nm = s.querySelector('.nm');
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.setAttribute('role', 'tab');
-      b.setAttribute('aria-label', (nm ? nm.textContent : (i + 1) + '번째') + ' 보기');
-      b.addEventListener('click', function () { go(i); });
-      if (dotBox) dotBox.appendChild(b);
-      return b;
-    });
+    /* 넓은 화면에서는 넷이 한 번에 보입니다(카루셀이 아닙니다).
+       ⚠️ 이 값은 CSS 의 @media(min-width:900px) 와 같아야 합니다.
+          한쪽만 바꾸면 화살표는 사라졌는데 5초마다 스크롤이 튀는 상태가 됩니다. */
+    var wideMq = window.matchMedia('(min-width: 900px)');
+
+    /* 이름 버튼은 2026-09-04 에 걷었습니다(사용자: "그거 필요없는 거 같아").
+       넘기는 것은 화살표와 3초 자동 넘김뿐입니다. dots 는 빈 배열로 두어
+       아래 paint() 를 고치지 않고 그대로 씁니다. */
+    var dots = [];
 
     function paint(i) {
       if (i === cur) return;
       cur = i;
-      slides.forEach(function (s, n) { s.classList.toggle('is-on', n === i); });
+      slides.forEach(function (s, n) {
+        s.classList.toggle('is-on', n === i);
+        s.setAttribute('aria-hidden', n === i ? 'false' : 'true');
+      });
       dots.forEach(function (d, n) { d.setAttribute('aria-selected', n === i ? 'true' : 'false'); });
       if (countEl) countEl.innerHTML = '<b>' + (i + 1) + '</b> / ' + slides.length;
-      if (prev) prev.disabled = i <= 0;
-      if (next) next.disabled = i >= slides.length - 1;
+      /* 끝에서 끝으로 이어집니다 — 화살표를 끄지 않습니다. */
+      if (prev) prev.disabled = false;
+      if (next) next.disabled = false;
     }
 
-    /* ⚠️ go() 는 **밀기만 하고 표시는 건드리지 않습니다.**
-       점·숫자·is-on 은 아래 follow() 가 스크롤 위치를 보고 혼자 정합니다.
-       여기서도 paint 를 부르면 둘이 어긋납니다 — 실제로 그렇게 만들었다가
-       화면에는 김민철이 서 있는데 숫자만 '3 / 4' 인 상태를 봤습니다.
-       (부드럽게 미는 중에는 scrollLeft 가 아직 목적지가 아니기 때문입니다.) */
+    /* 고리처럼 돕니다. 마지막에서 › 를 누르면 처음으로,
+       처음에서 ‹ 를 누르면 마지막으로 갑니다
+       (2026-09-04 사용자: "오지은에서 옆으로 가면 김민철 나오게"). */
     function go(i) {
-      i = Math.max(0, Math.min(slides.length - 1, i));
-      /* scrollTo 대신 scrollLeft 를 쓰는 이유 — 첫 칸을 기준으로 재면
-         .pv 의 안쪽 여백(padding)과 칸 사이 간격을 따로 계산하지 않아도 됩니다. */
-      pv.scrollLeft = slides[i].offsetLeft - slides[0].offsetLeft;
-      /* 밀기가 아예 안 먹은 경우(창이 아직 안 그려졌을 때 등)에도 표시가
-         멈춰 있지 않도록 한 번 더 맞춰 봅니다. 실제로 움직였으면
-         follow 가 이미 같은 값을 넣어 둔 뒤라 아무 일도 하지 않습니다. */
-      setTimeout(follow, 700);
+      var n = slides.length;
+      paint(((i % n) + n) % n);
     }
 
     /* 지금 어느 칸을 보고 있나 — 창 한가운데에 제일 가까운 칸입니다.
@@ -1766,6 +2271,8 @@
     var fine = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
     if (fine && !calm) {
       pv.addEventListener('mousemove', function (e) {
+        // 넷이 나란한 화면에서는 한 장만 눕는 것이 이상합니다(카드마다 hover 가 있습니다).
+        if (wideMq.matches) return;
         var s = slides[cur];
         if (!s) return;
         var r = s.getBoundingClientRect();
@@ -1785,7 +2292,7 @@
       });
     }
 
-    /* ── 5초마다 저절로 넘어갑니다 (2026-09-03 사용자 결정) ──
+    /* ── 3초마다 저절로 넘어갑니다 (2026-09-03 사용자 결정) ──
        읽는 도중에 화면이 사라지면 안 되므로 다음 경우에는 멈춥니다.
          · 마우스를 올렸을 때 · 그 안에 초점이 있을 때 · 손으로 넘긴 직후
          · 다른 탭에 가 있을 때 · 카루셀이 화면 밖으로 나갔을 때
@@ -1797,7 +2304,7 @@
     function start() {
       stop();
       if (calm || held || !onScreen || document.hidden) return;
-      timer = setInterval(function () { go(cur >= slides.length - 1 ? 0 : cur + 1); }, 5000);
+      timer = setInterval(function () { go(cur >= slides.length - 1 ? 0 : cur + 1); }, 3000);
     }
     /* 사람이 건드리면 잠시 손을 뗍니다(hold). 뗀 뒤 8초가 지나면 다시 돕니다. */
     var wake;
@@ -1816,8 +2323,6 @@
 
     var box = root.querySelector('.people');
     if (box) {
-      box.addEventListener('mouseenter', stop);
-      box.addEventListener('mouseleave', function () { if (!held) start(); });
       box.addEventListener('focusin', stop);
       box.addEventListener('focusout', function () { if (!held) start(); });
     }
@@ -1833,7 +2338,72 @@
       }, { threshold: .35 }).observe(box);
     }
 
+    /* ── 전문위원 창 (2026-09-03) ──
+       사용자: "그 사람을 클릭하면 그 창이 슝하고 나와서 전체 화면으로 볼 수 있게."
+       ⚠️ 좁은 화면(카루셀)에서는 열지 않습니다 — 거기서는 카드 안에 이력이
+          이미 다 펼쳐져 있어, 창을 띄우면 같은 글을 두 번 보게 됩니다. */
+    var modal = document.getElementById('pb-pmodal');
+    var mBody = document.getElementById('pb-pmodal-in');
+    var mAt = -1, mLast = null;
+
+    function fillModal(i) {
+      if (!mBody || !slides[i]) return;
+      mAt = i;
+      // 카드 속을 그대로 옮겨 담습니다 — 글이 마크업 한 곳에만 있게.
+      mBody.innerHTML = '<article class="person is-on">' + slides[i].innerHTML + '</article>';
+      mBody.scrollTop = 0;
+      var mp = modal.querySelector('.pmodal-prev');
+      var mn = modal.querySelector('.pmodal-next');
+      if (mp) mp.disabled = i <= 0;
+      if (mn) mn.disabled = i >= slides.length - 1;
+    }
+
+    function openPerson(i) {
+      // showModal 이 없는 옛 브라우저에서는 그냥 열리지 않습니다.
+      // 그 사람에게도 카드의 이름·분야는 그대로 보입니다.
+      if (!modal || !modal.showModal || !slides[i]) return;
+      mLast = document.activeElement;
+      fillModal(i);
+      modal.showModal();
+      document.body.style.overflow = 'hidden';
+      var x = modal.querySelector('.pmodal-x');
+      if (x) x.focus();
+    }
+    function closePerson() { if (modal && modal.open) modal.close(); }
+
+    if (modal) {
+      modal.addEventListener('close', function () {
+        document.body.style.overflow = '';
+        if (mLast && mLast.focus) mLast.focus();
+      });
+      // 어두운 바탕을 누르면 닫습니다(그 클릭은 dialog 자신에게 옵니다).
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) { closePerson(); return; }
+        var b = e.target.closest && e.target.closest('.pmodal-x, .pmodal-prev, .pmodal-next');
+        if (!b) return;
+        if (b.className.indexOf('pmodal-x') >= 0) closePerson();
+        else fillModal(b.className.indexOf('pmodal-prev') >= 0 ? mAt - 1 : mAt + 1);
+      });
+      // 창 안에서도 방향키로 사람을 넘깁니다.
+      modal.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight' && mAt < slides.length - 1) { e.preventDefault(); fillModal(mAt + 1); }
+        if (e.key === 'ArrowLeft'  && mAt > 0)                 { e.preventDefault(); fillModal(mAt - 1); }
+      });
+    }
+
+    /* 이 시안은 카드가 아니라 아래 이름 버튼으로 사람을 바꿉니다. */
+    function syncWide() {
+      slides.forEach(function (s) {
+        s.removeAttribute('tabindex');
+        s.removeAttribute('role');
+      });
+      stop(); closePerson();
+    }
+    if (wideMq.addEventListener) wideMq.addEventListener('change', syncWide);
+    else if (wideMq.addListener) wideMq.addListener(syncWide);
+
     paint(0);
+    syncWide();
     start();
     /* 창 크기가 바뀌면 스냅 위치가 어긋납니다. 보던 사람에게 다시 맞춥니다. */
     var rt;
@@ -1851,6 +2421,89 @@
      보내는 것: 주제(pb-topic) · 질문 · 이름 · 휴대전화 · 이메일 ·
      동의 두 개(pb-agree 필수 / pb-news 소식 받기 선택) · 허니팟(pb-hp).
      ⚠️ pb-news 가 꺼진 사람의 연락처를 소식지에 쓰면 안 됩니다 — 목적이 다릅니다. */
+  /* ── 연락처 택일 (2026-09-04) ──
+     휴대폰(pb-o6)과 행정번호(pb-o7) 중 **하나는** 있어야 합니다. 둘 다 required 를
+     떼고 여기서 봅니다 — required 를 둘에 다 붙이면 둘 다 적어야 하고, 한쪽에만
+     붙이면 그쪽으로 강요하는 것이라 어느 쪽도 '택일'이 아닙니다.
+
+     setCustomValidity 를 쓰면 브라우저가 원래 하던 대로 막아 주고 말풍선까지
+     띄웁니다. 폼 검사는 submit 이 일어나기 **전에** 끝나므로, 보내는 코드가
+     fakeSubmit 이든 setupIntake(굽는 쪽)든 손댈 것이 없습니다.
+     ⚠️ 이 자리를 옮기지 마세요 — 아래 fakeSubmit 정의와 그 호출 두 줄은
+        build.py 가 통째로 바꿔치는 구간입니다. 그 안에 넣으면 구울 때 지워집니다. */
+  (function () {
+    var a = document.getElementById('pb-o6');
+    var b = document.getElementById('pb-o7');
+    if (!a || !b) return;
+    var WANT = '휴대폰이나 행정번호 가운데 하나는 적어 주세요.';
+    function sync() {
+      var empty = !a.value.trim() && !b.value.trim();
+      /* 말풍선은 한 곳에만 답니다. 둘 다 달면 브라우저가 첫 칸만 보여 주고
+         나머지 하나는 채운 뒤에도 막힌 것처럼 보입니다. */
+      a.setCustomValidity(empty ? WANT : '');
+      b.setCustomValidity('');
+    }
+    a.addEventListener('input', sync);
+    b.addEventListener('input', sync);
+    /* 보낸 뒤 form.reset() 이 칸을 비웁니다. 그때 다시 재지 않으면 '괜찮다'고
+       해 둔 판정이 남아, 빈 연락처로 한 번 더 보낼 수 있습니다.
+       reset 이 실제로 칸을 비우는 것은 이 이벤트가 끝난 뒤라 한 박자 미룹니다. */
+    if (a.form) a.form.addEventListener('reset', function () { setTimeout(sync, 0); });
+    sync();
+  })();
+
+  /* ── 참고 자료 첨부 검사 (2026-09-04) ──
+     개수 · 크기 · 확장자를 여기서 한 번 봅니다. 연락처 택일과 같은 수법으로
+     setCustomValidity 를 쓰므로, 걸리면 브라우저가 알아서 막고 말풍선을 띄웁니다.
+
+     ⚠️ 이것은 **친절**이지 방어가 아닙니다. 접수 주소가 페이지에 박혀 있어
+        화면을 거치지 않고 보낼 수 있습니다. 진짜로 막는 것은 받는 쪽
+        intake/Code.gs 의 같은 이름 값들입니다 — 한쪽만 고치면 어긋납니다.
+     ⚠️ 이 자리를 옮기지 마세요 — 아래 fakeSubmit 정의와 그 호출 두 줄은
+        build.py 가 통째로 바꿔치는 구간입니다. */
+  window.PB_FILES = {
+    MAX_N: 3,
+    MAX_ONE: 8 * 1024 * 1024,
+    MAX_ALL: 10 * 1024 * 1024,
+    OK_EXT: ['hwp', 'hwpx', 'pdf', 'doc', 'docx', 'xls', 'xlsx',
+             'ppt', 'pptx', 'jpg', 'jpeg', 'png', 'gif']
+  };
+  (function () {
+    var F = window.PB_FILES;
+    var el = document.getElementById('pb-ofile');
+    if (!el) return;
+    function mb(n) { return (n / 1024 / 1024).toFixed(1).replace(/\.0$/, '') + 'MB'; }
+    function why(files) {
+      if (files.length > F.MAX_N) return F.MAX_N + '개까지 올릴 수 있습니다.';
+      var all = 0;
+      for (var i = 0; i < files.length; i++) {
+        var f = files[i];
+        var dot = f.name.lastIndexOf('.');
+        var ext = dot < 0 ? '' : f.name.slice(dot + 1).toLowerCase();
+        if (F.OK_EXT.indexOf(ext) < 0) {
+          return '‘' + f.name + '’ 은 올릴 수 없는 형식입니다. ' +
+                 '한글·워드·엑셀·PPT·PDF·사진만 됩니다.';
+        }
+        if (f.size > F.MAX_ONE) {
+          return '‘' + f.name + '’ 이 너무 큽니다(' + mb(f.size) + '). ' +
+                 '한 개 ' + mb(F.MAX_ONE) + ' 까지입니다.';
+        }
+        all += f.size;
+      }
+      if (all > F.MAX_ALL) {
+        return '모두 합쳐 ' + mb(all) + ' 입니다. ' + mb(F.MAX_ALL) + ' 까지입니다.';
+      }
+      return '';
+    }
+    el.addEventListener('change', function () {
+      el.setCustomValidity(why(el.files || []));
+    });
+    /* 보낸 뒤 reset 으로 고른 파일이 사라지면 판정도 함께 풀어야 합니다. */
+    if (el.form) el.form.addEventListener('reset', function () {
+      setTimeout(function () { el.setCustomValidity(''); }, 0);
+    });
+  })();
+
   function fakeSubmit(formId, msgId, text) {
     var form = document.getElementById(formId);
     var msg = document.getElementById(msgId);
@@ -1884,6 +2537,8 @@
     word-break:keep-all;-webkit-font-smoothing:antialiased
   }
   #ah-foot a{color:inherit;text-decoration:none}
+  
+  #ah-foot :focus-visible{outline:2.5px solid var(--brand);outline-offset:3px}
   #ah-foot h2,#ah-foot h3,#ah-foot p{margin:0}
   #ah-foot .wrap{width:min(1120px,calc(100% - 48px));margin:0 auto}
 
@@ -1896,7 +2551,8 @@
     font-family:GmarketSans,sans-serif;font-weight:700;color:#fff;
     font-size:clamp(20px,2.2vw,31px);line-height:1.35;letter-spacing:-.02em
   }
-  #ah-foot .give p{margin-top:10px;font-size:14.5px;color:rgba(255,255,255,.9)}
+  
+  #ah-foot .give p{margin-top:10px;font-size:14.5px;color:#fff}
   #ah-foot .give a{
     flex:none;background:#fff;color:var(--ink);border-radius:999px;
     padding:15px 30px;font-weight:700;font-size:16px;transition:transform .15s
@@ -1967,7 +2623,7 @@
       <h2>당신이 낸 세금, 누가 지켜보고 있을까요?</h2>
       <p>시민행동은 정부와 기업의 돈을 감시합니다. 그 일은 시민의 후원으로만 굴러갑니다.</p>
     </div>
-    <a href="https://mrmweb.hsit.co.kr/v2/Member/MemberJoin.aspx?action=join&amp;server=GdGrmt6XtgAAdxPdh65AQQ==" target="_blank" rel="noopener">후원으로 함께하기 →</a>
+    <a href="https://secure.donus.org/withaction0909/pay/step1" target="_blank" rel="noopener">후원으로 함께하기 →</a>
   </div></div></section>
 
   <footer class="ft"><div class="wrap">
