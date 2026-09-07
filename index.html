@@ -429,9 +429,9 @@
           
           <li><a class="iall" href="/action-home-preview/77" data-nav="issue">함께하기<span class="idue">진행 중 · 종료</span></a></li>
           <li class="isep" aria-hidden="true"></li>
-          <li><a href="/action-home-preview/78" data-nav="issue-dok">2026 하반기 밑빠진 독상</a></li>
-          <li><a href="/action-home-preview/80" data-nav="pb">시민참여 상담소</a></li>
-          <li><a href="/action-home-preview/79" data-nav="issue-vote">10만원 예산편성 투표</a></li>
+          <li><a href="https://dokseong.pages.dev/" target="_blank" rel="noopener">2026 하반기 밑빠진 독상</a></li>
+          <li><a href="https://pb-action-site.pages.dev/" target="_blank" rel="noopener">시민참여 상담소</a></li>
+          <li><a href="https://vote.action.or.kr/" target="_blank" rel="noopener">10만원 예산편성 투표</a></li>
         </ul></div>
       </div>
 
@@ -513,9 +513,9 @@
       <a href="/action-home-preview/77">캠페인</a>
       <ul class="msub">
         <li><a class="is-all" href="/action-home-preview/77" data-nav="issue">함께하기 →</a></li>
-        <li><a href="/action-home-preview/78" data-nav="issue-dok">2026 하반기 밑빠진 독상</a></li>
-        <li><a href="/action-home-preview/80" data-nav="pb">시민참여 상담소</a></li>
-        <li><a href="/action-home-preview/79" data-nav="issue-vote">10만원 예산편성 투표</a></li>
+        <li><a href="https://dokseong.pages.dev/" target="_blank" rel="noopener">2026 하반기 밑빠진 독상</a></li>
+        <li><a href="https://pb-action-site.pages.dev/" target="_blank" rel="noopener">시민참여 상담소</a></li>
+        <li><a href="https://vote.action.or.kr/" target="_blank" rel="noopener">10만원 예산편성 투표</a></li>
       </ul>
     </li>
     <li>
@@ -624,10 +624,7 @@
       ['/76', 'act-dok'],
       ['/library', 'library'],
       ['/77', 'issue'],
-      ['/78', 'issue-dok'],
-      ['/79', 'issue-vote'],
       ['/sign', 'issue'],
-      ['/80', 'pb'],
       ['/49', 'act-local'],
       ['/51', 'act-civic'],
       ['/69', 'home']
@@ -670,7 +667,8 @@
      좁은 화면 — 알약 줄이 가로로 스크롤되는 상자라 그 안에서는 판이 잘립니다.
                 그래서 상자 밖 #ah-sheet 에 목차를 복사해 넣고 헤더 밑에 폅니다.
 
-     후원하기는 이 규칙에서 뺐습니다 — 눌러서 바로 가야 하는 버튼입니다. */
+     후원하기도 같은 규칙을 씁니다 — 누르면 목차가 열리고, 그 안의
+     '정기후원하기'를 누르면 실제 도너스 신청서로 갑니다. */
   var narrow = window.matchMedia('(max-width:1060px)');
   var sheet = document.getElementById('ah-sheet');
   var openItem = null;
@@ -793,7 +791,7 @@
 
     var a = item.querySelector('a');
     var drop = item.querySelector('.drop');
-    if (!a || !drop || a.classList.contains('is-cta')) return;
+    if (!a || !drop) return;
 
     a.setAttribute('aria-haspopup', 'true');
     a.setAttribute('aria-expanded', 'false');
@@ -920,6 +918,7 @@
   }
   #action-home-v2 a{color:inherit;text-decoration:none}
   #action-home-v2 img{display:block;width:100%}
+  #action-home-v2 [hidden]{display:none!important}
   #action-home-v2 ul{list-style:none;margin:0;padding:0}
   
   #action-home-v2 :focus-visible{outline:2.5px solid var(--brand); outline-offset:3px}
@@ -976,11 +975,13 @@
   #action-home-v2 .band-in{flex:1 1 420px;min-width:0}
   #action-home-v2 .band-t{
     font-family:GmarketSans,sans-serif;font-weight:700;letter-spacing:-.02em;
-    font-size:clamp(28px,4.1vw,54px);line-height:1.25
+    font-size:clamp(28px,4.1vw,54px);line-height:1.25;color:var(--ink)
   }
+  #action-home-v2 .band-accent{color:#fff}
   #action-home-v2 .band-d{
-    margin-top:14px;font-size:clamp(16px,1.5vw,22px);color:#fff
+    margin-top:14px;font-size:clamp(16px,1.5vw,22px);color:var(--ink)
   }
+  #action-home-v2 .band-d strong{color:#fff;font-weight:700}
   
   #action-home-v2 .band-cta{
     flex:none;display:flex;align-items:center;gap:12px;flex-wrap:wrap
@@ -992,8 +993,6 @@
     transition:transform .15s,box-shadow .15s,background .15s,color .15s
   }
   #action-home-v2 .band-go:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(6,35,48,.24)}
-  #action-home-v2 .band-go.is-ghost{background:transparent;color:#fff}
-  #action-home-v2 .band-go.is-ghost:hover{background:#fff;color:var(--brand-deep)}
 
   #action-home-v2 .spark{
     position:absolute;display:block;pointer-events:none;
@@ -1013,7 +1012,7 @@
   @media(prefers-reduced-motion:reduce){
     #action-home-v2 .spark{animation:none;opacity:calc(var(--o,.3) * .8);transform:rotate(var(--r,0deg))}
   }
-  #action-home-v2 .lead{padding:clamp(32px,4vw,60px) 0 clamp(48px,6vw,90px)}
+  #action-home-v2 .lead{padding:0 0 clamp(48px,6vw,90px)}
   #action-home-v2 .lead-in{
     display:grid;grid-template-columns:minmax(0,1.62fr) minmax(310px,.95fr);
     gap:clamp(16px,1.8vw,26px);align-items:stretch
@@ -1023,7 +1022,9 @@
     display:grid;
     background:#fff;border:1px solid var(--line);overflow:hidden
   }
-  #action-home-v2 .slide{grid-area:1/1;opacity:0;visibility:hidden;z-index:0}
+  #action-home-v2 .slide{
+    grid-area:1/1;opacity:0;visibility:hidden;z-index:0
+  }
   
   #action-home-v2 .slide:first-child,
   #action-home-v2 .slide.is-on{opacity:1;visibility:visible;z-index:1}
@@ -1242,7 +1243,7 @@
 
     #action-home-v2 .spark.less{display:none}
     #action-home-v2 .band-go{padding:13px 24px}
-    #action-home-v2 .lead{padding:24px 0 40px}
+    #action-home-v2 .lead{padding:0 0 40px}
     #action-home-v2 .lead-in{grid-template-columns:1fr;gap:0}
     
     #action-home-v2 .slide-shot{aspect-ratio:3/2}
@@ -1287,12 +1288,11 @@
   <section class="band" aria-label="후원으로 함께하기">
     <div class="wrap">
       <div class="band-in">
-        <h1 class="band-t">예산은 함께 사는 세상을 만드는 가계부니까</h1>
-        <p class="band-d">함께 만들어가요!</p>
+        <h1 class="band-t">예산은 <span class="band-accent">우리가 만드는</span> 가계부니까</h1>
+        <p class="band-d">시민행동과 <strong>함께 만들고 지켜봐요!</strong></p>
       </div>
       <div class="band-cta">
         <a class="band-go" href="https://secure.donus.org/withaction0909/pay/step1" target="_blank" rel="noopener">정기후원하기 →</a>
-        <a class="band-go is-ghost" href="https://donate.action.or.kr/">후원 안내</a>
       </div>
     </div>
     <span class="spark" style="--w:66px;left:2%;top:12%;--r:-16deg;--o:.28;--dur:5.4s;--delay:0s"></span>
@@ -1313,10 +1313,9 @@
       <div class="lead-in">
 
         <div class="stage" id="lead-stage">
-        <article class="slide" data-due="2026-09-15" style="--tile:#062330">
-          <a class="slide-link" href="/action-home-preview/78">
+        <article class="slide" data-ah-slide data-due="2026-09-15" style="--tile:#062330">
+          <a class="slide-link" href="https://dokseong.pages.dev/" target="_blank" rel="noopener">
             <span class="slide-shot">
-              <img class="fill" src="https://cdn.imweb.me/thumbnail/20260825/c4b8e2d1b259d.png" alt="" aria-hidden="true">
               <img class="real" src="https://cdn.imweb.me/thumbnail/20260825/c4b8e2d1b259d.png" alt="2026 하반기 밑빠진 독상">
             </span>
             <span class="slide-in">
@@ -1330,10 +1329,10 @@
             </span>
           </a>
         </article>
-        <article class="slide" style="--tile:#062330">
-          <a class="slide-link" href="/action-home-preview/80">
+        <article class="slide" data-ah-slide hidden style="--tile:#062330">
+          <a class="slide-link" href="https://pb-action-site.pages.dev/" target="_blank" rel="noopener">
             <span class="slide-shot">
-              <span class="mark" aria-hidden="true">상담</span>
+              <img class="real" src="https://pb-action-site.pages.dev/img/citizen-counseling-home-temp.png?v=20260907" alt="시민참여 상담소 질문 접수 화면">
             </span>
             <span class="slide-in">
               <span class="pills">
@@ -1346,10 +1345,9 @@
             </span>
           </a>
         </article>
-        <article class="slide" style="--tile:#0d4f66">
-          <a class="slide-link" href="/action-home-preview/79">
+        <article class="slide" data-ah-slide hidden style="--tile:#0d4f66">
+          <a class="slide-link" href="https://vote.action.or.kr/" target="_blank" rel="noopener">
             <span class="slide-shot">
-              <img class="fill" src="https://vote.action.or.kr/og-budget-vote-v1.png?v=2" alt="" aria-hidden="true">
               <img class="real" src="https://vote.action.or.kr/og-budget-vote-v1.png?v=2" alt="10만원 예산 편성">
             </span>
             <span class="slide-in">
@@ -1364,11 +1362,10 @@
           </a>
         </article>
 
-        <article class="slide" style="--tile:#3d5765">
+        <article class="slide" data-ah-slide hidden style="--tile:#3d5765">
           <a class="slide-link" href="/action-home-preview/27/?idx=173415033&amp;bmode=view">
             <span class="slide-shot">
-              <img class="fill" src="https://cdn.imweb.me/thumbnail/20260825/1a34d985c024b.png" alt="" aria-hidden="true">
-              <img class="real" src="https://cdn.imweb.me/thumbnail/20260825/1a34d985c024b.png" alt="미래대응기금 논평">
+              <img class="real" src="https://cdn.imweb.me/upload/S20210826b814397ca4e6d/21aa8479b6f98.png" alt="미래대응기금 논평">
             </span>
             <span class="slide-in">
               <span class="pills">
@@ -1385,21 +1382,21 @@
         </div>
 
         <div class="lead-list" id="lead-list">
-        <a class="litem is-on" href="/action-home-preview/78" data-go="0" data-due="2026-09-15">
+        <a class="litem is-on" href="https://dokseong.pages.dev/" target="_blank" rel="noopener" data-go="0" data-due="2026-09-15">
           <span class="lno">01</span>
           <span class="lpill is-kind">캠페인</span>
           <span class="lt">2026 하반기 밑빠진 독상</span>
           
           <span class="lbar" aria-hidden="true"><i></i></span>
         </a>
-        <a class="litem" href="/action-home-preview/80" data-go="1">
+        <a class="litem" href="https://pb-action-site.pages.dev/" target="_blank" rel="noopener" data-go="1">
           <span class="lno">02</span>
           <span class="lpill is-kind">캠페인</span>
           <span class="lt">시민참여 상담소</span>
           
           <span class="lbar" aria-hidden="true"><i></i></span>
         </a>
-        <a class="litem" href="/action-home-preview/79" data-go="2">
+        <a class="litem" href="https://vote.action.or.kr/" target="_blank" rel="noopener" data-go="2">
           <span class="lno">03</span>
           <span class="lpill is-kind">캠페인</span>
           <span class="lt">10만원 예산편성 투표</span>
@@ -1436,7 +1433,7 @@
       <div class="pgrid" id="news-grid">
 
       <a class="pcard reveal" href="/action-home-preview/27/?idx=173415033&amp;bmode=view">
-        <span class="pcard-media"><img class="fill" src="https://cdn.imweb.me/thumbnail/20260825/1a34d985c024b.png" alt="" aria-hidden="true" loading="lazy"><img class="real" src="https://cdn.imweb.me/thumbnail/20260825/1a34d985c024b.png" alt="" loading="lazy"></span>
+        <span class="pcard-media"><img class="fill" src="https://cdn.imweb.me/upload/S20210826b814397ca4e6d/21aa8479b6f98.png" alt="" aria-hidden="true" loading="lazy"><img class="real" src="https://cdn.imweb.me/upload/S20210826b814397ca4e6d/21aa8479b6f98.png" alt="미래대응기금 논평" loading="lazy"></span>
         <span class="pcard-body">
           <span class="pbadge">일반 활동</span>
           <strong>[논평] 미래대응기금, 대규모 재정운용체계 변화에 걸맞은 촘촘한 설계가 필요하다</strong>
@@ -1795,8 +1792,7 @@
       D.issues.slice(0, 5).forEach(function (it, i) {
       var due  = it.due ? ' data-due="' + esc(it.due) + '"' : '';
       var shot = it.img
-        ? '<img class="fill" src="' + esc(it.img) + '" alt="" aria-hidden="true">'
-          + '<img class="real" src="' + esc(it.img) + '" alt="' + esc(it.title) + '">'
+        ? '<img class="real" src="' + esc(it.img) + '" alt="' + esc(it.title) + '">'
         : '<span class="mark">' + esc(it.mark || two(it.title)) + '</span>';
 
       // 종류 알약. it.kind 가 없으면 캠페인으로 봅니다(예전 값과 그대로 맞물립니다).
@@ -1804,7 +1800,8 @@
       var kind  = it.kind || '캠페인';
       var post  = kind !== '캠페인' ? ' is-post' : '';
 
-      sHtml += '<article class="slide"' + due + ' style="--tile:' + esc(it.tile || '#0079a6') + '">'
+      sHtml += '<article class="slide" data-ah-slide' + (i ? ' hidden' : '') + due
+            +    ' style="--tile:' + esc(it.tile || '#0079a6') + '">'
             +    '<a class="slide-link" href="' + esc(it.url || '#') + '"' + linkAttrs(it) + '>'
             +      '<span class="slide-shot">' + shot + '</span>'
             +      '<span class="slide-in">'
@@ -1915,7 +1912,7 @@
   var list  = document.getElementById('lead-list');
   if (!lead || !stage || !list) return;
 
-  var slides = stage.querySelectorAll('.slide');
+  var slides = stage.querySelectorAll('[data-ah-slide]');
   var items  = list.querySelectorAll('.litem');
   if (slides.length < 2 || slides.length !== items.length) return;
 
@@ -1930,6 +1927,7 @@
     if (n === at) return;
     at = n;
     for (var k = 0; k < slides.length; k++) {
+      slides[k].hidden = k !== n;
       slides[k].classList.toggle('is-on', k === n);
       items[k].classList.toggle('is-on', k === n);
       // 안 보이는 장은 화면 읽기 프로그램에도 안 읽히게
@@ -1996,8 +1994,12 @@
   }
 
   // 첫 장을 켠 상태로 맞춰 두고 시작합니다.
+  slides[0].hidden = false;
   slides[0].classList.add('is-on');
-  for (var m = 1; m < slides.length; m++) slides[m].setAttribute('aria-hidden', 'true');
+  for (var m = 1; m < slides.length; m++) {
+    slides[m].hidden = true;
+    slides[m].setAttribute('aria-hidden', 'true');
+  }
   restartBar();
   run();
 })();
