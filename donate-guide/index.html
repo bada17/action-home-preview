@@ -42,7 +42,7 @@
   <a href="/action-home-preview/27">예산감시</a>
   <a href="/action-home-preview/51">시민참여</a>
   <a href="/action-home-preview/76">밑빠진 독상</a>
-  <a href="/action-home-preview/80">참여예산 상담소</a>
+  <a href="/action-home-preview/80">시민참여 상담소</a>
 </nav>
 
 <style>
@@ -430,8 +430,8 @@
           <li><a class="iall" href="/action-home-preview/77" data-nav="issue">함께하기<span class="idue">진행 중 · 종료</span></a></li>
           <li class="isep" aria-hidden="true"></li>
           <li><a href="/action-home-preview/78" data-nav="issue-dok">2026 하반기 밑빠진 독상</a></li>
-          <li><a href="/action-home-preview/79" data-nav="issue-vote">10만원 예산편성</a></li>
-          <li><a href="/action-home-preview/80" data-nav="pb">참여예산 상담소</a></li>
+          <li><a href="/action-home-preview/80" data-nav="pb">시민참여 상담소</a></li>
+          <li><a href="/action-home-preview/79" data-nav="issue-vote">10만원 예산편성 투표</a></li>
         </ul></div>
       </div>
 
@@ -514,8 +514,8 @@
       <ul class="msub">
         <li><a class="is-all" href="/action-home-preview/77" data-nav="issue">함께하기 →</a></li>
         <li><a href="/action-home-preview/78" data-nav="issue-dok">2026 하반기 밑빠진 독상</a></li>
-        <li><a href="/action-home-preview/79" data-nav="issue-vote">10만원 예산편성</a></li>
-        <li><a href="/action-home-preview/80" data-nav="pb">참여예산 상담소</a></li>
+        <li><a href="/action-home-preview/80" data-nav="pb">시민참여 상담소</a></li>
+        <li><a href="/action-home-preview/79" data-nav="issue-vote">10만원 예산편성 투표</a></li>
       </ul>
     </li>
     <li>
@@ -2666,11 +2666,12 @@ document.querySelector('.amount-custom').addEventListener('input', () => {
 //   - 추후 토스트/모달로 UX 개선 여지 있음
 // -----------------------------------------------------------------
 const DONATE_URLS = {
+  // 2026-09-07 — 정기·일시 둘 다 도너스로 보냅니다(사용자 지시).
+  //   옛 시스템(mrmweb.hsit.co.kr)의 후원 신청 두 입구는 404 였습니다.
+  //   일시후원 자리는 도너스에서 '모금함'인데 건마다 주소가 달라, 모금함을 열면
+  //   once 한 줄만 그 주소로 바꾸면 됩니다.
   regular: 'https://secure.donus.org/withaction0909/pay/step1',
-  // ⚠️ 일시후원은 아직 옛 시스템(MRM)입니다. 도너스에서는 '모금함'이 그 자리인데,
-  //    모금함은 건마다 주소가 따로라 정기후원 주소로 대신할 수 없습니다.
-  //    모금함 주소를 받으면 이 한 줄만 바꾸세요 (2026-09-07).
-  once: 'https://mrmweb.hsit.co.kr/v2/Member/SupportOnce.aspx?action=once&server=GdGrmt6XtgAAdxPdh65AQQ=='
+  once: 'https://secure.donus.org/withaction0909/pay/step1'
 };
 document.getElementById('donate-go').addEventListener('click', () => {
   const amount = currentAmount();

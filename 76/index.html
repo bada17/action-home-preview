@@ -42,7 +42,7 @@
   <a href="/action-home-preview/27">예산감시</a>
   <a href="/action-home-preview/51">시민참여</a>
   <a href="/action-home-preview/76" class="on" aria-current="page">밑빠진 독상</a>
-  <a href="/action-home-preview/80">참여예산 상담소</a>
+  <a href="/action-home-preview/80">시민참여 상담소</a>
 </nav>
 
 <style>
@@ -430,8 +430,8 @@
           <li><a class="iall" href="/action-home-preview/77" data-nav="issue">함께하기<span class="idue">진행 중 · 종료</span></a></li>
           <li class="isep" aria-hidden="true"></li>
           <li><a href="/action-home-preview/78" data-nav="issue-dok">2026 하반기 밑빠진 독상</a></li>
-          <li><a href="/action-home-preview/79" data-nav="issue-vote">10만원 예산편성</a></li>
-          <li><a href="/action-home-preview/80" data-nav="pb">참여예산 상담소</a></li>
+          <li><a href="/action-home-preview/80" data-nav="pb">시민참여 상담소</a></li>
+          <li><a href="/action-home-preview/79" data-nav="issue-vote">10만원 예산편성 투표</a></li>
         </ul></div>
       </div>
 
@@ -514,8 +514,8 @@
       <ul class="msub">
         <li><a class="is-all" href="/action-home-preview/77" data-nav="issue">함께하기 →</a></li>
         <li><a href="/action-home-preview/78" data-nav="issue-dok">2026 하반기 밑빠진 독상</a></li>
-        <li><a href="/action-home-preview/79" data-nav="issue-vote">10만원 예산편성</a></li>
-        <li><a href="/action-home-preview/80" data-nav="pb">참여예산 상담소</a></li>
+        <li><a href="/action-home-preview/80" data-nav="pb">시민참여 상담소</a></li>
+        <li><a href="/action-home-preview/79" data-nav="issue-vote">10만원 예산편성 투표</a></li>
       </ul>
     </li>
     <li>
@@ -1723,7 +1723,8 @@ html { scroll-behavior: smooth; }
   // 로컬 미리보기에서는 같은 서버가 /dok/ 로 저장소를 그대로 물려 줍니다.
   // 같은 출처라 CORS 없이 확인할 수 있습니다.
   var isLocal = location.hostname === '127.0.0.1' || location.hostname === 'localhost';
-  var DATA = isLocal ? '/dok/data/' : LIVE + 'public-data/';
+  var DATA = '/action-home-preview/dok/data/';   // 정적 시안: 데이터를 같이 담아 CORS 를 피합니다
+  void isLocal; void LIVE;
 
   var esc = function (v) {
     return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
