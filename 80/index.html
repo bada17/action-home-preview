@@ -1195,7 +1195,6 @@
 #pb .pbar{display:flex; align-items:center; justify-content:center; gap:14px; margin-top:2px}
 #pb .pcount{display:none}
 #pb .pcount b{color:var(--deep)}
-#pb .phint{margin-top:9px; text-align:center; font-size:12.5px; color:var(--faint)}
 
 @media(min-width:900px){
   #pb .person{
@@ -1521,6 +1520,13 @@
 }
 #pb .tl-toggle:hover{border-color:var(--brand); background:var(--tint)}
 
+@media(max-width:899px){
+  #pb .tl li{grid-template-columns:14px minmax(0,1fr); column-gap:12px}
+  #pb .tl .ln{grid-column:1; grid-row:1 / span 2}
+  #pb .tl .yr{grid-column:2; grid-row:1; text-align:left; color:var(--brand)}
+  #pb .tl .bd{grid-column:2; grid-row:2; padding-top:2px}
+}
+
 #pb .qa .sign{margin-top:11px; font-size:13px; font-weight:700; color:var(--deep)}
 
 #pb button.row{
@@ -1583,19 +1589,53 @@
 
 #pb .snote{
   margin:20px 0 0; padding-top:16px; border-top:1px solid var(--line);
-  font-size:15px; line-height:1.85; color:var(--soft); word-break:keep-all
+  color:var(--soft); word-break:keep-all
+}
+#pb .snote-lead{margin:0; font-size:15px; line-height:1.85}
+#pb .snote-lead b{color:var(--deep)}
+#pb .snote-tail{margin:14px 0 0; font-size:14px; line-height:1.8}
+
+#pb .cyc{
+  display:flex; flex-wrap:wrap; align-items:center;
+  gap:8px 0; margin:16px 0 0; padding:0; list-style:none
+}
+#pb .cyc li{display:flex; align-items:center}
+#pb .cyc .p{
+  display:inline-flex; align-items:center; gap:8px;
+  border:1.5px solid var(--line); border-radius:999px; background:var(--paper);
+  padding:7px 14px 7px 7px; font-size:14px; font-weight:700;
+  color:var(--deep); line-height:1.4
+}
+#pb .cyc .p i{
+  flex:none; display:grid; place-items:center; width:21px; height:21px;
+  border-radius:50%; background:var(--tint); color:var(--brand);
+  font-style:normal; font-size:11.5px; font-weight:800
+}
+
+#pb .cyc li + li::before{
+  content:"→"; margin:0 7px; color:var(--faint); font-weight:400
+}
+
+@media(max-width:560px){
+  #pb .cyc{flex-direction:column; align-items:flex-start; gap:0}
+  #pb .cyc li{flex-direction:column; align-items:flex-start}
+  #pb .cyc li + li::before{margin:2px 0 2px 15px; font-size:15px}
 }
 
 @media(min-width:900px){
   #pb .words.acts .word{min-height:200px; padding:24px 20px}
   #pb .words.acts .word b{font-size:21px}
   #pb .words.acts .word span{font-size:17.5px; line-height:1.75}
+  #pb .tl li{grid-template-columns:96px 16px minmax(0,1fr)}
   #pb .tl .yr{font-size:17px}
   #pb .tl b{font-size:21px}
   #pb .tl p{font-size:17.5px}
   #pb .tl .bd{padding-bottom:28px}
   #pb .tl-toggle{padding:13px 26px; font-size:17px}
-  #pb .snote{font-size:18.5px}
+  #pb .snote-lead{font-size:18.5px}
+  #pb .snote-tail{font-size:17px}
+  #pb .cyc .p{font-size:16.5px; padding:9px 17px 9px 9px}
+  #pb .cyc .p i{width:24px; height:24px; font-size:13px}
 }
 @media(min-width:1200px){
   #pb .tl li{grid-template-columns:104px 16px minmax(0,1fr)}
@@ -1604,7 +1644,9 @@
   #pb .tl .yr{font-size:18.5px}
   #pb .tl b{font-size:23px}
   #pb .tl p{font-size:18.5px}
-  #pb .snote{font-size:20px}
+  #pb .snote-lead{font-size:20px}
+  #pb .snote-tail{font-size:18.5px}
+  #pb .cyc .p{font-size:18px}
 }
 @media(max-width:700px){
   #pb .words.acts{grid-template-columns:repeat(2,1fr)}
@@ -1706,7 +1748,6 @@
   #pb .word[aria-pressed="true"] b{font-size:14px}
 
   #pb .pho em{font-size:14px}
-  #pb .phint{font-size:15px}
   #pb .pv .person .nm{font-size:clamp(40px,4vw,54px)}
   #pb .pv .person > div:last-child{min-height:560px}
   #pb .pv .career::before{
@@ -2025,7 +2066,6 @@
        </div>
       </div>
 
-      <p class="phint">전문위원이 3초마다 순서대로 바뀝니다. 화살표로 직접 넘길 수도 있습니다.</p>
     </section>
 
     <section class="sec"><div class="sh">
@@ -2039,10 +2079,18 @@
         <button type="button" class="word" aria-pressed="false"><b>시민 · 활동가 역량 강화</b><span>시민이 정책과 예산을 이해하고 스스로 참여할 수 있도록 시민교육과 활동가 교육을 운영합니다. 참여예산위원, 주민자치회 위원, 청년·청소년, 활동가를 위한 교육을 만듭니다.</span></button>
         <button type="button" class="word" aria-pressed="false"><b>민관거버넌스 네트워크</b><span>시민사회와 전문가, 활동가, 행정기관이 경험과 과제를 나누도록 토론회와 워크숍, 네트워크를 운영합니다. 현장의 경험이 정책 연구를 거쳐 제도 개선으로 이어지게 합니다.</span></button>
       </div>
-      <p class="snote">시민참여정책위원회는 참여의 숫자보다 <b>참여의 실질적인 영향력</b>을
-        중요하게 봅니다. 시민이 정보를 알고 → 정책을 함께 논의하고 → 예산의 우선순위를
-        결정하며 → 실행과 결과를 확인하고 → 다시 제도 개선에 참여하는 구조, 그것이
-        우리가 만들고자 하는 시민참여입니다.</p>
+      <div class="snote">
+        <p class="snote-lead">시민참여정책위원회는 참여의 숫자보다
+          <b>참여의 실질적인 영향력</b>을 중요하게 봅니다.</p>
+        <ol class="cyc">
+          <li><span class="p"><i>1</i>정보를 안다</span></li>
+          <li><span class="p"><i>2</i>함께 논의한다</span></li>
+          <li><span class="p"><i>3</i>예산 우선순위를 정한다</span></li>
+          <li><span class="p"><i>4</i>실행과 결과를 확인한다</span></li>
+          <li><span class="p"><i>5</i>다시 제도 개선에 참여한다</span></li>
+        </ol>
+        <p class="snote-tail">이 다섯이 끊기지 않고 도는 구조, 그것이 우리가 만들고자 하는 시민참여입니다.</p>
+      </div>
     </section>
 
     <section class="sec"><div class="sh">
@@ -2437,7 +2485,7 @@
      'in' 을 바로 붙여 그냥 다 보이게 둡니다. */
   var reveal = root.querySelectorAll(
     '.sec > .sh, .qtools, .qa .item, .words, .word,' +
-    ' .cintro, .people, .phint, .tl, .tl-more, .snote,' +
+    ' .cintro, .people, .tl, .tl-more, .snote,' +
     ' .rows .row, .rows-fine, .form');
   if (!('IntersectionObserver' in window) || calm) {
     reveal.forEach(function (el) { el.classList.add('rv', 'in'); });
