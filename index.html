@@ -1083,13 +1083,16 @@
     background:#fff;border:1px solid var(--line);overflow:hidden
   }
   #action-home-v2 .slide{
-    grid-area:1/1;opacity:0;visibility:hidden;z-index:0
+    grid-area:1/1;opacity:0;visibility:hidden;z-index:0;position:relative
   }
   
   #action-home-v2 .slide:first-child,
   #action-home-v2 .slide.is-on{opacity:1;visibility:visible;z-index:1}
   #action-home-v2 .slide.is-on{transition:opacity .55s ease}
   #action-home-v2 .slide-link{display:flex;flex-direction:column;height:100%}
+  
+  #action-home-v2 .slide-go{color:inherit}
+  #action-home-v2 .slide-go::after{content:"";position:absolute;inset:0;z-index:1}
 
   #action-home-v2 .slide-shot{
     position:relative;flex:0 0 auto;aspect-ratio:16/9;width:100%;
@@ -1181,6 +1184,40 @@
   #action-home-v2 .litem .lm .d.is-todo{color:var(--ink-soft);font-weight:700}
   #action-home-v2 .litem:hover{background:var(--brand-tint)}
   #action-home-v2 .litem:hover .lt{color:var(--brand-deep)}
+
+  #action-home-v2 .slide-in.has-sub{
+    flex-direction:row;align-items:flex-end;gap:clamp(14px,1.6vw,22px)
+  }
+  #action-home-v2 .slide-txt{
+    flex:1 1 auto;min-width:0;
+    display:flex;flex-direction:column;align-items:flex-start;gap:clamp(7px,.8vw,11px)
+  }
+  #action-home-v2 .ssubs{
+    position:relative;z-index:2;
+    flex:0 0 auto;width:min(44%,300px);
+    display:flex;flex-direction:column;gap:6px
+  }
+  #action-home-v2 .ssubs-h{
+    font-size:11.5px;font-weight:700;letter-spacing:.02em;color:var(--faint)
+  }
+  #action-home-v2 .ssub{
+    display:block;padding:9px 11px;
+    background:#fbfdfe;border:1px solid var(--line);
+    transition:background .2s,border-color .2s
+  }
+  #action-home-v2 .ssub:hover{background:var(--brand-tint);border-color:var(--brand)}
+  #action-home-v2 .ssub .ssub-t{
+    font-size:13.5px;font-weight:700;line-height:1.4;letter-spacing:-.02em;
+    
+    overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2
+  }
+  #action-home-v2 .ssub:hover .ssub-t{color:var(--brand-deep)}
+  #action-home-v2 .ssub .ssub-m{display:block;margin-top:2px;font-size:11.5px;color:var(--faint)}
+  
+  @media (max-width:640px){
+    #action-home-v2 .slide-in.has-sub{flex-direction:column;align-items:flex-start}
+    #action-home-v2 .ssubs{width:100%}
+  }
   #action-home-v2 .new-window{font-size:.78em;margin-left:.28em;color:var(--brand-deep);vertical-align:.12em}
   
   #action-home-v2 .litem.is-on{background:var(--brand-tint)}
@@ -1391,23 +1428,33 @@
 
         <div class="stage" id="lead-stage">
         <article class="slide" data-ah-slide data-due="2026-09-15" style="--tile:#062330">
-          <a class="slide-link" href="https://dok.action.or.kr/" target="_blank" rel="noopener">
+          <div class="slide-link">
             <span class="slide-shot">
               <img class="real" src="https://cdn.imweb.me/thumbnail/20260825/c4b8e2d1b259d.png" alt="2026 하반기 밑빠진 독상">
             </span>
-            <span class="slide-in">
-              <span class="pills">
-                <span class="pill is-kind">캠페인</span>
-                <span class="pill">밑빠진 독상</span>
+            <span class="slide-in has-sub">
+              <span class="slide-txt">
+                <span class="pills">
+                  <span class="pill is-kind">캠페인</span>
+                  <span class="pill">밑빠진 독상</span>
+                </span>
+                <strong class="slide-t"><a class="slide-go" href="https://dok.action.or.kr/" target="_blank" rel="noopener">2026 하반기 밑빠진 독상</a></strong>
+                <span class="slide-d">세금이 새는 현장을 시민이 제보하고, 그중 최악의 사업을 함께 고릅니다.</span>
+                <span class="slide-f"></span>
               </span>
-              <strong class="slide-t">2026 하반기 밑빠진 독상</strong>
-              <span class="slide-d">세금이 새는 현장을 시민이 제보하고, 그중 최악의 사업을 함께 고릅니다.</span>
-              <span class="slide-f"></span>
+              
+              <span class="ssubs">
+                <span class="ssubs-h">지금 감시 중</span>
+                <a class="ssub" href="https://dok.action.or.kr/#camp-camp-3" target="_blank" rel="noopener" aria-label="기획예산처 미래대응기금 — 예산감시 사업 (새 창)">
+                  <span class="ssub-t">기획예산처 미래대응기금</span>
+                  <span class="ssub-m">2026. 8 ~</span>
+                </a>
+              </span>
             </span>
-          </a>
+          </div>
         </article>
         <article class="slide" data-ah-slide hidden style="--tile:#062330">
-          <a class="slide-link" href="https://pb.action.or.kr/" target="_blank" rel="noopener">
+          <div class="slide-link">
             <span class="slide-shot">
               <img class="real" src="https://pb.action.or.kr/img/citizen-counseling-home-temp.png?v=20260907" alt="시민참여 상담소 질문 접수 화면">
             </span>
@@ -1416,14 +1463,14 @@
                 <span class="pill is-kind">캠페인</span>
                 <span class="pill">시민참여</span>
               </span>
-              <strong class="slide-t">시민참여 상담소</strong>
+              <strong class="slide-t"><a class="slide-go" href="https://pb.action.or.kr/" target="_blank" rel="noopener">시민참여 상담소</a></strong>
               <span class="slide-d">참여예산을 두고 생기는 궁금증과 고민을 상담합니다.</span>
               <span class="slide-f"></span>
             </span>
-          </a>
+          </div>
         </article>
         <article class="slide" data-ah-slide hidden style="--tile:#0d4f66">
-          <a class="slide-link" href="https://vote.action.or.kr/" target="_blank" rel="noopener">
+          <div class="slide-link">
             <span class="slide-shot">
               <img class="real" src="https://vote.action.or.kr/og-budget-vote-v1.png?v=2" alt="10만원 예산 편성">
             </span>
@@ -1432,15 +1479,15 @@
                 <span class="pill is-kind">캠페인</span>
                 <span class="pill">예산감시</span>
               </span>
-              <strong class="slide-t">10만원 예산편성 투표</strong>
+              <strong class="slide-t"><a class="slide-go" href="https://vote.action.or.kr/" target="_blank" rel="noopener">10만원 예산편성 투표</a></strong>
               <span class="slide-d">내 몫의 예산 10만원을 어디에 쓸지 직접 편성해 봅니다.</span>
               <span class="slide-f"></span>
             </span>
-          </a>
+          </div>
         </article>
 
         <article class="slide" data-ah-slide hidden style="--tile:#3d5765">
-          <a class="slide-link" href="/action-home-preview/27/?idx=173415033&amp;bmode=view">
+          <div class="slide-link">
             <span class="slide-shot">
               <img class="real" src="https://cdn.imweb.me/upload/S20210826b814397ca4e6d/21aa8479b6f98.png" alt="미래대응기금 논평">
             </span>
@@ -1449,12 +1496,12 @@
                 <span class="pill is-kind is-post">논평</span>
                 <span class="pill">예산감시</span>
               </span>
-              <strong class="slide-t">미래대응기금, 대규모 재정운용체계 변화에 걸맞은 촘촘한 설계가 필요하다</strong>
+              <strong class="slide-t"><a class="slide-go" href="/action-home-preview/27/?idx=173415033&amp;bmode=view">미래대응기금, 대규모 재정운용체계 변화에 걸맞은 촘촘한 설계가 필요하다</a></strong>
               <span class="slide-d">2026.08.25 · 일반 활동</span>
               
               <span class="slide-f"></span>
             </span>
-          </a>
+          </div>
         </article>
         </div>
 
@@ -1879,17 +1926,22 @@
 
       sHtml += '<article class="slide" data-ah-slide' + (i ? ' hidden' : '') + due
             +    ' style="--tile:' + esc(it.tile || '#0079a6') + '">'
-            +    '<a class="slide-link" href="' + esc(it.url || '#') + '"' + linkAttrs(it) + '>'
+            /* 카드 전체가 <a> 가 아닙니다 — 제목 링크가 ::after 로 카드를 덮습니다.
+               활동 칸(.wrow)과 같은 방식이고, 그래야 카드 안에 다른 링크를 둘 수 있습니다
+               (감시사업 줄). 씨앗 HTML 네 장도 같은 꼴입니다. */
+            +    '<div class="slide-link">'
             +      '<span class="slide-shot">' + shot + '</span>'
             +      '<span class="slide-in">'
             +        '<span class="pills">'
             +          '<span class="pill is-kind' + post + '">' + esc(kind) + '</span>'
             +          (it.cat ? '<span class="pill">' + esc(it.cat) + '</span>' : '')
             +        '</span>'
-            +        '<strong class="slide-t">' + esc(it.title) + newWindowMark(it) + '</strong>'
+            +        '<strong class="slide-t"><a class="slide-go" href="' + esc(it.url || '#') + '"' + linkAttrs(it) + '>'
+            +          esc(it.title) + newWindowMark(it)
+            +        '</a></strong>'
             +        (it.lead ? '<span class="slide-d">' + esc(it.lead) + '</span>' : '')
             +      '</span>'
-            +    '</a>'
+            +    '</div>'
             +  '</article>';
 
       lHtml += '<a class="litem' + (i === 0 ? ' is-on' : '') + '" href="' + esc(it.url || '#') + '"' + linkAttrs(it)
@@ -1935,6 +1987,121 @@
   window.addEventListener('ah-campaigns-ready', function (e) {
     render((e && e.detail) || window.AH_DATA);
   });
+})();
+</script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   진행 중인 예산감시 사업을 '밑빠진 독상' 장의 글 옆에 놓습니다
+   (2026-09-10 목록 줄로 시작 → 2026-09-11 큰 칸 글 옆 한 곳으로)
+
+   밑빠진 독상은 상(賞) 하나가 아니라 그 밑에 감시사업 여러 건이 도는 일입니다.
+   홈에는 상 이름만 있어서, 지금 무엇을 감시하는 중인지 첫 화면에서 안 보였습니다.
+
+   ★ 어디서 오나 — 밑빠진 독상 접수처(구글 Apps Script)의 `?action=campaigns`.
+     밑빠진 독상 사이트가 카드를 그릴 때 쓰는 것과 **같은 주소**입니다.
+     담당자가 구글 설문지로 사업을 올리고 상태를 '진행 중'으로 두면 여기에도 뜹니다.
+
+   ★ 누르면 — `dok.action.or.kr/#camp-<id>` 로 갑니다. 그 사업 팝업이 열린 채로
+     들어갑니다(독상 쪽 코드가 주소를 읽습니다).
+
+   ★ 화면에 **씨앗**이 심어져 있습니다(위 .ssubs). 접수처가 느려서 — 2026-09-11 에
+     재 보니 10초쯤 걸립니다 — 그동안 빈 채로 두면 장이 다음으로 넘어가 버립니다.
+     그래서 씨앗을 먼저 보여 주고, 받아 온 값으로 통째로 갈아 끼웁니다.
+     받아 보니 진행 중인 사업이 하나도 없으면 씨앗까지 걷습니다.
+
+   ⚠️ 못 받으면 아무 일도 일어나지 않습니다. 씨앗이 그대로 남습니다
+      ('켜는 것만 스크립트가 한다' 원칙).
+   ⚠️ 위 스크립트가 게시판 글로 목록을 **다시 그립니다.** 그래서 그릴 때마다
+      다시 붙여야 합니다 — 아래에서 ah-campaigns-ready 를 같이 듣습니다.
+   ═══════════════════════════════════════════════════════════════ */
+(function () {
+  var EP = 'https://script.google.com/macros/s/'
+         + 'AKfycbxI7UMptIhxwMR7mPtqP72EDQ1z871zJNhBcJeaVBeP5KdIcDhCT4_3CpGSnxPMYgE8hg/exec';
+  var DOK = 'https://dok.action.or.kr/';
+  var MAX = 3;                       /* 넷이 되면 이 칸이 글자 칸보다 높아집니다 */
+  var rows = null;                   /* 한 번만 받아 두고 다시 그릴 때 씁니다 */
+
+  function esc(v) {
+    var d = document.createElement('div');
+    d.textContent = (v === null || v === undefined) ? '' : String(v);
+    return d.innerHTML;
+  }
+
+  /* 큰 칸에서 밑빠진 독상 장의 글자 칸을 찾습니다. 제목은 해마다 바뀌므로
+     (2026 하반기…) 주소로 찾습니다 — 게시판에서 다시 그려도 목적지는 독상 사이트입니다. */
+  function dokSlideIn() {
+    var stage = document.getElementById('lead-stage');
+    if (!stage) return null;
+    var links = stage.querySelectorAll('.slide-go');
+    for (var i = 0; i < links.length; i++) {
+      if ((links[i].getAttribute('href') || '').indexOf('dok.action.or.kr') >= 0) {
+        return links[i].closest ? links[i].closest('.slide-in') : null;
+      }
+    }
+    return null;
+  }
+
+  /* 줄 한 벌. 폭이 좁아 알약 없이 제목과 기간을 위아래로 놓습니다. */
+  function rowsHtml() {
+    var html = '';
+    rows.slice(0, MAX).forEach(function (c) {
+      html += '<a class="ssub" href="' + esc(DOK) + '#camp-' + esc(c.id) + '"'
+           +    ' target="_blank" rel="noopener"'
+           +    ' aria-label="' + esc(c.title) + ' — 예산감시 사업 (새 창)">'
+           +    '<span class="ssub-t">' + esc(c.title) + '</span>'
+           +    (c.period ? '<span class="ssub-m">' + esc(c.period) + '</span>' : '')
+           +  '</a>';
+    });
+    return html;
+  }
+
+  /* 다시 그릴 때 두 번 붙지 않게, 내가 붙였던 것부터 걷습니다. */
+  function wipe(box, cls) {
+    var old = box.querySelectorAll('.' + cls);
+    for (var k = 0; k < old.length; k++) old[k].parentNode.removeChild(old[k]);
+  }
+
+  /* 글자 칸은 원래 세로 한 줄입니다. 지금 있는 글을 .slide-txt 로 묶어 왼쪽에 두고,
+     그 옆 빈자리에 감시사업 칸을 놓습니다. has-sub 가 '두 칸으로 나누라'는 표시입니다.
+
+     ⚠️ 걷어 내는 것이 먼저입니다. 씨앗 칸을 남긴 채로 글을 묶으면 그 칸까지
+        .slide-txt 안으로 딸려 들어갑니다(묶을 때 자식을 전부 옮기기 때문입니다). */
+  function paint() {
+    if (!rows) return;                 /* 아직 못 받았습니다 — 씨앗을 그대로 둡니다 */
+
+    var inn = dokSlideIn();
+    if (!inn) return;
+
+    wipe(inn, 'ssubs');
+
+    /* 진행 중인 사업이 없으면 씨앗까지 걷습니다 — 끝난 사업이 남아 있으면 안 됩니다. */
+    if (!rows.length) { inn.classList.remove('has-sub'); return; }
+
+    if (!inn.querySelector('.slide-txt')) {
+      var txt = document.createElement('span');
+      txt.className = 'slide-txt';
+      while (inn.firstChild) txt.appendChild(inn.firstChild);
+      inn.appendChild(txt);
+    }
+    inn.insertAdjacentHTML('beforeend',
+      '<span class="ssubs"><span class="ssubs-h">지금 감시 중</span>' + rowsHtml() + '</span>');
+    inn.classList.add('has-sub');
+  }
+
+  fetch(EP + '?action=campaigns')
+    .then(function (r) { return r.json(); })
+    .then(function (d) {
+      var all = Array.prototype.slice.call(
+        Object.prototype.toString.call(d) === '[object Array]' ? d : (d && d.campaigns) || []);
+      rows = all.filter(function (c) { return c && c.status === 'ongoing' && c.id && c.title; });
+      paint();
+    })
+    .catch(function () { /* 못 받으면 목록은 지금 모양 그대로 */ });
+
+  /* 게시판 값으로 목록을 다시 그린 뒤에 붙습니다. 그리는 쪽이 innerHTML 을
+     통째로 갈아 끼우므로, 같은 틱에 붙이면 지워집니다. */
+  window.addEventListener('ah-campaigns-ready', function () { setTimeout(paint, 0); });
 })();
 </script>
 
