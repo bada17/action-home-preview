@@ -1071,8 +1071,11 @@
   @media(prefers-reduced-motion:reduce){
     #action-home-v2 .spark{animation:none;opacity:calc(var(--o,.3) * .8);transform:rotate(var(--r,0deg))}
   }
-  
-  #action-home-v2 .lead{padding:clamp(30px,3.6vw,56px) 0 clamp(48px,6vw,90px)}
+
+  #action-home-v2 .lead{
+    font-size:inherit;font-weight:inherit;line-height:inherit;margin-bottom:0;
+    padding:clamp(30px,3.6vw,56px) 0 clamp(48px,6vw,90px)
+  }
   #action-home-v2 .lead-in{
     display:grid;grid-template-columns:minmax(0,1.62fr) minmax(310px,.95fr);
     gap:clamp(16px,1.8vw,26px);align-items:stretch
